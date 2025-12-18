@@ -1,13 +1,8 @@
 # Release Notes
 
 ## Latest Release
-**Version**: 
-**Date**: 
+**Version**: v0.1.0
+**Date**: 2025-12-18
 
 ### Summary
-
-### Highlights
-
-### Migration Notes
-
-### Known Issues
+Initial Memory Bank Setup
