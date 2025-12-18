@@ -1,8 +1,8 @@
 # Release Notes
 
 ## Latest Release
-**Version**: v0.1.2
+**Version**: v0.1.3
 **Date**: 2025-12-18
 
 ### Summary
-Configured global access and fixed alias conflicts
+Consolidated project knowledge (Decisions, Architecture, Risks)

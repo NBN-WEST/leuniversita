@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.1.3] - 2025-12-18
+- Consolidated project knowledge (Decisions, Architecture, Risks) (Task: KNOWLEDGE_CONSOLIDATION)
+
+
 ## [v0.1.2] - 2025-12-18
 - Configured global access and fixed alias conflicts (Task: GLOBAL_CLI)
 
