@@ -1,0 +1,40 @@
+[
+    {
+        "title": "Treccani Concetti Base",
+        "local_path": "docs/sources/diritto-privato/public/treccani_concetti_base.md",
+        "visibility": "public"
+    },
+    {
+        "title": "Manuale di Diritto Privato",
+        "local_path": "docs/sources/diritto-privato/from_sources/MANUALE_DI_DIRITTO_PRIVATO.md",
+        "visibility": "private"
+    },
+    {
+        "title": "Le Fonti del Diritto Privato",
+        "local_path": "docs/sources/diritto-privato/from_sources/Le_fonti_del_diritto_privato.md",
+        "visibility": "private"
+    },
+    {
+        "title": "Alpa",
+        "local_path": "docs/sources/diritto-privato/from_sources/alpa.md",
+        "visibility": "private"
+    },
+    {
+        "title": "Dispensa Concetti Fondamentali Diritto Privato",
+        "local_path": "docs/sources/diritto-privato/public/dispensa_concetti_base_pubblica.md",
+        "visibility": "public",
+        "source_url": "https://www.leuniversita.it/dispense/diritto-privato/fondamenti"
+    },
+    {
+        "title": "Codice Civile - Estratto Capacità di Agire",
+        "local_path": "docs/sources/diritto-privato/public/normattiva_capacita_agire.md",
+        "visibility": "public",
+        "source_url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:regio.decreto:1942-03-16;262"
+    },
+    {
+        "title": "Wikibooks Diritto Privato - Istituzioni",
+        "local_path": "docs/sources/diritto-privato/public/wikibooks_diritto_privato_base.md",
+        "visibility": "public",
+        "source_url": "https://it.wikibooks.org/wiki/Diritto_privato"
+    }
+]
