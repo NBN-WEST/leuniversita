@@ -1,6 +1,6 @@
 # Last Task Summary
 
-**Task**: memory bank
-**Status**: CLOSED (vv0.1.1)
+**Task**: GLOBAL_CLI
+**Status**: CLOSED (v0.1.2)
 **Date**: 2025-12-18
-**Comment**: 
+**Comment**: Configured global access and fixed alias conflicts
