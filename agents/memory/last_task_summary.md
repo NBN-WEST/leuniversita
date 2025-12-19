@@ -1,6 +1,6 @@
 # Last Task Summary
 
-**Task**: ADAPTIVE_LOOP
-**Status**: CLOSED (v0.4.0)
+**Task**: MULTI_EXAM_ENGINE
+**Status**: CLOSED (v0.5.0)
 **Date**: 2025-12-19
-**Comment**: Step 3B: Adaptive Learning Loop (Soft)
+**Comment**: Step 4: Multi-Exam Engine

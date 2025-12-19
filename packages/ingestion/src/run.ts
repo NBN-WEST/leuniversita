@@ -38,40 +38,70 @@ const openai = new OpenAI({
 });
 
 async function main() {
-    console.log("🚀 Starting Ingestion Runner (Strict Mode)");
+    console.log("🚀 Starting Ingestion Runner (Multi-Exam)");
     console.log(`📂 CWD: ${process.cwd()}`);
 
-    const sourcesPath = path.resolve(CONFIG.REPO_ROOT, CONFIG.SOURCES_PATH);
-    console.log(`📄 Sources File: ${sourcesPath}`);
+    // CLI Arguments
+    const args = process.argv.slice(2);
 
-    if (!fs.existsSync(sourcesPath)) {
-        console.error(`❌ Sources file not found at: ${sourcesPath}`);
+    // Parse --exam
+    let examId = 'diritto-privato';
+    const examIndex = args.indexOf('--exam');
+    if (examIndex !== -1) {
+        examId = args[examIndex + 1];
+    }
+
+    console.log(`🎓 Target Exam: ${examId}`);
+
+    const baseSourcePath = path.resolve(CONFIG.REPO_ROOT, `docs/sources/${examId}`);
+
+    if (!fs.existsSync(baseSourcePath)) {
+        console.error(`❌ Source directory not found: ${baseSourcePath}`);
         process.exit(1);
     }
 
-    const sourcesRaw = fs.readFileSync(sourcesPath, 'utf-8');
-    let sources: Source[] = [];
-    try {
-        sources = JSON.parse(sourcesRaw);
-    } catch (e) {
-        console.error("❌ Failed to parse sources.json");
-        process.exit(1);
+    // Recursive Crawl
+    const sources: Source[] = [];
+
+    function scanDir(dir: string, visibility: 'public' | 'private') {
+        const files = fs.readdirSync(dir);
+        for (const file of files) {
+            const fullPath = path.join(dir, file);
+            if (fs.statSync(fullPath).isDirectory()) {
+                scanDir(fullPath, visibility);
+            } else if (file.endsWith('.md')) {
+                sources.push({
+                    title: path.basename(file, '.md'),
+                    local_path: fullPath,
+                    visibility: visibility
+                });
+            }
+        }
     }
+
+    // Check canonical paths
+    const publicPath = path.join(baseSourcePath, 'public');
+    const privatePath = path.join(baseSourcePath, 'private');
+
+    // Fallback: Check root if no subfolders (for backward compat if files moved messily)
+    // But Step 4 instructions say we refactored.
+    if (fs.existsSync(publicPath)) scanDir(publicPath, 'public');
+    else if (fs.existsSync(baseSourcePath)) scanDir(baseSourcePath, 'public'); // Treat root as public if structured dirs missing
+
+    if (fs.existsSync(privatePath)) scanDir(privatePath, 'private');
 
     console.log(`🔢 Found ${sources.length} sources to process.`);
 
     if (sources.length === 0) {
-        console.error("❌ No sources found in sources.json");
-        process.exit(1);
+        console.warn("⚠️ No sources found to ingest.");
+        // We do typically validatation even if empty to show DB count
     }
 
-    const EXAM_ID = 'diritto-privato';
     const ingestionLogs: string[] = [];
     const log = (msg: string) => { console.log(msg); ingestionLogs.push(msg); };
     const err = (msg: string) => { console.error(msg); ingestionLogs.push(msg); };
 
-    // CLI Arguments
-    const args = process.argv.slice(2);
+    // CLI Filter: visibility
     const onlyVisibilityIndex = args.indexOf('--onlyVisibility');
     const onlyVisibility = onlyVisibilityIndex !== -1 ? args[onlyVisibilityIndex + 1] : null;
 
@@ -91,12 +121,8 @@ async function main() {
             continue;
         }
 
-        const fullPath = path.resolve(CONFIG.REPO_ROOT, src.local_path);
-
-        if (!fs.existsSync(fullPath)) {
-            err(`❌ Failed: File not found ${fullPath}`);
-            process.exit(1); // Strict exit
-        }
+        // Full Path is already resolved in scanDir
+        const fullPath = src.local_path;
 
         log(`\n🔍 Processing: ${src.title}`);
 
@@ -105,7 +131,7 @@ async function main() {
         const { data: existingDocs } = await supabase
             .from(CONFIG.DB_TABLE_DOCUMENTS)
             .select('id')
-            .eq('exam_id', EXAM_ID)
+            .eq('exam_id', examId)
             .eq('title', src.title)
             .limit(1);
 
@@ -124,17 +150,16 @@ async function main() {
 
         // --- Ingestion ---
         const fileContent = fs.readFileSync(fullPath, 'utf-8');
-        const { content: markdownBody } = matter(fileContent);
+        const { content: markdownBody, data: frontmatter } = matter(fileContent);
 
         // Insert Document
         const { data: docInsert, error: docError } = await supabase
             .from(CONFIG.DB_TABLE_DOCUMENTS)
             .insert({
-                exam_id: EXAM_ID,
+                exam_id: examId,
                 title: src.title,
-                // Fix: explicit insert of optional metadata fields
-                source_url: src.source_url || matter(fileContent).data.source_url || null,
-                license: src.license || matter(fileContent).data.license || null
+                source_url: frontmatter.source_url || src.source_url || null,
+                license: frontmatter.license || src.license || null
             })
             .select()
             .single();
@@ -146,7 +171,6 @@ async function main() {
 
         const docId = docInsert.id;
         // Chunking
-        // Optimization: Use smaller chunks for Public definitions to increase granularity and count
         const effectiveChunkSize = src.visibility === 'public' ? 300 : CONFIG.CHUNK_SIZE;
         const effectiveOverlap = src.visibility === 'public' ? 50 : CONFIG.CHUNK_OVERLAP;
 
@@ -175,7 +199,7 @@ async function main() {
                 .from(CONFIG.DB_TABLE_CHUNKS)
                 .insert({
                     document_id: docId,
-                    exam_id: EXAM_ID,
+                    exam_id: examId,
                     chunk_index: i,
                     content: chunkContent,
                     embedding: embedding,
@@ -194,7 +218,7 @@ async function main() {
     log("\n✅ Ingestion completed.");
 
     // --- Automated Validation ---
-    await validate(EXAM_ID, ingestionLogs);
+    await validate(examId, ingestionLogs);
 }
 
 // Cosine similarity helper for fallback

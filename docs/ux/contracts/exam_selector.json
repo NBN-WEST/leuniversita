@@ -1,0 +1,34 @@
+{
+    "contract_version": "1.0",
+    "view_id": "exam_selector",
+    "components": {
+        "exam_list": {
+            "type": "grid",
+            "item_template": {
+                "title": "{{exam.title}}",
+                "icon": "{{exam.icon_name}}",
+                "description": "{{exam.description}}",
+                "progress": {
+                    "value": "{{exam.overall_progress}}", // Calculated from avg mastery
+                    "label": "{{exam.completed_topics}} / {{exam.total_topics}}"
+                },
+                "actions": [
+                    {
+                        "label": "Continua",
+                        "condition": "progress > 0",
+                        "action": "navigate_to_dashboard(exam_id)"
+                    },
+                    {
+                        "label": "Inizia",
+                        "condition": "progress == 0",
+                        "action": "navigate_to_diagnostic(exam_id)"
+                    }
+                ]
+            }
+        }
+    },
+    "data_requirements": {
+        "fetch_exams": "GET /exams?is_active=true",
+        "fetch_progress": "GET /learning_progress?user_id=..."
+    }
+}

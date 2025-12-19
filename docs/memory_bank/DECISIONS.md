@@ -73,3 +73,16 @@
   - Progress bars move slowly but steadily.
   - Requires persistent tracking of every topic indefinitely.
   - Study Plans are "refined" not "reset", preserving user agency.
+
+### ADR-008: Multi-Exam Architecture
+- **Status**: Accepted
+- **Date**: 2025-12-19
+- **Context**: The MVP initially supported only "Diritto Privato". To scale, we need to support N exams without code duplication.
+- **Decision**: 
+  - Introduce `exams` table (`id` PK, `title`, `is_active`).
+  - Partition all data (Sources, Progress, Attempts) by `exam_id`.
+  - Refactor Ingestion to scan `docs/sources/{exam_id}` folders.
+- **Consequences**: 
+  - Application logic remains generic; content drives the experience.
+  - Adding a new exam only requires adding a folder in sources and a row in DB.
+  - Strict data isolation between exams is enforced at API/DB level.

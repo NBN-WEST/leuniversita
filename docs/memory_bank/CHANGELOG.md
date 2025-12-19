@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.5.0] - 2025-12-19
+- Step 4: Multi-Exam Engine (Task: MULTI_EXAM_ENGINE)
+
+
 ## [v0.4.0] - 2025-12-19
 - Step 3B: Adaptive Learning Loop (Soft) (Task: ADAPTIVE_LOOP)
 
