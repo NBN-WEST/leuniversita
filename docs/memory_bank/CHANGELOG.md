@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.1.4] - 2025-12-19
+- Fixing Citation Metadata (Unknown Source resolved) (Task: CHAT_METADATA_FIX)
+
+
 ## [v0.1.3] - 2025-12-18
 - Consolidated project knowledge (Decisions, Architecture, Risks) (Task: KNOWLEDGE_CONSOLIDATION)
 

@@ -34,14 +34,14 @@ SUPABASE_SERVICE_ROLE_KEY=$(echo "$SUPABASE_SERVICE_ROLE_KEY" | xargs)
 
 # 2. Set Secrets
 echo "🔐 Setting secrets on Supabase..."
-npx supabase secrets set --project-ref "$PROJECT_REF" \
+npx -y supabase secrets set --project-ref "$PROJECT_REF" \
     OPENAI_API_KEY="$OPENAI_API_KEY" \
     SUPABASE_URL="$SUPABASE_URL" \
     SUPABASE_SERVICE_ROLE_KEY="$SUPABASE_SERVICE_ROLE_KEY" > /dev/null
 
 # 3. Deploy Function
 echo "☁️ Deploying 'chat' function..."
-npx supabase functions deploy chat --project-ref "$PROJECT_REF" --no-verify-jwt
+npx -y supabase functions deploy chat --project-ref "$PROJECT_REF" --no-verify-jwt
 
 # 4. Run Verification
 CHAT_EDGE_URL="${SUPABASE_URL}/functions/v1/chat"

@@ -1,8 +1,8 @@
 # Release Notes
 
 ## Latest Release
-**Version**: v0.1.3
-**Date**: 2025-12-18
+**Version**: v0.1.4
+**Date**: 2025-12-19
 
 ### Summary
-Consolidated project knowledge (Decisions, Architecture, Risks)
+Fixing Citation Metadata (Unknown Source resolved)
