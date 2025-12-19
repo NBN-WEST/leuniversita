@@ -1,8 +1,8 @@
 # Release Notes
 
 ## Latest Release
-**Version**: v0.7.0
+**Version**: v0.7.1
 **Date**: 2025-12-19
 
 ### Summary
-Step 5: Monetization & Access Model
+Governance Finale: Scale Program Guidelines Update

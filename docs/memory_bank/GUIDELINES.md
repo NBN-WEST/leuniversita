@@ -17,3 +17,12 @@
 - **Soft Updates**: Mastery scores must utilize the Weighted Moving Average formula `(Current * 0.8) + (New * 0.2)` to ensure stability.
 - **Trend Tracking**: Always calculate and store `trend` ('improving', 'stable', 'declining') on every update.
 - **Plan Refinement**: When regenerating study plans, prioritize "Refinement" over "Replacement" to respect previous user effort.
+
+## Multi-Exam Guidelines
+- **Data Isolation**: All operations MUST be scoped by `exam_id`. Cross-contamination of user progress between courses is strictly prohibited.
+- **Ingestion**: Content MUST be ingested into `docs/sources/{exam_id}`. The root `docs/sources` folder is for configuration only.
+
+## Monetization & Access Guidelines
+- **Feature Gating**: Features must be gated server-side using `profiles.tier`. Do not rely solely on client-side checks.
+- **Rate Limiting**: Use the `checkRateLimit` utility with Tier awareness.
+- **UX**: When a user hits a limit, return `ui_hints` to encourage upgrade (Soft Gate) BEFORE blocking with a 429 error (Hard Gate).

@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.7.1] - 2025-12-19
+- Governance Finale: Scale Program Guidelines Update (Task: GOVERNANCE_FINALE)
+
+
 ## [v0.7.0] - 2025-12-19
 - Step 5: Monetization & Access Model (Task: MONETIZATION)
 
