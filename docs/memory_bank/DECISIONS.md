@@ -125,3 +125,15 @@
   - We now have a Frontend artifact to deploy (Vercel/Netlify).
   - Secrets management extends to Frontend (`NEXT_PUBLIC_` vars).
   - Testing must now cover E2E flows (`test_step7_smoke.md`).
+
+### ADR-012: Ateneo Pilot Go-Live
+- **Status**: Accepted
+- **Date**: 2025-12-19
+- **Context**: The software is functional (v0.8.0), but "going live" with a University requires operational protocols, not just code.
+- **Decision**: 
+  - **Freeze Core Features**: No new features on Trajectory A until Pilot feedback.
+  - **Concierge Onboarding**: We strictly control the initial accounts (Manual Seeding) to guarantee a flawless first impression.
+  - **KPI-Driven**: Success is defined by the Agreement metrics (`kpi_dashboard_definition.md`), not by "lines of code".
+- **Consequences**: 
+  - Development shifts to "Reliability/Bugfix" mode.
+  - Sales/PM team takes lead on Trajectory A execution.

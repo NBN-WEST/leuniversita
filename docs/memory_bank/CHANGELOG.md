@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.9.0] - 2025-12-19
+- Step 8: Ateneo Pilot Go-Live Prep (Task: PILOT_GO_LIVE)
+
+
 ## [v0.8.0] - 2025-12-19
 - Step 7: Pilot Visual Application (Task: PILOT_VISUAL_APP)
 
