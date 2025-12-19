@@ -86,3 +86,15 @@
   - Application logic remains generic; content drives the experience.
   - Adding a new exam only requires adding a folder in sources and a row in DB.
   - Strict data isolation between exams is enforced at API/DB level.
+
+### ADR-009: Pilot Program Design
+- **Status**: Accepted
+- **Date**: 2025-12-19
+- **Context**: Moving from MVP development to institutional adoption requires a structured proposal, not just code. Universities need clarity on "Value", "Control", and "Metrics".
+- **Decision**: 
+  - establish a **"Pilot Kit"** standard (`docs/pilot/`) containing non-technical value propositions and KPI models.
+  - Position the tool as an "Institutional AI Tutor" (verified sources) vs "Generalist AI".
+  - Define success metrics (Adoption, Retention, Mastery) *before* deployment.
+- **Consequences**: 
+  - Technical development is driven by these KPIs (need for analytics).
+  - Sales/Partnership conversations are grounded in pedagogical value, not just technology.

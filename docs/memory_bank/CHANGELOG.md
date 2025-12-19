@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.6.0] - 2025-12-19
+- Step 6: Ateneo Pilot Kit (Task: PILOT_KIT)
+
+
 ## [v0.5.0] - 2025-12-19
 - Step 4: Multi-Exam Engine (Task: MULTI_EXAM_ENGINE)
 
