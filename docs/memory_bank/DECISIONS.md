@@ -111,3 +111,17 @@
   - Requires maintaining `profiles` table synced with Auth.
   - Testing matrix increases (must test features across 3 tiers).
   - UX must gracefully handle "Upgrade Required" states (429/403).
+
+### ADR-011: Pilot Visual Application
+- **Status**: Accepted
+- **Date**: 2025-12-19
+- **Context**: The backend logic (Edge Functions) is robust, but the University Pilot (Trajectory A) requires a visual interface for students and admins.
+- **Decision**: 
+  - Build a **Next.js 14 App Router** application in `apps/pilot-web`.
+  - Use **Supabase Auth** (Client-side PKCE) for user management.
+  - consume Edge Functions directly via `supabase-js` `functions.invoke()`.
+  - Adopt **Tailwind CSS** + **Lucide Icons** for an "Institutional" look.
+- **Consequences**: 
+  - We now have a Frontend artifact to deploy (Vercel/Netlify).
+  - Secrets management extends to Frontend (`NEXT_PUBLIC_` vars).
+  - Testing must now cover E2E flows (`test_step7_smoke.md`).

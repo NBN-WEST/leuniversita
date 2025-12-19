@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.8.0] - 2025-12-19
+- Step 7: Pilot Visual Application (Task: PILOT_VISUAL_APP)
+
+
 ## [v0.7.1] - 2025-12-19
 - Governance Finale: Scale Program Guidelines Update (Task: GOVERNANCE_FINALE)
 

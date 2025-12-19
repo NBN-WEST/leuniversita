@@ -1,8 +1,8 @@
 # Release Notes
 
 ## Latest Release
-**Version**: v0.7.1
+**Version**: v0.8.0
 **Date**: 2025-12-19
 
 ### Summary
-Governance Finale: Scale Program Guidelines Update
+Step 7: Pilot Visual Application
