@@ -16,7 +16,7 @@ This folder contains the permanent context and memory for the project **leuniver
 - [Diagrams](./ARCHITECTURE/diagrams/)
 
 ## Latest Version
-**v0.2.0** (Initial Setup)
+**v0.3.0** (Initial Setup)
 
 ## Recent Tasks
 (Populated automatically)

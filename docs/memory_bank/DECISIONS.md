@@ -47,3 +47,16 @@
   - Grading is secure (server-side).
   - Data is persistent (allows progress tracking).
   - Citations are enforced by the Backend before being sent to the client.
+
+### ADR-006: UX Contracts & API Standards
+- **Status**: Accepted
+- **Date**: 2025-12-19
+- **Context**: To ensure the "Le Università" MVP is usable and robust, we need strict agreements between Frontend (UX) and Backend (API) and consistent error handling.
+- **Decision**: 
+  - Define UI behaviors in JSON "Contracts" (`docs/ux/contracts/`).
+  - Implement a "Standard Response Envelope" for all APIs: `{ data?, error?, ui_state?, ui_hints? }`.
+  - Enforce Rate Limiting via `analytics_events` count.
+- **Consequences**: 
+  - Frontend implementation is decoupled from Backend logic (driven by JSON).
+  - API errors are predictable (`error_code`).
+  - System is protected against abuse (Rate Limits).

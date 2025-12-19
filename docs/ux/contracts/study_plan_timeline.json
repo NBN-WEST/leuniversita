@@ -1,0 +1,28 @@
+{
+    "contract_version": "1.0",
+    "view_id": "study_plan_timeline",
+    "layout": "vertical_timeline",
+    "card_structure": {
+        "header": "Giorno {{day}}: {{focus}}",
+        "body_items": "activities",
+        "item_template": {
+            "type_icons": {
+                "Read": "book-open",
+                "Practice": "pen-tool",
+                "Review": "rotate-cw"
+            },
+            "citation_link": {
+                "text": "Leggi fonte",
+                "icon": "external-link",
+                "visible_if": "source_citation != null"
+            }
+        }
+    },
+    "export_options": [
+        "PDF",
+        "Calendar"
+    ],
+    "messages": {
+        "empty_plan": "Nessun piano generato. Completa prima il test diagnostico."
+    }
+}

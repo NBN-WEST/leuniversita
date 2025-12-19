@@ -1,17 +1,17 @@
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.0";
 import OpenAI from "https://esm.sh/openai@4.24.1";
+import { handleOptions, successResponse, errorResponse } from "../_shared/responseUtils.ts";
 
-const corsHeaders = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-};
-
-serve(async (req) => {
-    if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders });
+Deno.serve(async (req) => {
+    const optRes = handleOptions(req);
+    if (optRes) return optRes;
 
     try {
         const { attempt_id } = await req.json();
+
+        if (!attempt_id) {
+            return errorResponse({ error_code: 'INVALID_INPUT', message: 'Missing attempt_id' }, 400);
+        }
 
         const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
         const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
@@ -23,11 +23,13 @@ serve(async (req) => {
         // 1. Fetch Skill Map
         const { data: attempt, error } = await supabase
             .from('diagnostic_attempts')
-            .select('skill_map, total_score')
+            .select('skill_map, total_score, user_id')
             .eq('id', attempt_id)
             .single();
 
-        if (error || !attempt) throw new Error("Attempt not found");
+        if (error || !attempt) {
+            return errorResponse({ error_code: 'ATTEMPT_NOT_FOUND', message: 'Attempt not found' }, 404);
+        }
 
         const skillMap = attempt.skill_map;
 
@@ -65,15 +67,23 @@ IMPORTANT:
 
         const plan = JSON.parse(completion.choices[0].message.content || "{}");
 
-        return new Response(
-            JSON.stringify(plan),
-            { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-        );
+        // 3. Log Analytics
+        await supabase.from('analytics_events').insert({
+            event_name: 'studyplan_generated',
+            user_id: attempt.user_id,
+            properties: { attempt_id }
+        });
+
+        return successResponse({
+            plan: plan.days || plan.study_plan || plan, // Normalize logic if needed
+            ui_state: "plan_view",
+            ui_hints: {
+                view_mode: "vertical_timeline",
+                export_enabled: true
+            }
+        });
 
     } catch (error) {
-        return new Response(
-            JSON.stringify({ error: error.message }),
-            { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-        );
+        return errorResponse({ error_code: 'INTERNAL_ERROR', message: error.message }, 500);
     }
 });

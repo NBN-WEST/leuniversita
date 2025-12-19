@@ -1,0 +1,53 @@
+{
+    "contract_version": "1.0",
+    "flow_id": "diagnostic_test",
+    "states": {
+        "intro": {
+            "title": "Test Diagnostico - Diritto Privato",
+            "description": "Valuta la tua preparazione attuale. Il test include domande a risposta multipla e aperta.",
+            "estimated_time_minutes": 10,
+            "cta_label": "Inizia il Test"
+        },
+        "question": {
+            "components": [
+                {
+                    "id": "progress_bar",
+                    "type": "linear",
+                    "show_percentage": true
+                },
+                {
+                    "id": "topic_badge",
+                    "type": "badge",
+                    "color": "primary"
+                },
+                {
+                    "id": "difficulty_indicator",
+                    "type": "stars",
+                    "max": 5
+                }
+            ],
+            "messages": {
+                "loading_next": "Generazione domanda successiva...",
+                "submit_error": "Si è verificato un errore. Riprova."
+            }
+        },
+        "result": {
+            "title": "Diagnostica Completata",
+            "subtitle": "Ecco la tua Mappa delle Competenze",
+            "cta_primary": "Genera Piano di Studio",
+            "cta_secondary": "Rivedi Risposte"
+        }
+    },
+    "error_handling": {
+        "RATE_LIMIT": {
+            "title": "Troppi tentativi",
+            "message": "Hai raggiunto il limite di test giornalieri. Torna domani!",
+            "action": "Torna alla Home"
+        },
+        "GENERIC": {
+            "title": "Ops!",
+            "message": "Qualcosa è andato storto. Riprova più tardi.",
+            "action": "Riprova"
+        }
+    }
+}

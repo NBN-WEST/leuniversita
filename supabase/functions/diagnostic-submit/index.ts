@@ -1,20 +1,16 @@
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.0";
 import OpenAI from "https://esm.sh/openai@4.24.1";
+import { handleOptions, successResponse, errorResponse } from "../_shared/responseUtils.ts";
 
-const corsHeaders = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-};
-
-serve(async (req) => {
-    if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders });
+Deno.serve(async (req) => {
+    const optRes = handleOptions(req);
+    if (optRes) return optRes;
 
     try {
         const { attempt_id, answers } = await req.json();
 
         if (!attempt_id || !answers || !Array.isArray(answers)) {
-            throw new Error("Invalid request body");
+            return errorResponse({ error_code: 'INVALID_INPUT', message: 'Missing attempt_id or answers array' }, 400);
         }
 
         const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
@@ -30,7 +26,9 @@ serve(async (req) => {
             .select('*')
             .eq('attempt_id', attempt_id);
 
-        if (qError || !questions) throw new Error("Attempt not found");
+        if (qError || !questions) {
+            return errorResponse({ error_code: 'ATTEMPT_NOT_FOUND', message: 'Attempt not found' }, 404);
+        }
 
         // 2. Grading
         let gradedAnswers = [];
@@ -45,9 +43,6 @@ serve(async (req) => {
             let feedback = "";
 
             if (question.type === 'MCQ') {
-                // Determine correctness by checking if user answer matches correct one
-                // Assuming correct_answer is a string corresponding to the option text or index
-                // For robustness, check partial match or exact match
                 isCorrect = (ans.answer === question.correct_answer);
                 score = isCorrect ? 1.0 : 0.0;
                 feedback = isCorrect ? "Correct!" : `Incorrect. The correct answer was: ${question.correct_answer}`;
@@ -77,13 +72,12 @@ Output JSON: { "score": 0.5, "feedback": "..." }
             gradedAnswers.push({
                 attempt_id,
                 question_id: question.id,
-                answer: ans.answer, // JSONB
+                answer: ans.answer,
                 is_correct: isCorrect,
                 score,
                 feedback
             });
 
-            // Update Skill Aggregation
             const topic = question.topic || "Generale";
             if (!skillMapData[topic]) {
                 skillMapData[topic] = { scoreSum: 0, count: 0, mistakes: [], citations: [] };
@@ -93,7 +87,6 @@ Output JSON: { "score": 0.5, "feedback": "..." }
 
             if (score < 1.0) {
                 skillMapData[topic].mistakes.push(question.prompt);
-                // Collect citations for review
                 if (question.citations && Array.isArray(question.citations)) {
                     skillMapData[topic].citations.push(...question.citations);
                 }
@@ -104,8 +97,6 @@ Output JSON: { "score": 0.5, "feedback": "..." }
         const topics = Object.keys(skillMapData).map(topic => {
             const d = skillMapData[topic];
             const avg = d.scoreSum / d.count;
-
-            // Deduplicate citations
             const uniqueCitations = [...new Set(d.citations.map((c: any) => JSON.stringify(c)))]
                 .map((s: any) => JSON.parse(s));
 
@@ -140,19 +131,34 @@ Output JSON: { "score": 0.5, "feedback": "..." }
 
         if (ansInsertError) console.error("Error saving answers:", ansInsertError);
 
-        return new Response(
-            JSON.stringify({
-                success: true,
-                score: overall,
-                skill_map: finalSkillMap
-            }),
-            { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-        );
+        // 6. Log Analytics
+        const { data: attemptMeta } = await supabase
+            .from('diagnostic_attempts')
+            .select('user_id')
+            .eq('id', attempt_id)
+            .single();
+
+        if (attemptMeta) {
+            await supabase.from('analytics_events').insert({
+                event_name: 'diagnostic_completed',
+                user_id: attemptMeta.user_id,
+                properties: { attempt_id, score: overall, weak_topics: topics.filter(t => t.score < 60).map(t => t.topic) }
+            });
+        }
+
+        // 7. UX-Formatted Response
+        return successResponse({
+            success: true,
+            score: overall,
+            skill_map: finalSkillMap,
+            ui_state: "result_view",
+            ui_hints: {
+                show_confetti: overall > 70,
+                primary_cta: "generate_study_plan"
+            }
+        });
 
     } catch (error) {
-        return new Response(
-            JSON.stringify({ error: error.message }),
-            { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-        );
+        return errorResponse({ error_code: 'INTERNAL_ERROR', message: error.message }, 500);
     }
 });

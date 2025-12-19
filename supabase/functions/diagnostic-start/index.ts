@@ -1,46 +1,57 @@
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.0";
 import OpenAI from "https://esm.sh/openai@4.24.1";
+import { handleOptions, successResponse, errorResponse } from "../_shared/responseUtils.ts";
+import { checkRateLimit } from "../_shared/rateLimit.ts";
 
-const corsHeaders = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-};
+const RATE_LIMIT_QC = 10; // Allow 10 starts per day for MVP
 
-serve(async (req) => {
-    if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders });
+Deno.serve(async (req) => {
+    const optRes = handleOptions(req);
+    if (optRes) return optRes;
 
     try {
-        const { exam_id = 'diritto-privato' } = await req.json();
+        const { exam_id = 'diritto-privato', user_id = 'anon_user' } = await req.json();
 
-        // Init clients
+        // Environment Check
         const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
         const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
         const openaiKey = Deno.env.get('OPENAI_API_KEY')!;
 
         if (!supabaseUrl || !supabaseKey || !openaiKey) {
-            throw new Error("Missing Environment Variables");
+            return errorResponse({ error_code: 'SERVER_CONFIG_ERROR', message: 'Missing env vars' }, 500);
         }
 
         const supabase = createClient(supabaseUrl, supabaseKey);
         const openai = new OpenAI({ apiKey: openaiKey });
 
-        // 1. Create Attempt
+        // 1. Rate Limit
+        const allowed = await checkRateLimit(supabase, user_id, 'diagnostic_started', RATE_LIMIT_QC);
+        if (!allowed) {
+            return errorResponse({
+                error_code: 'RATE_LIMIT_EXCEEDED',
+                message: 'Daily diagnostic limit reached. Please try again tomorrow.'
+            }, 429);
+        }
+
+        // 2. Create Attempt
         const { data: attempt, error: attemptError } = await supabase
             .from('diagnostic_attempts')
             .insert({
                 exam_id,
+                user_id,
                 status: 'in_progress',
                 total_score: 0,
                 skill_map: {},
-                meta: {}
+                meta: { client_user_id: user_id }
             })
             .select()
             .single();
 
-        if (attemptError) throw new Error(`Failed to create attempt: ${attemptError.message}`);
+        if (attemptError) {
+            return errorResponse({ error_code: 'DB_ERROR', message: attemptError.message }, 500);
+        }
 
-        // 2. Fetch Context (Public Chunks)
+        // 3. Fetch Context (Public Chunks)
         const { data: chunks, error: chunksError } = await supabase
             .from('chunks')
             .select('id, content, documents!inner(title, source_url)')
@@ -48,20 +59,19 @@ serve(async (req) => {
             .eq('visibility', 'public')
             .limit(40);
 
-        if (chunksError) throw new Error(`Failed to fetch chunks: ${chunksError.message}`);
-        if (!chunks || chunks.length === 0) throw new Error("No public chunks found for diagnostic generation.");
+        if (!chunks || chunks.length === 0) {
+            return errorResponse({ error_code: 'NO_CONTENT', message: 'No reference references found.' }, 404);
+        }
 
         // Randomize
         const shuffled = chunks.sort(() => 0.5 - Math.random()).slice(0, 10);
 
-        // 3. Generate Questions (GPT-4o)
+        // 4. Generate Questions
         const systemPrompt = `
-You are an expert Professor of Private Law using the Socratic method.
-Generate a Diagnostic Test.
+You are an expert Professor of Private Law. Generate a Diagnostic Test.
 Create exactly 3 Multiple Choice Questions (MCQ) and 2 Open Ended Questions (OPEN).
 Use ONLY the provided Source Material.
 For each question, you MUST provide a valid citation.
-If you cannot find public sources for a topic, do not invent them.
 
 Output JSON format:
 {
@@ -71,8 +81,8 @@ Output JSON format:
       "difficulty": 1-5,
       "type": "MCQ" (or "OPEN"),
       "prompt": "Question text...",
-      "options": ["Option A", "Option B", "Option C", "Option D"], // null for OPEN
-      "correct_answer": "Option A" (or proper explanation for OPEN), 
+      "options": ["Option A", "Option B", "Option C", "Option D"], 
+      "correct_answer": "Option A" (or explanation), 
       "citations": [ { "source_title": "Title", "source_url": "URL" } ]
     }
   ]
@@ -98,10 +108,10 @@ Output JSON format:
         const questions = result.questions || [];
 
         if (questions.length === 0) {
-            throw new Error("AI failed to generate questions.");
+            return errorResponse({ error_code: 'AI_ERROR', message: 'Question generation failed.' }, 500);
         }
 
-        // 4. Persist Questions
+        // 5. Persist Questions
         const questionsToInsert = questions.map((q: any) => ({
             attempt_id: attempt.id,
             exam_id,
@@ -114,26 +124,34 @@ Output JSON format:
             citations: q.citations
         }));
 
-        // Insert and select NON-SENSITIVE fields to return
         const { data: insertedQuestions, error: insertError } = await supabase
             .from('diagnostic_questions')
             .insert(questionsToInsert)
             .select('id, type, prompt, options, citations, topic, difficulty');
 
-        if (insertError) throw new Error(`Failed to insert questions: ${insertError.message}`);
+        if (insertError) {
+            return errorResponse({ error_code: 'DB_ERROR', message: insertError.message }, 500);
+        }
 
-        return new Response(
-            JSON.stringify({
-                attempt_id: attempt.id,
-                questions: insertedQuestions
-            }),
-            { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-        );
+        // 6. Log Analytics
+        await supabase.from('analytics_events').insert({
+            event_name: 'diagnostic_started',
+            user_id: user_id,
+            properties: { attempt_id: attempt.id, exam_id }
+        });
+
+        // 7. UX-Formatted Response
+        return successResponse({
+            attempt_id: attempt.id,
+            questions: insertedQuestions,
+            ui_state: "question_view",
+            ui_hints: {
+                total_questions: insertedQuestions.length,
+                progress_start: 0
+            }
+        });
 
     } catch (error) {
-        return new Response(
-            JSON.stringify({ error: error.message }),
-            { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-        );
+        return errorResponse({ error_code: 'INTERNAL_ERROR', message: error.message }, 500);
     }
 });

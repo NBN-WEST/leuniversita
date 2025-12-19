@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.3.0] - 2025-12-19
+- Step 3A: UX Contracts, API Hardening & Telemetry (Task: UX_API_HARDENING)
+
+
 ## [v0.2.0] - 2025-12-19
 - Implemented Diagnostic Engine (Start, Submit, Study Plan) with Public Citations (Task: DIAGNOSTIC_ENGINE)
 

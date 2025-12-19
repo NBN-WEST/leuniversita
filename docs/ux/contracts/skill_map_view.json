@@ -1,0 +1,28 @@
+{
+    "contract_version": "1.0",
+    "view_id": "skill_map_radar",
+    "visualization": {
+        "type": "radar_chart",
+        "axis": {
+            "label_field": "topic",
+            "value_field": "score",
+            "max_value": 100
+        },
+        "styling": {
+            "colors": {
+                "mastery_high": "#4CAF50",
+                "mastery_medium": "#FFC107",
+                "mastery_low": "#F44336"
+            },
+            "fill_opacity": 0.6
+        }
+    },
+    "content": {
+        "tooltip": "{{topic}}: {{score}}% (Livello {{level}})",
+        "recommendations_header": "Fonti Consigliate"
+    },
+    "interactions": {
+        "on_click_topic": "open_topic_details",
+        "on_hover": "show_tooltip"
+    }
+}
