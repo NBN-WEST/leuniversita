@@ -1,8 +1,8 @@
 # Release Notes
 
 ## Latest Release
-**Version**: v0.1.4
+**Version**: v0.2.0
 **Date**: 2025-12-19
 
 ### Summary
-Fixing Citation Metadata (Unknown Source resolved)
+Implemented Diagnostic Engine (Start, Submit, Study Plan) with Public Citations

@@ -38,3 +38,12 @@
 - **Decision**: Implement a **Memory Bank** (docs/memory_bank) with automated scripts to capture task logs and architecture updates.
 - **Consequences**: Adds a step to the workflow but ensures long-term alignement and automatic documentation generation.
 
+### ADR-005: Diagnostic Engine Architecture
+- **Status**: Accepted
+- **Date**: 2025-12-19
+- **Context**: Requirement to implement a diagnostic test with Skill Map and Study Plan generation for the MVP.
+- **Decision**: Authenticate and persist attempts in Supabase (`diagnostic_attempts`, `questions`, `answers`). Logic resides entirely in Supabase Edge Functions (`diagnostic-*`) to protect prompts and grading logic.
+- **Consequences**: 
+  - Grading is secure (server-side).
+  - Data is persistent (allows progress tracking).
+  - Citations are enforced by the Backend before being sent to the client.

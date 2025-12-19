@@ -1,6 +1,6 @@
 # Last Task Summary
 
-**Task**: CHAT_METADATA_FIX
-**Status**: CLOSED (v0.1.4)
+**Task**: DIAGNOSTIC_ENGINE
+**Status**: CLOSED (v0.2.0)
 **Date**: 2025-12-19
-**Comment**: Fixing Citation Metadata (Unknown Source resolved)
+**Comment**: Implemented Diagnostic Engine (Start, Submit, Study Plan) with Public Citations

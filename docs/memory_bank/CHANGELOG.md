@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.2.0] - 2025-12-19
+- Implemented Diagnostic Engine (Start, Submit, Study Plan) with Public Citations (Task: DIAGNOSTIC_ENGINE)
+
+
 ## [v0.1.4] - 2025-12-19
 - Fixing Citation Metadata (Unknown Source resolved) (Task: CHAT_METADATA_FIX)
 
