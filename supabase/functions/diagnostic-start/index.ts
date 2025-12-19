@@ -25,11 +25,12 @@ Deno.serve(async (req) => {
         const openai = new OpenAI({ apiKey: openaiKey });
 
         // 1. Rate Limit
-        const allowed = await checkRateLimit(supabase, user_id, 'diagnostic_started', RATE_LIMIT_QC);
+        const { allowed, usage, limit, tier } = await checkRateLimit(supabase, user_id, 'diagnostic_started', 3);
+
         if (!allowed) {
             return errorResponse({
                 error_code: 'RATE_LIMIT_EXCEEDED',
-                message: 'Daily diagnostic limit reached. Please try again tomorrow.'
+                message: `You have reached your daily limit of ${limit} diagnostics. Upgrade to Premium for logic updates.`
             }, 429);
         }
 

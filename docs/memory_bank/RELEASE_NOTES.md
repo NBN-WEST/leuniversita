@@ -1,8 +1,8 @@
 # Release Notes
 
 ## Latest Release
-**Version**: v0.6.0
+**Version**: v0.7.0
 **Date**: 2025-12-19
 
 ### Summary
-Step 6: Ateneo Pilot Kit
+Step 5: Monetization & Access Model

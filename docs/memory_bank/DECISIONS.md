@@ -98,3 +98,16 @@
 - **Consequences**: 
   - Technical development is driven by these KPIs (need for analytics).
   - Sales/Partnership conversations are grounded in pedagogical value, not just technology.
+
+### ADR-010: Monetization Strategy
+- **Status**: Accepted
+- **Date**: 2025-12-19
+- **Context**: The project needs a sustainable business model without compromising trust or access to basic education.
+- **Decision**: 
+  - **Freemium Model**: Free tier allows testing the method (1 Exam, Limited Daily interactions).
+  - **Hard Limits in Backend**: Rate limiting and Feature Gating are enforced by Edge Functions based on `profiles.tier`.
+  - **Institutional Pilot**: Dedicated tier for Universities with unlimited access and analytics.
+- **Consequences**: 
+  - Requires maintaining `profiles` table synced with Auth.
+  - Testing matrix increases (must test features across 3 tiers).
+  - UX must gracefully handle "Upgrade Required" states (429/403).
