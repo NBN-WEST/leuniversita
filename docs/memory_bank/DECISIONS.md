@@ -137,3 +137,16 @@
 - **Consequences**: 
   - Development shifts to "Reliability/Bugfix" mode.
   - Sales/PM team takes lead on Trajectory A execution.
+
+### ADR-013: Italian Default Language Policy
+- **Status**: Accepted
+- **Date**: 2025-12-19
+- **Context**: The Pilot is deployed in an Italian University context (Ateneo). Mixed language (English UI/English AI responses) reduces trust and usability for the target audience (Italian Students/Professors).
+- **Decision**: 
+  - **Strict Italian Default**: The entire application (UI + AI Content) defaults to Italian (`it-IT`).
+  - **Edge Enforced**: All LLM Prompts explicitly instruct "Rispondi in Italiano" or "Genera in Italiano".
+  - **Backend Metadata**: All relevant Edge Functions return `meta.language = "it"` to allow Frontend validation/adaptation.
+  - **No Active i18n**: Browser locale detection is ignored for the MVP to prevent accidental English fallbacks.
+- **Consequences**: 
+  - Non-Italian speakers cannot use the app effectively (Acceptable for Pilot).
+  - Prompts are language-specific (hardcoded). Future scaling to other languages requires refactoring prompts into templates.

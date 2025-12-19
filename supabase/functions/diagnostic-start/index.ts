@@ -69,10 +69,11 @@ Deno.serve(async (req) => {
 
         // 4. Generate Questions
         const systemPrompt = `
-You are an expert Professor of Private Law. Generate a Diagnostic Test.
-Create exactly 3 Multiple Choice Questions (MCQ) and 2 Open Ended Questions (OPEN).
-Use ONLY the provided Source Material.
-For each question, you MUST provide a valid citation.
+Sei un esperto Professore di Diritto Privato. Genera un Test Diagnostico IN ITALIANO.
+Crea esattamente 3 Domande a Risposta Multipla (MCQ) e 2 Domande Aperte (OPEN).
+Usa SOLO il Materiale Fonte fornito.
+Per ogni domanda, DEVI fornire una citazione valida.
+NON usare inglese nel contenuto delle domande o delle opzioni.
 
 Output JSON format:
 {
@@ -81,9 +82,9 @@ Output JSON format:
       "topic": "Specific Topic",
       "difficulty": 1-5,
       "type": "MCQ" (or "OPEN"),
-      "prompt": "Question text...",
-      "options": ["Option A", "Option B", "Option C", "Option D"], 
-      "correct_answer": "Option A" (or explanation), 
+      "prompt": "Testo della domanda...",
+      "options": ["Opzione A", "Opzione B", "Opzione C", "Opzione D"], 
+      "correct_answer": "Opzione A" (or explanation), 
       "citations": [ { "source_title": "Title", "source_url": "URL" } ]
     }
   ]
@@ -149,7 +150,8 @@ Output JSON format:
             ui_hints: {
                 total_questions: insertedQuestions.length,
                 progress_start: 0
-            }
+            },
+            meta: { language: "it" }
         });
 
     } catch (error) {

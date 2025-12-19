@@ -26,3 +26,21 @@
 - **Feature Gating**: Features must be gated server-side using `profiles.tier`. Do not rely solely on client-side checks.
 - **Rate Limiting**: Use the `checkRateLimit` utility with Tier awareness.
 - **UX**: When a user hits a limit, return `ui_hints` to encourage upgrade (Soft Gate) BEFORE blocking with a 429 error (Hard Gate).
+
+# Language Policy (MVP)
+
+> **Rule**: The default and *only* supported language for the Pilot (v0.8.x) is **ITALIAN** (`it-IT`).
+
+## 1. Backend Enforcement
+- **Edge Functions**: Must explicitly instruct LLM to "Generate in Italian" in system prompts.
+- **Metadata**: Responses MUST allow verification via `meta.language = "it"`.
+- **Validation**: Automated tests must fail if English stopwords ("Choose", "Answer", "True/False") appear in generated content.
+
+## 2. Frontend Enforcement
+- **Hardcoded Locale**: `navigator.language` MUST be ignored.
+- **HTML Attribute**: `<html lang="it">`.
+- **UI Copy**: All labels, buttons, and error messages must be in Italian.
+
+## 3. Rationale
+- The target audience (Italian University) requires full immersion.
+- Preventing "English leaks" builds trust in the specific domain knowledge (Italian Law).

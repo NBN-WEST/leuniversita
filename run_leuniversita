@@ -1,0 +1,11 @@
+#!/bin/bash
+echo "🚀 Starting Le Università MVP (Backend Only)..."
+echo "ℹ️  Note: Frontend not yet initialized. Starting Supabase..."
+
+# Check if Docker is running (basic check)
+if ! docker info > /dev/null 2>&1; then
+  echo "❌ Docker is not running. Please start Docker Desktop and try again."
+  exit 1
+fi
+
+npx supabase start

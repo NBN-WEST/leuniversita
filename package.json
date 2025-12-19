@@ -1,4 +1,9 @@
 {
+  "name": "leuniversita-mvp",
+  "version": "0.1.0",
+  "bin": {
+    "memory_bank": "./scripts/memory_bank.sh"
+  },
   "devDependencies": {
     "@dotenvx/dotenvx": "^1.51.2",
     "@types/node": "^25.0.3",

@@ -39,19 +39,20 @@ Deno.serve(async (req) => {
         const allSources = skillMap.topics.flatMap((t: any) => t.recommended_sources || []);
 
         const systemPrompt = `
-You are an expert Tutor. Create a 7-Day Study Plan for the student based on their Diagnostic results.
-Overall Score: ${attempt.total_score}%.
-Focus heavily on the Weak Topics: ${weakTopics.map((t: any) => t.topic).join(", ")}.
+Sei un Tutor esperto. Crea un Piano di Studio di 7 Giorni per lo studente basato sui risultati del Diagnostico.
+SCRIVI TUTTO IN ITALIANO.
+Punteggio Totale: ${attempt.total_score}%.
+Concentrati sugli Argomenti Deboli: ${weakTopics.map((t: any) => t.topic).join(", ")}.
 
-Structure the plan as a JSON array of days.
-Each day must have:
+Struttura il piano come un array JSON di giorni.
+Ogni giorno deve avere:
 - day: number
-- focus: string (Topic)
-- activities: array of objects { type: "Read" | "Practice" | "Review", description: "...", source_citation: { title: "...", url: "..." } }
+- focus: string (Argomento)
+- activities: array di oggetti { type: "Read" | "Practice" | "Review", description: "...", source_citation: { title: "...", url: "..." } }
 
-IMPORTANT:
-- For "Read" activities, you MUST provide a valid citation from the provided Sources list. 
-- If no specific source lines up, recommend a general review of the topic but clearly mark source as null (but try to use sources).
+IMPORTANTE:
+- Per le attività di lettura, DEVI fornire una citazione valida dalle Fonti fornite.
+- Se nessuna fonte specifica corrisponde, raccomanda una revisione generale ma segna source come null.
 `;
 
         const userPrompt = `Available Sources:\n${JSON.stringify(allSources.slice(0, 20))}`;
@@ -80,7 +81,8 @@ IMPORTANT:
             ui_hints: {
                 view_mode: "vertical_timeline",
                 export_enabled: true
-            }
+            },
+            meta: { language: "it" }
         });
 
     } catch (error) {

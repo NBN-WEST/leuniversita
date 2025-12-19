@@ -17,3 +17,4 @@
 | 2025-12-19T18:11:47.580Z | GOVERNANCE_FINALE | Governance Finale: Scale Program Guidelines Update | Auto-detected | PASS | Check Next |
 | 2025-12-19T18:26:56.013Z | PILOT_VISUAL_APP | Step 7: Pilot Visual Application | Auto-detected | PASS | Check Next |
 | 2025-12-19T18:35:38.051Z | PILOT_GO_LIVE | Step 8: Ateneo Pilot Go-Live Prep | Auto-detected | PASS | Check Next |
+| 2025-12-19T18:54:35.329Z | HOTFIX_LANGUAGE | Hotfix: Language Policy (Italian Default) | Auto-detected | PASS | Check Next |

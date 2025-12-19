@@ -177,6 +177,7 @@ IMPORTANTE:
                     used_chunks_total: validChunks.length,
                     used_public: enrichedPublicChunks.length,
                     used_private: privateChunks.length,
+                    language: "it",
                     debug_info: debug ? { best_public_sim: bestPublicSim } : undefined
                 }
             }),

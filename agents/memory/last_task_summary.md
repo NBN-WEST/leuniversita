@@ -1,6 +1,6 @@
 # Last Task Summary
 
-**Task**: PILOT_GO_LIVE
-**Status**: CLOSED (v0.9.0)
+**Task**: HOTFIX_LANGUAGE
+**Status**: CLOSED (v0.9.1)
 **Date**: 2025-12-19
-**Comment**: Step 8: Ateneo Pilot Go-Live Prep
+**Comment**: Hotfix: Language Policy (Italian Default)

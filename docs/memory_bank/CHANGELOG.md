@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.9.1] - 2025-12-19
+- Hotfix: Language Policy (Italian Default) (Task: HOTFIX_LANGUAGE)
+
+
 ## [v0.9.0] - 2025-12-19
 - Step 8: Ateneo Pilot Go-Live Prep (Task: PILOT_GO_LIVE)
 

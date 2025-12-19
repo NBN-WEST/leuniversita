@@ -59,16 +59,17 @@ Deno.serve(async (req) => {
 
         // 3. Generate Micro-Quiz (3 questions)
         const prompt = `
-Generate a Micro-Review (3 Questions) for user.
-Focus Topics: ${targetTopics.join(", ")}.
-Use public sources.
+Genera una Micro-Revisione (3 Domande) per l'utente IN ITALIANO.
+Argomenti Focus: ${targetTopics.join(", ")}.
+Usa fonti pubbliche.
+NON usare inglese.
 Output JSON: { questions: [...] }
         `.trim();
 
         const completion = await openai.chat.completions.create({
             model: "gpt-4o",
             messages: [
-                { role: "system", content: "You are a Tutor. Generate 3 MCQ questions." },
+                { role: "system", content: "Sei un Tutor. Genera 3 domande MCQ in Italiano." },
                 { role: "user", content: `Context: ${JSON.stringify(context)}\n${prompt}` }
             ],
             response_format: { type: "json_object" }
@@ -79,6 +80,7 @@ Output JSON: { questions: [...] }
         return successResponse({
             questions: result.questions || [],
             focus_topics: targetTopics,
+            meta: { language: "it" },
             ui_state: "review_mode",
             ui_hints: {
                 message: "Quick review session to strengthen your weak points."
