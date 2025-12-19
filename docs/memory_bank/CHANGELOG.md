@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.4.0] - 2025-12-19
+- Step 3B: Adaptive Learning Loop (Soft) (Task: ADAPTIVE_LOOP)
+
+
 ## [v0.3.0] - 2025-12-19
 - Step 3A: UX Contracts, API Hardening & Telemetry (Task: UX_API_HARDENING)
 

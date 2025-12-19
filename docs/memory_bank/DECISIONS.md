@@ -60,3 +60,16 @@
   - Frontend implementation is decoupled from Backend logic (driven by JSON).
   - API errors are predictable (`error_code`).
   - System is protected against abuse (Rate Limits).
+
+### ADR-007: Adaptive Learning (Soft)
+- **Status**: Accepted
+- **Date**: 2025-12-19
+- **Context**: Users need to see progress without volatile score swings that destroy motivation after one bad test.
+- **Decision**: 
+  - Separate `learning_progress` (State) from `diagnostic_attempts` (Events).
+  - Use a **Soft Update Rule**: `NewScore = (OldScore * 0.8) + (SessionScore * 0.2)`.
+  - Trend indicator ('improving', 'stable') guides UX messages.
+- **Consequences**: 
+  - Progress bars move slowly but steadily.
+  - Requires persistent tracking of every topic indefinitely.
+  - Study Plans are "refined" not "reset", preserving user agency.

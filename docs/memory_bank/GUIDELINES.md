@@ -12,3 +12,8 @@
 - **Public Citations Only**: All generated questions and study materials MUST cite public sources (e.g., Treccani, Normattiva) verified by the RAG engine. "Unknown Source" is NOT acceptable.
 - **Skill Map Standard**: The Skill Map must follow the standard JSON structure defined in `ADR-005` (Topic, Score, Level, Mistakes, Recommended Sources).
 - **Security**: Grading logic must reside server-side (Edge Function). Correct answers must NOT be exposed to the client in the `diagnostic-start` response.
+
+## Adaptive Learning Guidelines (Soft)
+- **Soft Updates**: Mastery scores must utilize the Weighted Moving Average formula `(Current * 0.8) + (New * 0.2)` to ensure stability.
+- **Trend Tracking**: Always calculate and store `trend` ('improving', 'stable', 'declining') on every update.
+- **Plan Refinement**: When regenerating study plans, prioritize "Refinement" over "Replacement" to respect previous user effort.
