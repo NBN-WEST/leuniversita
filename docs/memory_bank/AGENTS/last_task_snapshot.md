@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: MB_CONTENT_SETUP
-**Status**: CLOSED (v0.11.2)
+**Task**: MB_CONTENT_HARDENING
+**Status**: CLOSED (v0.11.3)
 **Date**: 2025-12-20
-**Comment**: Populated docs/memory_bank/CONTENT/ section
+**Comment**: Hardened Content Memory Bank (Compliance & Structure)

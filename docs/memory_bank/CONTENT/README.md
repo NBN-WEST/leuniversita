@@ -7,7 +7,7 @@ created_at: 2025-12-20
 updated_at: 2025-12-20
 tags: [content, index, root]
 related: [INDEX, PRD-INDEX]
-source_of_truth: true
+source_of_truth: docs/memory_bank/CONTENT
 mermaid: required
 ---
 
@@ -23,6 +23,11 @@ Single Source of Truth per l'organizzazione, governance e struttura dei contenut
 **NON contiene**:
 - Appunti sparsi o non revisionati.
 - Copie integrali di testi coperti da copyright (solo sintesi originali).
+
+## Product Alignment
+I contenuti sono strutturati per supportare gli obiettivi dell'MVP e i KPI di apprendimento.
+- **Scope**: Vedi [MVP Scope](../PRODUCT/mvp_scope.md) (Solo Diritto Privato).
+- **Successo**: Vedi [KPI](../PRODUCT/kpi.md) (Completion Rate & Accuracy).
 
 ## Mappa Contenuti
 ```mermaid
@@ -40,8 +45,11 @@ graph TD
     PRIV --> MODS[Moduli]
     
     MODS --> M1[01 Fonti]
-    MODS --> M2[02 Soggetti]
-    MODS --> M3[...]
+    MODS --> M2[02 Diritti Sogg.]
+    MODS --> M3[03 Soggetti]
+    MODS --> M4[04 Beni]
+    MODS --> M5[05 Obbligazioni]
+    MODS --> M6[06 Contratti]
 ```
 
 ## Indice Core

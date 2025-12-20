@@ -7,7 +7,7 @@ created_at: 2025-12-20
 updated_at: 2025-12-20
 tags: [module, diritti_soggettivi, situazioni_giuridiche]
 related: [CRS-PRIV-MAP]
-source_of_truth: true
+source_of_truth: docs/memory_bank/CONTENT
 mermaid: required
 ---
 

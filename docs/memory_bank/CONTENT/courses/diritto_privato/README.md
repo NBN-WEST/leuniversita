@@ -7,7 +7,7 @@ created_at: 2025-12-20
 updated_at: 2025-12-20
 tags: [course, diritto_privato, mvp]
 related: [PRD-MPV, CNT-INDEX]
-source_of_truth: true
+source_of_truth: docs/memory_bank/CONTENT
 mermaid: required
 ---
 
@@ -20,6 +20,10 @@ Il corso pilota per il lancio di "Le Università". Copre i fondamenti essenziali
 - **Durata Stimata**: 12 Settimane
 - **Obiettivo**: Superamento esame istituzionale.
 - **Riferimento**: Manuali standard (es. Torrente-Schlesinger, Trabucchi - *riferimenti concettuali*).
+
+## Product Alignment
+Questo corso implementa l'ambito definito in [MVP Scope](../../../PRODUCT/mvp_scope.md).
+Obiettivo KPI: Portare lo studente a completare i 6 moduli con accuratezza > 70%.
 
 ## Struttura Macro
 ```mermaid

@@ -7,7 +7,7 @@ created_at: 2025-12-20
 updated_at: 2025-12-20
 tags: [course, map, path]
 related: [CRS-PRIV-README]
-source_of_truth: true
+source_of_truth: docs/memory_bank/CONTENT
 mermaid: required
 ---
 

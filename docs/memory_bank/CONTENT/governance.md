@@ -7,7 +7,7 @@ created_at: 2025-12-20
 updated_at: 2025-12-20
 tags: [content, governance, legal]
 related: [CNT-INDEX]
-source_of_truth: true
+source_of_truth: docs/memory_bank/CONTENT
 mermaid: required
 ---
 
@@ -24,6 +24,12 @@ Regole inderogabili per la creazione e gestione dei contenuti.
 - ❌ Upload di manuali interi senza licenza.
 - ❌ Copia-incolla massivo da siti terzi non autorizzati.
 - ❌ Generazione AI non verificata da umano (Human-in-the-loop obbligatorio).
+
+## 3. Regole RAG Publishing
+Nel database vettoriale (RAG) finiscono SOLO contenuti "Safe":
+- Testi di legge e sentenze (Pubblico Dominio).
+- Sintesi originali prodotte da noi (Nostra proprietà).
+- **NON** viene indicizzato testo grezzo di libri protetti da copyright, a meno di specifico accordo scritto.
 
 ## Decision Flow
 ```mermaid
