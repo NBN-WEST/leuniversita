@@ -1,6 +1,6 @@
 # Last Task Summary
 
-**Task**: DEV_SNAPSHOT
-**Status**: CLOSED (v0.10.1)
+**Task**: DEV_TOOLS
+**Status**: CLOSED (v0.10.2)
 **Date**: 2025-12-20
-**Comment**: Update pilot-web and add validation script
+**Comment**: Added run_server global command

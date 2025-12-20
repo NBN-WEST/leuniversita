@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.10.2] - 2025-12-20
+- Added run_server global command (Task: DEV_TOOLS)
+
+
 ## [v0.10.1] - 2025-12-20
 - Update pilot-web and add validation script (Task: DEV_SNAPSHOT)
 

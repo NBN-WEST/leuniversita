@@ -29,3 +29,14 @@ See `scripts/memory_bank.sh`.
 ```bash
 ./scripts/memory_bank.sh --type <patch|minor|major> --comment "Release description"
 ```
+
+## Local Development
+### Run Server
+The web application (`pilot-web`) can be launched globally:
+```bash
+run_server
+```
+Alternatively:
+```bash
+./scripts/run_server.sh
+```
