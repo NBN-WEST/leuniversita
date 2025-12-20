@@ -9,7 +9,7 @@ export default function ResultsPage() {
     const { attemptId } = useParams();
     const router = useRouter();
     const [loading, setLoading] = useState(true);
-    const [data, setData] = useState<any>(null); // Skill Map
+    const [data, setData] = useState<any[]>([]); // Init empty to prevent Recharts crash
 
     useEffect(() => {
         const fetchResults = async () => {
@@ -17,13 +17,19 @@ export default function ResultsPage() {
                 .from('diagnostic_attempts')
                 .select('skill_map')
                 .eq('id', attemptId)
+                .eq('id', attemptId)
                 .single();
 
-            if (attempt) {
+            console.log("Attempt Fetch Result:", { attempt, error });
+
+            if (error) console.error("Supabase Error:", error);
+
+            if (attempt && attempt.skill_map?.topics) {
                 // Transform for Recharts
-                const chartData = Object.entries(attempt.skill_map).map(([topic, stats]: [string, any]) => ({
-                    subject: topic,
-                    A: stats.score,
+                const topics = attempt.skill_map.topics || [];
+                const chartData = topics.map((t: any) => ({
+                    subject: t.topic,
+                    A: t.score,
                     fullMark: 100
                 }));
                 setData(chartData);

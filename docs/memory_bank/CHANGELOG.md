@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.10.1] - 2025-12-20
+- Update pilot-web and add validation script (Task: DEV_SNAPSHOT)
+
+
 ## [v0.10.0] - 2025-12-20
 - Upgrade to Memory Bank v2 (Mermaid + Strict Structure) (Task: MB_V2_UPGRADE)
 

@@ -4,6 +4,9 @@
   "bin": {
     "memory_bank": "./scripts/memory_bank.sh"
   },
+  "scripts": {
+    "validate-memory-bank": "ts-node scripts/validate_memory_bank.ts"
+  },
   "devDependencies": {
     "@dotenvx/dotenvx": "^1.51.2",
     "@types/node": "^25.0.3",

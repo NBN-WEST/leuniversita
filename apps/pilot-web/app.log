@@ -28,3 +28,62 @@ https://nextjs.org/telemetry
  GET /results/19e4e10c-9fee-4112-a08a-bb2957769999 200 in 742ms (compile: 731ms, render: 10ms)
  GET / 200 in 19ms (compile: 1550µs, render: 17ms)
  GET /login 200 in 8ms (compile: 1231µs, render: 7ms)
+ GET / 200 in 10ms (compile: 1328µs, render: 9ms)
+ GET /diagnostic/diritto-privato 200 in 11ms (compile: 3ms, render: 8ms)
+✓ Compiled in 24ms
+✓ Compiled in 15ms
+ GET /diagnostic/diritto-privato 200 in 110ms (compile: 44ms, render: 66ms)
+✓ Compiled in 12ms
+ GET /results/c36428bf-37e8-4db6-8346-dde96a06ea40 200 in 13ms (compile: 5ms, render: 9ms)
+✓ Compiled in 9ms
+⨯ ./apps/pilot-web/app/results/[attemptId]/page.tsx:34:6
+Parsing ecmascript source code failed
+[0m [90m 32 |[39m         }[33m;[39m
+ [90m 33 |[39m         setLoading([36mfalse[39m)[33m;[39m
+[31m[1m>[22m[39m[90m 34 |[39m     }[33m;[39m
+ [90m    |[39m      [31m[1m^[22m[39m
+ [90m 35 |[39m     fetchResults()[33m;[39m
+ [90m 36 |[39m }[33m,[39m [attemptId])[33m;[39m
+ [90m 37 |[39m[0m
+
+Expected ',', got ';'
+
+Import traces:
+  Client Component Browser:
+    ./apps/pilot-web/app/results/[attemptId]/page.tsx [Client Component Browser]
+    ./apps/pilot-web/app/results/[attemptId]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/pilot-web/app/results/[attemptId]/page.tsx [Client Component SSR]
+    ./apps/pilot-web/app/results/[attemptId]/page.tsx [Server Component]
+
+
+ GET /results/c36428bf-37e8-4db6-8346-dde96a06ea40 500 in 729ms (compile: 660ms, render: 69ms)
+⨯ ./apps/pilot-web/app/results/[attemptId]/page.tsx:34:6
+Parsing ecmascript source code failed
+[0m [90m 32 |[39m         }[33m;[39m
+ [90m 33 |[39m         setLoading([36mfalse[39m)[33m;[39m
+[31m[1m>[22m[39m[90m 34 |[39m     }[33m;[39m
+ [90m    |[39m      [31m[1m^[22m[39m
+ [90m 35 |[39m     fetchResults()[33m;[39m
+ [90m 36 |[39m }[33m,[39m [attemptId])[33m;[39m
+ [90m 37 |[39m[0m
+
+Expected ',', got ';'
+
+Import traces:
+  Client Component Browser:
+    ./apps/pilot-web/app/results/[attemptId]/page.tsx [Client Component Browser]
+    ./apps/pilot-web/app/results/[attemptId]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/pilot-web/app/results/[attemptId]/page.tsx [Client Component SSR]
+    ./apps/pilot-web/app/results/[attemptId]/page.tsx [Server Component]
+
+
+ GET /results/c36428bf-37e8-4db6-8346-dde96a06ea40 500 in 21ms (compile: 11ms, render: 10ms)
+ GET /diagnostic/diritto-privato 200 in 102ms (compile: 42ms, render: 61ms)
+ GET / 200 in 9ms (compile: 3ms, render: 7ms)
+ GET /login 200 in 56ms (compile: 35ms, render: 21ms)
+ GET /login 200 in 47ms (compile: 1296µs, render: 46ms)
+ GET /login 200 in 13ms (compile: 918µs, render: 12ms)

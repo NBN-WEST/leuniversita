@@ -152,12 +152,12 @@ export default function DiagnosticPage() {
                             key={i}
                             onClick={() => handleAnswer(opt)}
                             className={`w-full p-4 text-left rounded-xl border-2 transition-all ${answers[currentIdx] === opt
-                                    ? 'border-blue-600 bg-blue-50 text-blue-900 font-medium'
-                                    : 'border-slate-100 bg-white hover:border-slate-300'
+                                ? 'border-blue-600 bg-blue-50 text-blue-900 font-medium'
+                                : 'border-slate-300 bg-white text-slate-900 hover:border-slate-400 font-medium'
                                 }`}
                         >
                             <div className="flex items-center gap-3">
-                                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${answers[currentIdx] === opt ? 'border-blue-600' : 'border-slate-300'}`}>
+                                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${answers[currentIdx] === opt ? 'border-blue-600' : 'border-slate-400'}`}>
                                     {answers[currentIdx] === opt && <div className="w-2.5 h-2.5 bg-blue-600 rounded-full" />}
                                 </div>
                                 {opt}
@@ -167,7 +167,7 @@ export default function DiagnosticPage() {
 
                     {q.type === 'OPEN' && (
                         <textarea
-                            className="w-full h-40 p-4 border-2 border-slate-200 rounded-xl focus:border-blue-500 outline-none resize-none text-slate-800"
+                            className="w-full h-40 p-4 border-2 border-slate-300 rounded-xl focus:border-blue-500 outline-none resize-none text-slate-900 font-medium placeholder:text-slate-500"
                             placeholder="Scrivi la tua risposta qui..."
                             value={answers[currentIdx] || ''}
                             onChange={(e) => handleAnswer(e.target.value)}

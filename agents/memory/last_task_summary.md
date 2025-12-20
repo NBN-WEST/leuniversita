@@ -1,6 +1,6 @@
 # Last Task Summary
 
-**Task**: MB_V2_UPGRADE
-**Status**: CLOSED (v0.10.0)
+**Task**: DEV_SNAPSHOT
+**Status**: CLOSED (v0.10.1)
 **Date**: 2025-12-20
-**Comment**: Upgrade to Memory Bank v2 (Mermaid + Strict Structure)
+**Comment**: Update pilot-web and add validation script
