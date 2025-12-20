@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.11.4] - 2025-12-20
+- Added content to docs/memory_bank/LEARNING_ENGINE/ (Task: MB_LEARNING_ENGINE_SETUP)
+
+
 ## [v0.11.3] - 2025-12-20
 - Hardened Content Memory Bank (Compliance & Structure) (Task: MB_CONTENT_HARDENING)
 

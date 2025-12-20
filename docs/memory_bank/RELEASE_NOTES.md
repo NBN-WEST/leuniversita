@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v0.11.3
+**Version**: v0.11.4
 **Date**: 2025-12-20
 
 ### Summary
-Hardened Content Memory Bank (Compliance & Structure)
+Added content to docs/memory_bank/LEARNING_ENGINE/

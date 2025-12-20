@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: MB_CONTENT_HARDENING
-**Status**: CLOSED (v0.11.3)
+**Task**: MB_LEARNING_ENGINE_SETUP
+**Status**: CLOSED (v0.11.4)
 **Date**: 2025-12-20
-**Comment**: Hardened Content Memory Bank (Compliance & Structure)
+**Comment**: Added content to docs/memory_bank/LEARNING_ENGINE/
