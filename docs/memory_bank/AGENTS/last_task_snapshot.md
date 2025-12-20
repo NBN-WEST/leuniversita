@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: MB_PRODUCT_SETUP
-**Status**: CLOSED (v0.11.1)
+**Task**: MB_CONTENT_SETUP
+**Status**: CLOSED (v0.11.2)
 **Date**: 2025-12-20
-**Comment**: Populated docs/memory_bank/PRODUCT/ section
+**Comment**: Populated docs/memory_bank/CONTENT/ section
