@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.11.0] - 2025-12-20
+- Memory Bank Optimization (Structure & Canonization) (Task: MB_OPTIMIZATION)
+
+
 ## [v0.10.2] - 2025-12-20
 - Added run_server global command (Task: DEV_TOOLS)
 

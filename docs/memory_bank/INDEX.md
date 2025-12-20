@@ -29,11 +29,11 @@ graph TD
     ROOT --> CNT[CONTENT]
     
     PRO --> P1(Ingestion)
-    PRO --> P2(Memory Review)
+    PRO --> P2(Review)
     
-    DEC --> D0(ADR-000: Memory Bank)
-    DEC --> D1(ADR-001: Tech Stack)
-    
+    AGT --> A1(Specs)
+    AGT --> A2(Runtime Memory)
+
     style IDX fill:#f9f,stroke:#333
 ```
 
@@ -42,16 +42,16 @@ graph TD
 | Sezione | Descrizione | Link |
 |---------|-------------|------|
 | **ARCHITECTURE** | Diagrammi e specifiche tecniche | [Architecture](./ARCHITECTURE/current.md) |
-| **AGENTS** | Prompt e contesto per le AI | [Agents](./AGENTS/) |
-| **PROCESSES** | Come lavoriamo (workflow) | [Processes](./PROCESSES/) |
-| **DECISIONS** | Registro decisioni (ADR) | [Decisions](./DECISIONS/) |
-| **PRODUCT** | Vision e requisiti | [Product](./PRODUCT/) |
-| **CONTENT** | Fonti e materiali | [Content](./CONTENT/) |
+| **AGENTS** | Prompt e contesto per le AI | [Agents](./AGENTS/README.md) |
+| **PROCESSES** | Come lavoriamo (workflow) | [Processes](./PROCESSES/ingestion.md) |
+| **DECISIONS** | Registro decisioni (ADR) | [Decisions](./DECISIONS/ADR-000-memory-bank.md) |
+| **PRODUCT** | Vision e requisiti | [Product](./PRODUCT/README.md) |
+| **CONTENT** | Fonti e materiali | [Content](./CONTENT/README.md) |
 
 ## Changelog Recente
-- **v0.10.2**: Ristrutturazione completa Memory Bank (Mermaid + Standard Template).
+- **v0.11.0**: Ristrutturazione completa Memory Bank (Mermaid + Standard Template).
 - **v0.1.3**: Consolidamento conoscenza iniziale.
 
 ## Ultima Revisione
 **Data**: 2025-12-20
-**Stato**: Healthy (v2 Upgrade in course)
+**Stato**: Optimization in progress

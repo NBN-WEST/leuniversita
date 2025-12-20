@@ -57,3 +57,19 @@ sequenceDiagram
 ## Output / Deliverables
 - Database popolato con vettori sincronizzati.
 - Report di esecuzione in `docs/reports`.
+
+## Esecuzione Operativa
+Per lanciare la pipeline:
+
+```bash
+# Esecuzione Standard
+npx dotenvx run -f packages/ingestion/.env -- npx ts-node packages/ingestion/src/run.ts
+
+# In caso di errori ESM
+npx dotenvx run -f packages/ingestion/.env -- npx ts-node --esm packages/ingestion/src/run.ts
+```
+
+### Verifica SQL
+```sql
+select count(*) from chunks where exam_id='diritto-privato';
+```

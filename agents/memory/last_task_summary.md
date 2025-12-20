@@ -1,6 +1,4 @@
-# Last Task Summary
+# [DEPRECATED] Legacy Memory
 
-**Task**: DEV_TOOLS
-**Status**: CLOSED (v0.10.2)
-**Date**: 2025-12-20
-**Comment**: Added run_server global command
+> [!WARNING]
+> Questa memoria è deprecata. Vedi `docs/memory_bank/AGENTS/_runtime_memory.md`.
