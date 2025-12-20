@@ -1,4 +1,33 @@
+---
+id: ARCH-001
+title: Current Architecture
+owner: Lead Architect
+status: active
+created_at: 2025-12-18
+updated_at: 2025-12-20
+tags: [architecture, overview]
+related: [ADR-001]
+source_of_truth: true
+mermaid: required
+---
+
 # Current Architecture
+
+### Component Diagram
+```mermaid
+graph TD
+    User((Student)) -->|Chat| UI[Next.js UI]
+    UI -->|API| Edge[Edge Functions]
+    Edge -->|RPC| DB[(Supabase DB)]
+    Edge -->|Stream| OpenAI[OpenAI API]
+    
+    subgraph Ingestion
+        PDF[PDF Files] -->|Script| Ingest[Ingestion TS]
+        Ingest -->|Embed| OpenAI
+        Ingest -->|Store| DB
+    end
+```
+
 
 ## Overview
 ## System Overview

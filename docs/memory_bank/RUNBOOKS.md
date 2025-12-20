@@ -1,4 +1,26 @@
+---
+id: RUN-OPS
+title: Operational Runbooks
+owner: DevOps
+status: active
+created_at: 2025-12-18
+updated_at: 2025-12-20
+tags: [ops, manual]
+related: []
+source_of_truth: true
+mermaid: required
+---
+
 # Runbooks
+
+### Release Flow
+```mermaid
+graph LR
+    Dev[Developer] -->|Local| Script[memory_bank.sh]
+    Script -->|Tag| Git[Git Tag]
+    Script -->|Push| GitHub[GitHub]
+```
+
 
 ## MEMORY_BANK Process
 See `scripts/memory_bank.sh`.

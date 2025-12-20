@@ -1,8 +1,25 @@
+---
+id: CHANGELOG
+title: Project Changelog
+owner: Automation
+status: active
+created_at: 2025-12-18
+updated_at: 2025-12-20
+tags: [history]
+related: []
+source_of_truth: true
+mermaid: not_applicable
+---
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [v0.10.0] - 2025-12-20
+- Upgrade to Memory Bank v2 (Mermaid + Strict Structure) (Task: MB_V2_UPGRADE)
+
 
 ## [v0.9.1] - 2025-12-19
 - Hotfix: Language Policy (Italian Default) (Task: HOTFIX_LANGUAGE)

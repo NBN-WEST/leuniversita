@@ -1,8 +1,8 @@
 # Release Notes
 
 ## Latest Release
-**Version**: v0.9.1
-**Date**: 2025-12-19
+**Version**: v0.10.0
+**Date**: 2025-12-20
 
 ### Summary
-Hotfix: Language Policy (Italian Default)
+Upgrade to Memory Bank v2 (Mermaid + Strict Structure)

@@ -1,4 +1,34 @@
+---
+id: RISK-REG
+title: Risk Register
+owner: PM
+status: active
+created_at: 2025-12-18
+updated_at: 2025-12-20
+tags: [risks, management]
+related: []
+source_of_truth: true
+mermaid: required
+---
+
 # Risks Register
+
+### Visual Risk Matrix
+```mermaid
+quadrantChart
+    title Risk Assessment
+    x-axis Low Impact --> High Impact
+    y-axis Low Likelihood --> High Likelihood
+    quadrant-1 Monitor
+    quadrant-2 Mitigate
+    quadrant-3 Accept
+    quadrant-4 Avoid
+    "Hallucination": [0.8, 0.6]
+    "API Costs": [0.6, 0.8]
+    "Staleness": [0.7, 0.5]
+    "Vendor Lock-in": [0.3, 0.8]
+```
+
 
 | ID | Description | Likelihood | Impact | Mitigation | Status |
 | ID | Description | Likelihood | Impact | Mitigation | Status |

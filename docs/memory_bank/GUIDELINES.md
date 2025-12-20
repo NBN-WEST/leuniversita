@@ -1,3 +1,16 @@
+---
+id: GUIDE-STD
+title: Project Guidelines
+owner: Team
+status: active
+created_at: 2025-12-18
+updated_at: 2025-12-20
+tags: [standards]
+related: []
+source_of_truth: true
+mermaid: not_applicable
+---
+
 # Project Guidelines
 
 ## Coding Standards

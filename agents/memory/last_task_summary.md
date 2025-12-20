@@ -1,6 +1,6 @@
 # Last Task Summary
 
-**Task**: HOTFIX_LANGUAGE
-**Status**: CLOSED (v0.9.1)
-**Date**: 2025-12-19
-**Comment**: Hotfix: Language Policy (Italian Default)
+**Task**: MB_V2_UPGRADE
+**Status**: CLOSED (v0.10.0)
+**Date**: 2025-12-20
+**Comment**: Upgrade to Memory Bank v2 (Mermaid + Strict Structure)

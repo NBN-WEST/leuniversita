@@ -1,3 +1,16 @@
+---
+id: DEC-REG
+title: Decision Registry
+owner: Architect
+status: active
+created_at: 2025-12-18
+updated_at: 2025-12-20
+tags: [decisions, index]
+related: [ADR-000]
+source_of_truth: true
+mermaid: not_applicable
+---
+
 # Decision Records
 
 ## Format
