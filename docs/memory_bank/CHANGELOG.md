@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.11.1] - 2025-12-20
+- Populated docs/memory_bank/PRODUCT/ section (Task: MB_PRODUCT_SETUP)
+
+
 ## [v0.11.0] - 2025-12-20
 - Memory Bank Optimization (Structure & Canonization) (Task: MB_OPTIMIZATION)
 

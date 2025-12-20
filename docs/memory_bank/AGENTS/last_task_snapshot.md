@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: MB_OPTIMIZATION
-**Status**: CLOSED (v0.11.0)
+**Task**: MB_PRODUCT_SETUP
+**Status**: CLOSED (v0.11.1)
 **Date**: 2025-12-20
-**Comment**: Memory Bank Optimization (Structure & Canonization)
+**Comment**: Populated docs/memory_bank/PRODUCT/ section

@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v0.11.0
+**Version**: v0.11.1
 **Date**: 2025-12-20
 
 ### Summary
-Memory Bank Optimization (Structure & Canonization)
+Populated docs/memory_bank/PRODUCT/ section

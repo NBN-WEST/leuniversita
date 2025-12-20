@@ -5,23 +5,40 @@ owner: PM
 status: active
 created_at: 2025-12-20
 updated_at: 2025-12-20
-tags: [product, index]
+tags: [product, index, root]
 related: [INDEX]
 source_of_truth: true
 mermaid: required
 ---
 
-# Product
+# Product Memory Bank
 
-Questa sezione contiene la Visione, i Requisiti (PRD) e il Backlog del prodotto "Le Università".
+Questa sezione contiene la **Single Source of Truth** per la visione, la roadmap e i requisiti del prodotto "Le Università".
+Nessuna specifica di prodotto deve esistere fuori da questa cartella.
 
-## Roadmap Overview
+## Mappa Documentale
 ```mermaid
-gantt
-    title Product Roadmap
-    dateFormat  YYYY-MM-DD
-    section MVP
-    Ingestion Pipeline       :done,    des1, 2024-12-01, 2024-12-15
-    RAG & Chat               :active,  des2, 2024-12-16, 2024-12-25
-    UI Pilot                 :         des3, 2024-12-26, 2025-01-10
+graph TD
+    ROOT[PRODUCT] --> README(README.md)
+    README --> VIS(vision.md)
+    README --> MVP(mvp_scope.md)
+    README --> ROAD(roadmap.md)
+    README --> BACK(backlog.md)
+    README --> KPI(kpi.md)
+
+    VIS -->|Defines| MVP
+    MVP -->|Feeds| ROAD
+    ROAD -->|Prioritizes| BACK
+    BACK -->|Impacts| KPI
+
+    style README fill:#f9f,stroke:#333
 ```
+
+## Indice dei File
+| File | Scopo |
+|------|-------|
+| [`vision.md`](./vision.md) | Il "Perché" e il "Per chi". Problema, Soluzione e Valore. |
+| [`mvp_scope.md`](./mvp_scope.md) | Il "Cosa" (e cosa no). Confini esatti dell'MVP. |
+| [`roadmap.md`](./roadmap.md) | Il "Quando". Timeline macroscopica e fasi. |
+| [`backlog.md`](./backlog.md) | Il "Dettaglio". Epiche e Storie prioritarie. |
+| [`kpi.md`](./kpi.md) | Il "Successo". Metriche da monitorare. |
