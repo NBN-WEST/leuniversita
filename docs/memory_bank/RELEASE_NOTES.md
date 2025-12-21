@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v0.12.1
+**Version**: v0.12.2
 **Date**: 2025-12-21
 
 ### Summary
-Implemented Schema V2 (Parallel) + APIs
+Aligned Repo to V2 Claims (Proxy & Migration)

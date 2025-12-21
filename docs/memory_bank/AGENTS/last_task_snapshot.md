@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: IMPLEMENT_V2
-**Status**: CLOSED (v0.12.1)
+**Task**: ALIGN_V2_PROXY
+**Status**: CLOSED (v0.12.2)
 **Date**: 2025-12-21
-**Comment**: Implemented Schema V2 (Parallel) + APIs
+**Comment**: Aligned Repo to V2 Claims (Proxy & Migration)

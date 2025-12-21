@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.12.2] - 2025-12-21
+- Aligned Repo to V2 Claims (Proxy & Migration) (Task: ALIGN_V2_PROXY)
+
+
 ## [v0.12.1] - 2025-12-21
 - Implemented Schema V2 (Parallel) + APIs (Task: IMPLEMENT_V2)
 
