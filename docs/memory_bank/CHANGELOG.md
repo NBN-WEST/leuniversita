@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.12.1] - 2025-12-21
+- Implemented Schema V2 (Parallel) + APIs (Task: IMPLEMENT_V2)
+
+
 ## [v0.12.0] - 2025-12-21
 - Introduced Schema V2 and API Contracts (Task: SCHEMA_V2_MIGRATION)
 

@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v0.12.0
+**Version**: v0.12.1
 **Date**: 2025-12-21
 
 ### Summary
-Introduced Schema V2 and API Contracts
+Implemented Schema V2 (Parallel) + APIs

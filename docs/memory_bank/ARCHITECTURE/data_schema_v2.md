@@ -128,7 +128,7 @@ Dati strutturati del corso. RLS: Public Read, Admin Write.
 ### 2. Tracking Domain (User Write/Read)
 Dati di progresso. RLS: Owner Only.
 
-**`learning_progress`**
+**`learning_progress_v2`**
 - `id` (uuid, PK)
 - `user_id` (uuid, default auth.uid())
 - `course_id` (uuid, FK)

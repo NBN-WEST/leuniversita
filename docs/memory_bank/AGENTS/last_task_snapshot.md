@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: SCHEMA_V2_MIGRATION
-**Status**: CLOSED (v0.12.0)
+**Task**: IMPLEMENT_V2
+**Status**: CLOSED (v0.12.1)
 **Date**: 2025-12-21
-**Comment**: Introduced Schema V2 and API Contracts
+**Comment**: Implemented Schema V2 (Parallel) + APIs
