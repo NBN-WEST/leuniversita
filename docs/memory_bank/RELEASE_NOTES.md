@@ -4,7 +4,7 @@ title: Release Notes
 owner: Automation
 status: active
 created_at: 2025-12-18
-updated_at: 2025-12-20
+updated_at: 2025-12-21
 tags: [release]
 related: []
 source_of_truth: true
@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v0.11.4
-**Date**: 2025-12-20
+**Version**: v0.12.0
+**Date**: 2025-12-21
 
 ### Summary
-Added content to docs/memory_bank/LEARNING_ENGINE/
+Introduced Schema V2 and API Contracts

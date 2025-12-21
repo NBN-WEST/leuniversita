@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.12.0] - 2025-12-21
+- Introduced Schema V2 and API Contracts (Task: SCHEMA_V2_MIGRATION)
+
+
 ## [v0.11.4] - 2025-12-20
 - Added content to docs/memory_bank/LEARNING_ENGINE/ (Task: MB_LEARNING_ENGINE_SETUP)
 
