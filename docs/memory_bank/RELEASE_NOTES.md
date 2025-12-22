@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v0.13.1
+**Version**: v0.13.2
 **Date**: 2025-12-22
 
 ### Summary
-Localized GDPR content to Italian with NBN WEST EOOD details
+Fix: Applied IT translation to Cookie Banner UI

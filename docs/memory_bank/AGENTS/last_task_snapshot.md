@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: GDPR-ITALIAN
-**Status**: CLOSED (v0.13.1)
+**Task**: GDPR-FIX
+**Status**: CLOSED (v0.13.2)
 **Date**: 2025-12-22
-**Comment**: Localized GDPR content to Italian with NBN WEST EOOD details
+**Comment**: Fix: Applied IT translation to Cookie Banner UI
