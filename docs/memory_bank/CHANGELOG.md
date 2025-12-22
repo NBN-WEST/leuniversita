@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.13.1] - 2025-12-22
+- Localized GDPR content to Italian with NBN WEST EOOD details (Task: GDPR-ITALIAN)
+
+
 ## [v0.13.0] - 2025-12-22
 - Implemented GDPR Cookie Consent (Task: GDPR-IMPL)
 

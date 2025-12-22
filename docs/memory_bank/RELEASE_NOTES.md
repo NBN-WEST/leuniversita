@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v0.13.0
+**Version**: v0.13.1
 **Date**: 2025-12-22
 
 ### Summary
-Implemented GDPR Cookie Consent
+Localized GDPR content to Italian with NBN WEST EOOD details
