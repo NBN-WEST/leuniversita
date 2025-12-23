@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v0.13.6
+**Version**: v0.14.0
 **Date**: 2025-12-23
 
 ### Summary
-Finalize Smoke Test (Verdict: No - Legacy Schema Conflict)
+DB Schema adn Smoke TEST

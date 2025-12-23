@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: FINAL_SMOKE_V2_DONE
-**Status**: CLOSED (v0.13.6)
+**Task**: V2-ISOLATION-FIX
+**Status**: CLOSED (v0.14.0)
 **Date**: 2025-12-23
-**Comment**: Finalize Smoke Test (Verdict: No - Legacy Schema Conflict)
+**Comment**: DB Schema adn Smoke TEST
