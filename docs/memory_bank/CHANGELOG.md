@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.13.6] - 2025-12-23
+- Finalize Smoke Test (Verdict: No - Legacy Schema Conflict) (Task: FINAL_SMOKE_V2_DONE)
+
+
 ## [v0.13.5] - 2025-12-23
 - Finalize Smoke Test Report (Diagnosis: Partial Migration) (Task: FINAL_SMOKE_V2_ANALYSIS)
 

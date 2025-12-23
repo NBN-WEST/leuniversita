@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v0.13.5
+**Version**: v0.13.6
 **Date**: 2025-12-23
 
 ### Summary
-Finalize Smoke Test Report (Diagnosis: Partial Migration)
+Finalize Smoke Test (Verdict: No - Legacy Schema Conflict)
