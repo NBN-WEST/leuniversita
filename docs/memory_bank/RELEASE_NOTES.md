@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v0.13.4
+**Version**: v0.13.5
 **Date**: 2025-12-23
 
 ### Summary
-Final Smoke Test V2 (Verdict: NO - Tables Missing)
+Finalize Smoke Test Report (Diagnosis: Partial Migration)
