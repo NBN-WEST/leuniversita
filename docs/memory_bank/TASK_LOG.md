@@ -32,3 +32,4 @@
 | 2025-12-22T15:03:19.580Z | GDPR-IMPL | Implemented GDPR Cookie Consent | Auto-detected | PASS | Check Next |
 | 2025-12-22T20:12:03.894Z | GDPR-ITALIAN | Localized GDPR content to Italian with NBN WEST EOOD details | Auto-detected | PASS | Check Next |
 | 2025-12-22T20:12:23.368Z | GDPR-FIX | Fix: Applied IT translation to Cookie Banner UI | Auto-detected | PASS | Check Next |
+| 2025-12-23T20:35:32.123Z | SMOKE_TEST_V2 | Add Automated Smoke Test Scripts (Blocked by DB Migration) | Auto-detected | PASS | Check Next |
