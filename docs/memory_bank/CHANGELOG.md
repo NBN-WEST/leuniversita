@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.13.4] - 2025-12-23
+- Final Smoke Test V2 (Verdict: NO - Tables Missing) (Task: FINAL_SMOKE_V2)
+
+
 ## [v0.13.3] - 2025-12-23
 - Add Automated Smoke Test Scripts (Blocked by DB Migration) (Task: SMOKE_TEST_V2)
 

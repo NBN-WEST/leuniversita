@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v0.13.3
+**Version**: v0.13.4
 **Date**: 2025-12-23
 
 ### Summary
-Add Automated Smoke Test Scripts (Blocked by DB Migration)
+Final Smoke Test V2 (Verdict: NO - Tables Missing)
