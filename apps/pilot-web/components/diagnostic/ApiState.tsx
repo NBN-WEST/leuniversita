@@ -8,7 +8,7 @@ interface ApiStateProps {
     onRetry?: () => void;
     loadingMessage?: string;
     errorMessage?: string;
-    children: React.ReactNode;
+    children?: React.ReactNode;
 }
 
 export function ApiState({

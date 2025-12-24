@@ -116,7 +116,17 @@ export default function PlanPage() {
                                 {getStatusIcon(item.status)}
                             </div>
                             <div className="flex-grow">
-                                <h4 className="font-semibold text-base">Module: {item.module_id}</h4>
+                                interface PlanItem {
+                                    id: string;
+                                module_id: string;
+                                status: 'todo' | 'done' | 'skipped' | 'locked';
+                                type: string;
+                                modules?: {title: string };
+}
+                                // ... (inside component)
+                                <h4 className="font-semibold text-base">
+                                    {item.modules?.title || item.module_id}
+                                </h4>
                                 <p className="text-xs text-muted-foreground capitalize">Stato: {item.status}</p>
                             </div>
                             <div>

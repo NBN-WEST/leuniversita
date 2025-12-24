@@ -2,11 +2,16 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { Button } from "@/components/ui/button";
 import { CheckCircle, BarChart, BookOpen } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 export default function ResultsPage() {
+    const searchParams = useSearchParams();
+    const score = searchParams.get('score');
+    const level = searchParams.get('level');
+
     return (
         <div className="container max-w-2xl mx-auto py-16 px-4 text-center space-y-8 animate-in fade-in duration-700">
 
@@ -31,10 +36,24 @@ export default function ResultsPage() {
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <p className="text-muted-foreground">
-                        In base alle tue risposte, abbiamo adattato la difficoltà del corso.
-                        Il piano è stato generato automaticamente per colmare le tue lacune.
-                    </p>
+                    <div className="space-y-4">
+                        {score && (
+                            <div className="flex justify-between items-center border-b pb-2">
+                                <span className="text-muted-foreground">Punteggio ottenuto</span>
+                                <span className="font-bold text-lg">{Math.round(Number(score))}%</span>
+                            </div>
+                        )}
+                        {level && (
+                            <div className="flex justify-between items-center border-b pb-2">
+                                <span className="text-muted-foreground">Livello assegnato</span>
+                                <span className="font-bold text-lg capitalize">{level}</span>
+                            </div>
+                        )}
+                        <p className="text-muted-foreground pt-2">
+                            In base alle tue risposte, abbiamo adattato la difficoltà del corso.
+                            Il piano è stato generato automaticamente per colmare le tue lacune.
+                        </p>
+                    </div>
                 </CardContent>
             </Card>
 

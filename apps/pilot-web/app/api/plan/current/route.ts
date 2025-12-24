@@ -43,7 +43,10 @@ export async function GET(request: Request) {
     // Fetch Items V2
     const { data: items } = await supabase
         .from('plan_items_v2')
-        .select('*')
+        .select(`
+            *,
+            modules ( title )
+        `)
         .eq('plan_id', plan.id);
 
     return NextResponse.json({

@@ -117,7 +117,9 @@ export default function DiagnosticPage() {
             }
 
             // Success -> Redirect to Results
-            router.push(`/results/${attemptId}`);
+            const data = await res.json();
+            const { score, placementLevel } = data;
+            router.push(`/results/${attemptId}?score=${score}&level=${placementLevel}`);
 
         } catch (err: any) {
             setError(err.message);
