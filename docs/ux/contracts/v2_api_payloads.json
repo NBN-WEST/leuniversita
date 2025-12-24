@@ -1,0 +1,80 @@
+{
+    "api/diagnostic/start": {
+        "method": "POST",
+        "request": {
+            "courseId": "string"
+        },
+        "response": {
+            "attemptId": "string (uuid)",
+            "assessmentId": "string (uuid)",
+            "questions": [
+                {
+                    "id": "string (uuid)",
+                    "prompt": "string",
+                    "difficulty": "string",
+                    "question_options": [
+                        {
+                            "id": "string (uuid)",
+                            "label": "string"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "api/diagnostic/submit": {
+        "method": "POST",
+        "request": {
+            "attemptId": "string (uuid)",
+            "answers": [
+                {
+                    "questionId": "string (uuid)",
+                    "selectedOptionId": "string (uuid)"
+                }
+            ]
+        },
+        "response": {
+            "placementLevel": "string (novice|beginner|intermediate|advanced)",
+            "score": "number",
+            "planId": "string (uuid)",
+            "nextAction": "string",
+            "debugError": "object | null"
+        }
+    },
+    "api/plan/current": {
+        "method": "GET",
+        "queryParams": {
+            "courseId": "string"
+        },
+        "response": {
+            "planId": "string (uuid)",
+            "status": "string",
+            "level": "string",
+            "items": [
+                {
+                    "id": "string (uuid)",
+                    "plan_id": "string (uuid)",
+                    "module_id": "string",
+                    "type": "string",
+                    "status": "string",
+                    "created_at": "string"
+                }
+            ]
+        }
+    },
+    "api/progress": {
+        "method": "GET",
+        "queryParams": {
+            "courseId": "string"
+        },
+        "response": {
+            "modules": [
+                {
+                    "module_id": "string",
+                    "status": "string",
+                    "last_score": "number | null"
+                }
+            ]
+        }
+    }
+}

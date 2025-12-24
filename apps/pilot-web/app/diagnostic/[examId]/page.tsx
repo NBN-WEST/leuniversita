@@ -1,190 +1,208 @@
 'use client';
-import { useState, useEffect } from 'react';
-import { supabase } from '@/utils/supabase/client';
+
+import React, { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
-import { Loader2, ArrowRight, CheckCircle2, AlertCircle } from 'lucide-react';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'; // Only for Auth Session
+import { Button } from "@/components/ui/button";
+import { ArrowRight, ArrowLeft, CheckCircle } from 'lucide-react';
+import { ApiState } from "@/components/diagnostic/ApiState";
+import { DiagnosticStepper } from "@/components/diagnostic/DiagnosticStepper";
+import { QuestionCard } from "@/components/diagnostic/QuestionCard";
 
-type Question = {
-    id: string; // generated ID logic or topic
-    type: 'MCQ' | 'OPEN';
+interface Question {
+    id: string;
     prompt: string;
-    options?: string[];
-    topic: string;
-};
-
-type UiHint = {
-    total_questions: number;
-};
+    question_options: { id: string; label: string }[];
+}
 
 export default function DiagnosticPage() {
-    const { examId } = useParams();
     const router = useRouter();
+    const params = useParams();
+    const examId = params.examId as string;
 
-    const [status, setStatus] = useState<'idle' | 'loading' | 'active' | 'submitting'>('idle');
+    const [supabase] = useState(() => createClientComponentClient());
+
+    // State
+    const [loading, setLoading] = useState(false); // Global loading (start/submit)
+    const [error, setError] = useState<string | null>(null);
+    const [started, setStarted] = useState(false);
+
     const [attemptId, setAttemptId] = useState<string | null>(null);
     const [questions, setQuestions] = useState<Question[]>([]);
-    const [answers, setAnswers] = useState<Record<string, string>>({});
-    const [currentIdx, setCurrentIdx] = useState(0);
-    const [error, setError] = useState<string | null>(null);
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const [answers, setAnswers] = useState<Record<string, string>>({}); // questionId -> optionId
 
-    const startTest = async () => {
-        setStatus('loading');
+    // --- Handlers ---
+
+    const handleStart = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session) {
+                throw new Error("Sessione scaduta. Effettua nuovamente il login.");
+            }
+
+            const res = await fetch('/api/diagnostic/start', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${session.access_token}`
+                },
+                body: JSON.stringify({ courseId: examId })
+            });
+
+            if (!res.ok) {
+                const errData = await res.json();
+                throw new Error(errData.error || "Errore durante l'avvio del test.");
+            }
+
+            const data = await res.json();
+            setAttemptId(data.attemptId);
+            setQuestions(data.questions);
+            setStarted(true);
+        } catch (err: any) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleSelectOption = (optionId: string) => {
+        const currentQ = questions[currentQuestionIndex];
+        setAnswers(prev => ({ ...prev, [currentQ.id]: optionId }));
+    };
+
+    const handleNext = () => {
+        if (currentQuestionIndex < questions.length - 1) {
+            setCurrentQuestionIndex(prev => prev + 1);
+        }
+    };
+
+    const handleBack = () => {
+        if (currentQuestionIndex > 0) {
+            setCurrentQuestionIndex(prev => prev - 1);
+        }
+    };
+
+    const handleSubmit = async () => {
+        if (!attemptId) return;
+        setLoading(true);
         setError(null);
 
-        const { data: { session } } = await supabase.auth.getSession();
-        if (!session) return router.push('/login');
-
-        const { data, error } = await supabase.functions.invoke('diagnostic-start', {
-            body: { user_id: session.user.id, exam_id: examId }
-        });
-
-        if (error || (data && data.error)) {
-            setStatus('idle');
-            const msg = error?.message || data?.error?.message || "Errore avvio test";
-            if (msg.includes("Upgrade")) { // Simple check for rate limit string
-                setError("Limite Raggiunto: Passa a Premium per continuare.");
-            } else {
-                setError(msg);
-            }
-            return;
-        }
-
-        setAttemptId(data.attempt_id);
-        setQuestions(data.questions);
-        setStatus('active');
-    };
-
-    const submitTest = async () => {
-        setStatus('submitting');
-        const { data: { session } } = await supabase.auth.getSession();
-
-        // Construct answers list (simple format for MVP)
-        const formattedAnswers = questions.map((q, idx) => ({
-            question_id: idx.toString(), // MVP mapping
-            question_text: q.prompt,
-            topic: q.topic,
-            selected_option: answers[idx] || "",
-            text_response: q.type === 'OPEN' ? answers[idx] : undefined
+        const payloadAnswers = Object.entries(answers).map(([qId, oId]) => ({
+            questionId: qId,
+            selectedOptionId: oId
         }));
 
-        const { data, error } = await supabase.functions.invoke('diagnostic-submit', {
-            body: {
-                attempt_id: attemptId,
-                user_id: session?.user.id,
-                answers: formattedAnswers
+        try {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session) throw new Error("Sessione mancante.");
+
+            const res = await fetch('/api/diagnostic/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${session.access_token}`
+                },
+                body: JSON.stringify({
+                    attemptId,
+                    answers: payloadAnswers
+                })
+            });
+
+            if (!res.ok) {
+                const errData = await res.json();
+                throw new Error(errData.error || "Errore durante l'invio delle risposte.");
             }
-        });
 
-        if (error) {
-            setStatus('active');
-            setError("Errore invio dati. Riprova.");
-            return;
-        }
+            // Success -> Redirect to Results
+            router.push(`/results/${attemptId}`);
 
-        router.push(`/results/${attemptId}`);
-    };
-
-    const handleAnswer = (val: string) => {
-        setAnswers(prev => ({ ...prev, [currentIdx]: val }));
-    };
-
-    const goNext = () => {
-        if (currentIdx < questions.length - 1) {
-            setCurrentIdx(prev => prev + 1);
-        } else {
-            submitTest();
+        } catch (err: any) {
+            setError(err.message);
+            setLoading(false); // Only stop loading on error, otherwise we navigate
         }
     };
 
-    // RENDERERS
+    // --- Render ---
 
-    if (status === 'idle') {
+    // 1. Loading/Error State (Global)
+    if (loading && !started) {
         return (
-            <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-slate-50">
-                <div className="max-w-lg w-full bg-white p-8 rounded-2xl shadow-sm text-center">
-                    <h1 className="text-2xl font-bold text-slate-900 mb-4">Test Diagnostico</h1>
-                    <p className="text-slate-600 mb-8">Il sistema valuterà la tua preparazione attuale su fonti ufficiali. Ci vorranno circa 5 minuti.</p>
+            <ApiState loading={true} error={null} loadingMessage="Preparazione del test in corso..." />
+        );
+    }
 
-                    {error && (
-                        <div className="mb-6 p-4 bg-red-50 text-red-700 rounded-lg text-sm border border-red-100 flex items-center justify-center gap-2">
-                            <AlertCircle className="w-4 h-4" />
-                            {error}
-                        </div>
-                    )}
-
-                    <button onClick={startTest} className="w-full py-3 bg-blue-700 hover:bg-blue-800 text-white rounded-xl font-semibold transition-all">
-                        Inizia Diagnostico
-                    </button>
-                </div>
+    // 2. Start Screen
+    if (!started) {
+        return (
+            <div className="container max-w-2xl mx-auto py-12 px-4 text-center space-y-8">
+                <ApiState loading={false} error={error} onRetry={handleStart}>
+                    <div className="space-y-4">
+                        <h1 className="text-3xl font-bold tracking-tight">Diagnostic Test</h1>
+                        <p className="text-muted-foreground text-lg">
+                            Scopriamo a che punto sei. Bastano 5 minuti per analizzare le tue conoscenze e creare un piano di studio su misura.
+                        </p>
+                    </div>
+                    <Button size="lg" onClick={handleStart} className="w-full md:w-auto px-8">
+                        Inizia il Test <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                </ApiState>
             </div>
         );
     }
 
-    if (status === 'loading' || status === 'submitting') {
+    // 3. Question Loop
+    if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-slate-50">
-                <div className="text-center">
-                    <Loader2 className="w-10 h-10 animate-spin text-blue-700 mx-auto mb-4" />
-                    <p className="text-slate-600 font-medium opacity-0 animate-pulse" style={{ opacity: 1 }}>{status === 'loading' ? 'Generazione Test...' : 'Valutazione in corso...'}</p>
-                </div>
-            </div>
+            <ApiState loading={true} error={null} loadingMessage="Analisi delle risposte in corso..." />
         );
     }
 
-    const q = questions[currentIdx];
+    if (error) {
+        return (
+            <ApiState loading={false} error={error} onRetry={handleSubmit} errorMessage="Si è verificato un errore durante l'invio." />
+        );
+    }
+
+    const currentQ = questions[currentQuestionIndex];
+    const isLastQuestion = currentQuestionIndex === questions.length - 1;
+    const canProceed = !!answers[currentQ.id];
 
     return (
-        <div className="min-h-screen bg-white flex flex-col">
-            {/* Progress Header */}
-            <div className="h-2 bg-slate-100 w-full">
-                <div className="h-full bg-blue-600 transition-all duration-500 ease-out" style={{ width: `${((currentIdx + 1) / questions.length) * 100}%` }}></div>
+        <div className="container max-w-3xl mx-auto py-8 px-4 flex flex-col min-h-[80vh]">
+            <DiagnosticStepper
+                currentIndex={currentQuestionIndex}
+                totalQuestions={questions.length}
+            />
+
+            <div className="flex-grow flex items-center">
+                <QuestionCard
+                    question={currentQ}
+                    selectedOptionId={answers[currentQ.id]}
+                    onSelectOption={handleSelectOption}
+                />
             </div>
 
-            <div className="flex-1 max-w-3xl mx-auto w-full p-6 md:p-12 flex flex-col justify-center">
-                <div className="mb-6">
-                    <span className="text-xs font-bold tracking-wider text-blue-600 uppercase mb-2 block">Domanda {currentIdx + 1} di {questions.length}</span>
-                    <h2 className="text-2xl md:text-3xl font-bold text-slate-900 leading-tight">{q.prompt}</h2>
-                </div>
+            <div className="mt-8 flex justify-between items-center pt-4 border-t">
+                <Button
+                    variant="ghost"
+                    onClick={handleBack}
+                    disabled={currentQuestionIndex === 0}
+                >
+                    <ArrowLeft className="mr-2 h-4 w-4" /> Indietro
+                </Button>
 
-                <div className="space-y-3 mb-10">
-                    {q.type === 'MCQ' && q.options?.map((opt, i) => (
-                        <button
-                            key={i}
-                            onClick={() => handleAnswer(opt)}
-                            className={`w-full p-4 text-left rounded-xl border-2 transition-all ${answers[currentIdx] === opt
-                                ? 'border-blue-600 bg-blue-50 text-blue-900 font-medium'
-                                : 'border-slate-300 bg-white text-slate-900 hover:border-slate-400 font-medium'
-                                }`}
-                        >
-                            <div className="flex items-center gap-3">
-                                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${answers[currentIdx] === opt ? 'border-blue-600' : 'border-slate-400'}`}>
-                                    {answers[currentIdx] === opt && <div className="w-2.5 h-2.5 bg-blue-600 rounded-full" />}
-                                </div>
-                                {opt}
-                            </div>
-                        </button>
-                    ))}
-
-                    {q.type === 'OPEN' && (
-                        <textarea
-                            className="w-full h-40 p-4 border-2 border-slate-300 rounded-xl focus:border-blue-500 outline-none resize-none text-slate-900 font-medium placeholder:text-slate-500"
-                            placeholder="Scrivi la tua risposta qui..."
-                            value={answers[currentIdx] || ''}
-                            onChange={(e) => handleAnswer(e.target.value)}
-                        />
-                    )}
-                </div>
-
-                <div className="flex justify-end">
-                    <button
-                        onClick={goNext}
-                        disabled={!answers[currentIdx]}
-                        className="px-8 py-3 bg-slate-900 text-white rounded-xl font-medium hover:bg-black disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transition-all"
-                    >
-                        {currentIdx === questions.length - 1 ? 'Concludi Test' : 'Avanti'}
-                        <ArrowRight className="w-5 h-5" />
-                    </button>
-                </div>
+                {isLastQuestion ? (
+                    <Button onClick={handleSubmit} disabled={!canProceed} variant="default">
+                        Invia Risposte <CheckCircle className="ml-2 h-4 w-4" />
+                    </Button>
+                ) : (
+                    <Button onClick={handleNext} disabled={!canProceed}>
+                        Avanti <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                )}
             </div>
         </div>
     );
