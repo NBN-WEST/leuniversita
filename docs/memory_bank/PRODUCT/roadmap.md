@@ -39,7 +39,7 @@ gantt
     section Pilot (NOW)
     Ingestion Pipeline       :done,    p1, 2024-11, 2024-12
     RAG Engine Stability     :active,  p2, 2024-12, 2025-01
-    UI Diagnostic Flow       :active,  p3, 2024-12, 2025-01
+    UI Diagnostic Flow       :done,    p3, 2024-12, 2025-12
 
     section Launch (NEXT)
     Multi-materia            :         n1, 2025-02, 2025-03

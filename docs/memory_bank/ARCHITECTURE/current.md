@@ -48,15 +48,16 @@ graph TD
 - **Tables**:
   - `documents`: Stores text chunks, embeddings, and metadata.
   - `sources`: Tracks original documents (e.g., PDF filenames, URLs).
+  - **New (v0.13.2)**: `learning_attempts_v2` stores diagnostic results (score, level) persistently.
 
 ### 3. Reasoning Engine (Supabase Edge Functions)
 - **Function**: `supabase/functions/chat`
+- **Function**: `supabase/functions/diagnostic-submit` (Persists results)
 - **Logic**:
-  - Receives user query.
-  - Generates query embedding.
-  - Performs similarity search (RPC call).
-  - Constructs prompt with context.
-  - Streams OpenAI response to client.
+  - Receives user query or diagnostic answers.
+  - Generates embeddings/calculates scores.
+  - Performs similarity search (RPC call) or updates `learning_attempts_v2`.
+  - Streams response or returns result metadata.
 
 ### 4. User Interface (Planned)
 - **Tech**: Next.js (React)
