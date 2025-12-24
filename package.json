@@ -2,7 +2,8 @@
   "name": "leuniversita-mvp",
   "version": "0.1.0",
   "bin": {
-    "memory_bank": "./scripts/memory_bank.sh"
+    "memory_bank": "./scripts/memory_bank.sh",
+    "run_server": "./scripts/run_server.sh"
   },
   "scripts": {
     "validate-memory-bank": "ts-node scripts/validate_memory_bank.ts"
@@ -15,6 +16,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.89.0",
-    "dotenv": "^17.2.3"
+    "dotenv": "^17.2.3",
+    "postgres": "^3.4.7"
   }
 }

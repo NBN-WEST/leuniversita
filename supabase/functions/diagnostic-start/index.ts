@@ -1,157 +1,88 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.0";
-import OpenAI from "https://esm.sh/openai@4.24.1";
 import { handleOptions, successResponse, errorResponse } from "../_shared/responseUtils.ts";
-import { checkRateLimit } from "../_shared/rateLimit.ts";
-
-const RATE_LIMIT_QC = 10; // Allow 10 starts per day for MVP
 
 Deno.serve(async (req) => {
     const optRes = handleOptions(req);
     if (optRes) return optRes;
 
     try {
-        const { exam_id = 'diritto-privato', user_id = 'anon_user' } = await req.json();
+        const { courseId } = await req.json(); // V2 input
 
-        // Environment Check
         const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
         const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
-        const openaiKey = Deno.env.get('OPENAI_API_KEY')!;
-
-        if (!supabaseUrl || !supabaseKey || !openaiKey) {
-            return errorResponse({ error_code: 'SERVER_CONFIG_ERROR', message: 'Missing env vars' }, 500);
-        }
-
         const supabase = createClient(supabaseUrl, supabaseKey);
-        const openai = new OpenAI({ apiKey: openaiKey });
 
-        // 1. Rate Limit
-        const { allowed, usage, limit, tier } = await checkRateLimit(supabase, user_id, 'diagnostic_started', 3);
+        // Get User from Auth Header (JWT)
+        const authHeader = req.headers.get('Authorization');
+        if (!authHeader) {
+            return errorResponse({ error_code: 'UNAUTHORIZED', message: 'Missing Authorization header' }, 401);
+        }
+        const { data: { user }, error: authError } = await supabase.auth.getUser(authHeader.replace('Bearer ', ''));
+        if (authError || !user) {
+            return errorResponse({ error_code: 'UNAUTHORIZED', message: 'Invalid Token' }, 401);
+        }
+        const userId = user.id;
 
-        if (!allowed) {
-            return errorResponse({
-                error_code: 'RATE_LIMIT_EXCEEDED',
-                message: `You have reached your daily limit of ${limit} diagnostics. Upgrade to Premium for logic updates.`
-            }, 429);
+        // 1. Fetch Diagnostic Assessment
+        const { data: assessment, error: assError } = await supabase
+            .from('assessments_v2')
+            .select('id, settings')
+            .eq('course_id', courseId)
+            .eq('type', 'diagnostic')
+            .single();
+
+        if (assError || !assessment) {
+            return errorResponse({ error_code: 'NOT_FOUND', message: 'Diagnostic Assessment not found for this course.' }, 404);
         }
 
-        // 2. Create Attempt
-        const { data: attempt, error: attemptError } = await supabase
-            .from('diagnostic_attempts')
+        // 2. Create Attempt (V2 Table)
+        const { data: attempt, error: attError } = await supabase
+            .from('learning_attempts_v2')
             .insert({
-                exam_id,
-                user_id,
+                user_id: userId,
+                assessment_id: assessment.id,
                 status: 'in_progress',
-                total_score: 0,
-                skill_map: {},
-                meta: { client_user_id: user_id }
+                score: null
             })
             .select()
             .single();
 
-        if (attemptError) {
-            return errorResponse({ error_code: 'DB_ERROR', message: attemptError.message }, 500);
+        if (attError) {
+            console.error('Attempt Error', attError);
+            return errorResponse({
+                error_code: 'DB_ERROR',
+                message: 'Failed to create attempt',
+                details: attError
+            }, 500);
         }
 
-        // 3. Fetch Context (Public Chunks)
-        const { data: chunks, error: chunksError } = await supabase
-            .from('chunks')
-            .select('id, content, documents!inner(title, source_url)')
-            .eq('exam_id', exam_id)
-            .eq('visibility', 'public')
-            .limit(40);
+        // 3. Fetch Questions & Options
+        const { data: questions, error: qError } = await supabase
+            .from('questions_v2')
+            .select(`
+                id, 
+                prompt, 
+                difficulty,
+                question_options_v2 ( id, label )
+            `)
+            .eq('assessment_id', assessment.id);
 
-        if (!chunks || chunks.length === 0) {
-            return errorResponse({ error_code: 'NO_CONTENT', message: 'No reference references found.' }, 404);
+        if (qError) {
+            console.error('Questions Error', qError);
+            return errorResponse({ error_code: 'DB_ERROR', message: 'Failed to fetch questions' }, 500);
         }
 
-        // Randomize
-        const shuffled = chunks.sort(() => 0.5 - Math.random()).slice(0, 10);
-
-        // 4. Generate Questions
-        const systemPrompt = `
-Sei un esperto Professore di Diritto Privato. Genera un Test Diagnostico IN ITALIANO.
-Crea esattamente 3 Domande a Risposta Multipla (MCQ) e 2 Domande Aperte (OPEN).
-Usa SOLO il Materiale Fonte fornito.
-Per ogni domanda, DEVI fornire una citazione valida.
-NON usare inglese nel contenuto delle domande o delle opzioni.
-
-Output JSON format:
-{
-  "questions": [
-    {
-      "topic": "Specific Topic",
-      "difficulty": 1-5,
-      "type": "MCQ" (or "OPEN"),
-      "prompt": "Testo della domanda...",
-      "options": ["Opzione A", "Opzione B", "Opzione C", "Opzione D"], 
-      "correct_answer": "Opzione A" (or explanation), 
-      "citations": [ { "source_title": "Title", "source_url": "URL" } ]
-    }
-  ]
-}
-`.trim();
-
-        const userPrompt = `Source Material:\n${JSON.stringify(shuffled.map(c => ({
-            text: c.content.substring(0, 300),
-            title: c.documents.title,
-            url: c.documents.source_url
-        })))}`;
-
-        const completion = await openai.chat.completions.create({
-            model: "gpt-4o",
-            messages: [
-                { role: "system", content: systemPrompt },
-                { role: "user", content: userPrompt }
-            ],
-            response_format: { type: "json_object" }
-        });
-
-        const result = JSON.parse(completion.choices[0].message.content || "{}");
-        const questions = result.questions || [];
-
-        if (questions.length === 0) {
-            return errorResponse({ error_code: 'AI_ERROR', message: 'Question generation failed.' }, 500);
-        }
-
-        // 5. Persist Questions
-        const questionsToInsert = questions.map((q: any) => ({
-            attempt_id: attempt.id,
-            exam_id,
-            topic: q.topic,
-            difficulty: q.difficulty,
-            type: q.type,
-            prompt: q.prompt,
-            options: q.options,
-            correct_answer: q.correct_answer,
-            citations: q.citations
+        // 4. Return Standard V2 Response
+        // Remap question_options_v2 to question_options payload property for frontend compatibility
+        const mappedQuestions = questions?.map(q => ({
+            ...q,
+            question_options: q.question_options_v2
         }));
 
-        const { data: insertedQuestions, error: insertError } = await supabase
-            .from('diagnostic_questions')
-            .insert(questionsToInsert)
-            .select('id, type, prompt, options, citations, topic, difficulty');
-
-        if (insertError) {
-            return errorResponse({ error_code: 'DB_ERROR', message: insertError.message }, 500);
-        }
-
-        // 6. Log Analytics
-        await supabase.from('analytics_events').insert({
-            event_name: 'diagnostic_started',
-            user_id: user_id,
-            properties: { attempt_id: attempt.id, exam_id }
-        });
-
-        // 7. UX-Formatted Response
         return successResponse({
-            attempt_id: attempt.id,
-            questions: insertedQuestions,
-            ui_state: "question_view",
-            ui_hints: {
-                total_questions: insertedQuestions.length,
-                progress_start: 0
-            },
-            meta: { language: "it" }
+            attemptId: attempt.id,
+            assessmentId: assessment.id,
+            questions: mappedQuestions || []
         });
 
     } catch (error) {

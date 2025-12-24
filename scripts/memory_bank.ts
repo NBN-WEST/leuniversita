@@ -5,13 +5,13 @@ import { execSync } from 'child_process';
 
 // --- Configuration ---
 const DOCS_DIR = path.join(process.cwd(), 'docs', 'memory_bank');
-const AGENTS_DIR = path.join(process.cwd(), 'agents', 'memory');
+const AGENTS_DIR = path.join(DOCS_DIR, 'AGENTS');
 const CHANGELOG_PATH = path.join(DOCS_DIR, 'CHANGELOG.md');
 const TASK_LOG_PATH = path.join(DOCS_DIR, 'TASK_LOG.md');
 const INDEX_PATH = path.join(DOCS_DIR, 'INDEX.md');
 const RELEASE_NOTES_PATH = path.join(DOCS_DIR, 'RELEASE_NOTES.md');
-const AGENTS_CONTEXT_PATH = path.join(AGENTS_DIR, 'agents_context.md');
-const LAST_TASK_PATH = path.join(AGENTS_DIR, 'last_task_summary.md');
+const AGENTS_CONTEXT_PATH = path.join(AGENTS_DIR, '_runtime_memory.md');
+const LAST_TASK_PATH = path.join(AGENTS_DIR, 'last_task_snapshot.md');
 
 const DANGEROUS_PATTERNS = [
     /sk-[a-zA-Z0-9]{20,}/,
@@ -95,7 +95,28 @@ function updateDocs(version: string, comment: string, task: string, type: string
 
     // RELEASE_NOTES
     if (fs.existsSync(RELEASE_NOTES_PATH)) {
-        const notes = `# Release Notes\n\n## Latest Release\n**Version**: ${version}\n**Date**: ${date}\n\n### Summary\n${comment}\n`;
+        const notes = `---
+id: REL-NOTES
+title: Release Notes
+owner: Automation
+status: active
+created_at: 2025-12-18
+updated_at: ${date}
+tags: [release]
+related: []
+source_of_truth: true
+mermaid: not_applicable
+---
+
+# Release Notes
+
+## Latest Release
+**Version**: ${version}
+**Date**: ${date}
+
+### Summary
+${comment}
+`;
         fs.writeFileSync(RELEASE_NOTES_PATH, notes);
         log("Updated RELEASE_NOTES.md");
     }
@@ -110,9 +131,28 @@ function updateDocs(version: string, comment: string, task: string, type: string
 
     // AGENTS MEMORY
     if (fs.existsSync(LAST_TASK_PATH)) {
-        const summary = `# Last Task Summary\n\n**Task**: ${task}\n**Status**: CLOSED (${version})\n**Date**: ${date}\n**Comment**: ${comment}\n`;
+        const summary = `---
+id: AGT-SNAPSHOT
+title: Last Task Snapshot
+owner: Automation
+status: active
+created_at: ${date}
+updated_at: ${date}
+tags: [snapshot, log]
+related: [AGT-MEMORY]
+source_of_truth: true
+mermaid: not_applicable
+---
+
+# Last Task Snapshot
+
+**Task**: ${task}
+**Status**: CLOSED (${version})
+**Date**: ${date}
+**Comment**: ${comment}
+`;
         fs.writeFileSync(LAST_TASK_PATH, summary);
-        log("Updated agents/last_task_summary.md");
+        log("Updated agents/last_task_snapshot.md");
     }
 }
 
