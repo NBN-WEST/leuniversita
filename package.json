@@ -6,7 +6,8 @@
     "run_server": "./scripts/run_server.sh"
   },
   "scripts": {
-    "validate-memory-bank": "ts-node scripts/validate_memory_bank.ts"
+    "validate-memory-bank": "ts-node scripts/validate_memory_bank.ts",
+    "verify:v2": "bash scripts/verify_v2_artifacts.sh"
   },
   "devDependencies": {
     "@dotenvx/dotenvx": "^1.51.2",

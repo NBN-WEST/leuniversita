@@ -40,3 +40,10 @@ Alternatively:
 ```bash
 ./scripts/run_server.sh
 ```
+
+## Verification (V2)
+- **Artifact Check**: `npm run verify:v2` (Checks for required files)
+- **Smoke Test**: 
+  1. Ensure server is running (`run_server`)
+  2. `./scripts/test/smoke_v2.sh`
+

@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.12.4] - 2025-12-24
+- Repo aligned to V2 + gate added + smoke_v2 reproducible (local). (Task: PHASE4_CLOSE)
+
+
 ## [v0.14.0] - 2025-12-23
 - DB Schema adn Smoke TEST (Task: V2-ISOLATION-FIX)
 
