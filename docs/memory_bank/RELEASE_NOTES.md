@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v0.15.0
+**Version**: v0.15.1
 **Date**: 2025-12-25
 
 ### Summary
-Production Hardening: Supabase Singleton, Vercel Fixes & Path Hardening
+

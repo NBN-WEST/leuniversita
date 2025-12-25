@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.15.1] - 2025-12-25
+-  (Task: Supbase and Vercel)
+
+
 ## [v0.15.0] - 2025-12-25
 - Production Hardening: Supabase Singleton, Vercel Fixes & Path Hardening (Task: Phase 7)
 

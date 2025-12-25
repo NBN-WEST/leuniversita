@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: Phase 7
-**Status**: CLOSED (v0.15.0)
+**Task**: Supbase and Vercel
+**Status**: CLOSED (v0.15.1)
 **Date**: 2025-12-25
-**Comment**: Production Hardening: Supabase Singleton, Vercel Fixes & Path Hardening
+**Comment**: 
