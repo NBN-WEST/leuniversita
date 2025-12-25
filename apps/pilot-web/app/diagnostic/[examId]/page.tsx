@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
-import { createBrowserClient } from '@supabase/ssr';
+import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowLeft, CheckCircle } from 'lucide-react';
 import { ApiState } from "@/components/diagnostic/ApiState";
@@ -20,10 +20,7 @@ export default function DiagnosticPage() {
     const params = useParams();
     const examId = params.examId as string;
 
-    const [supabase] = useState(() => createBrowserClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    ));
+    const supabase = getSupabaseBrowserClient();
 
     // State
     const [loading, setLoading] = useState(false); // Global loading (start/submit)

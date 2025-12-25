@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { createBrowserClient } from '@supabase/ssr';
+import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import { Button } from "@/components/ui/button";
 import { CheckCircle, BarChart, BookOpen, Loader2, AlertCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -13,10 +13,7 @@ export default function ResultsPage() {
     const params = useParams();
     const attemptId = params.attemptId as string;
 
-    const [supabase] = useState(() => createBrowserClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    ));
+    const supabase = getSupabaseBrowserClient();
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);

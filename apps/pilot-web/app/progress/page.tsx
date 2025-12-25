@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { createBrowserClient } from '@supabase/ssr';
+import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import { ApiState } from "@/components/diagnostic/ApiState";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -13,10 +13,7 @@ interface ProgressModule {
 }
 
 export default function ProgressPage() {
-    const [supabase] = useState(() => createBrowserClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    ));
+    const supabase = getSupabaseBrowserClient();
     const courseId = 'd7515f48-0d00-4824-a745-f09d30058e5f'; // default for MVP
 
     const [loading, setLoading] = useState(true);

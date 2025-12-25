@@ -11,13 +11,21 @@ export async function POST(request: Request) {
 
         // Direct call to Edge Function
         const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+        const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+        if (!supabaseUrl || !supabaseKey) {
+            console.error('Missing Supabase Env Vars');
+            return NextResponse.json({ error: 'Server Misconfiguration' }, { status: 500 });
+        }
+
         const functionUrl = `${supabaseUrl}/functions/v1/diagnostic-start`;
 
         const response = await fetch(functionUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': authHeader
+                'Authorization': authHeader,
+                'apikey': supabaseKey
             },
             body: JSON.stringify({ courseId })
         });

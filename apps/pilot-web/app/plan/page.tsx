@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { createClient } from '@supabase/supabase-js';
+import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import { ApiState } from "@/components/diagnostic/ApiState";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -15,10 +15,7 @@ import { PlanData } from '@/types/plan';
 import { Suspense } from 'react';
 
 function PlanContent() {
-    const [supabase] = useState(() => createClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    ));
+    const supabase = getSupabaseBrowserClient();
     const searchParams = useSearchParams();
 
     // Default courseId logic

@@ -10,15 +10,28 @@ export async function POST(request: Request) {
         }
 
         const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+        const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+        if (!supabaseUrl || !supabaseKey) {
+            console.error('Missing Supabase Env Vars');
+            return NextResponse.json({ error: 'Server Misconfiguration' }, { status: 500 });
+        }
+
         const functionUrl = `${supabaseUrl}/functions/v1/diagnostic-submit`;
+
+        // Assuming payload contains { attemptId, answers } or these are destructured from it
+        // If payload is directly { attemptId, answers }, then `const { attemptId, answers } = payload;` might be needed
+        // or the payload itself is passed as { attemptId, answers }
+        const { attemptId, answers } = payload; // Added based on the instruction's body change
 
         const response = await fetch(functionUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': authHeader
+                'Authorization': authHeader,
+                'apikey': supabaseKey
             },
-            body: JSON.stringify(payload)
+            body: JSON.stringify({ attemptId, answers })
         });
 
         if (!response.ok) {
