@@ -3,23 +3,17 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { createClient } from '@supabase/supabase-js';
+import { createBrowserClient } from '@supabase/ssr';
 import { Button } from "@/components/ui/button";
 import { CheckCircle, BarChart, BookOpen, Loader2, AlertCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
-interface ResultData {
-    score: number;
-    maxScore: number;
-    level: string;
-}
+import { ResultData } from '@/types/results';
 
 export default function ResultsPage() {
     const params = useParams();
     const attemptId = params.attemptId as string;
 
-    // Fallback to standard client for robustness
-    const [supabase] = useState(() => createClient(
+    const [supabase] = useState(() => createBrowserClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
     ));
