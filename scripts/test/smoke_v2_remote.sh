@@ -1,35 +1,28 @@
 #!/bin/bash
 
-# Default BASE_URL to localhost if not set
-BASE_URL="${BASE_URL:-http://localhost:3000}"
+# Default BASE_URL to Vercel production
+BASE_URL="${BASE_URL:-https://leuniversita.vercel.app}"
 OUT_DIR="scripts/test/out"
 mkdir -p "$OUT_DIR"
 
-echo "🔥 Starting Remote Smoke Test - v2"
+echo "🔥 Starting Remote Smoke Test - Vercel"
 echo "Target: $BASE_URL"
 
-# 1. Seed (Try local script for remote DB)
+# 1. Get Token
 echo "-----------------------------------"
-echo "1. Seeding Remote DB via local script..."
-if npx ts-node scripts/test/seed_v2.ts; then
-    echo "✅ Seed Success"
-else
-    echo "⚠️ Seed Failed (This is expected if Service Key is missing in .env). Proceeding..."
-fi
-
-# 2. Get Token
-echo "-----------------------------------"
-echo "2. Getting Auth Token..."
-TOKEN=$(npx ts-node scripts/test/get_token.ts)
+echo "1. Getting Auth Token..."
+# We reuse the local get_token.ts which uses Supabase Service Key to sign/get a user token.
+# This works regardless of where the frontend is, as long as the DB is the same.
+TOKEN=$(npx ts-node scripts/test/get_token.ts | tail -n 1)
 if [ -z "$TOKEN" ] || [ "$TOKEN" == "undefined" ]; then
     echo "❌ Failed to get token"
     exit 1
 fi
 echo "✅ Token acquired"
 
-# 3. Diagnostic Start
+# 2. Start
 echo "-----------------------------------"
-echo "3. POST /api/diagnostic/start"
+echo "2. POST /api/diagnostic/start"
 # Use Diritto Privato Course ID
 COURSE_ID="d7515f48-0d00-4824-a745-f09d30058e5f"
 curl -s -X POST "$BASE_URL/api/diagnostic/start" \
@@ -44,48 +37,49 @@ else
     cat "$OUT_DIR/remote_start.json"
 fi
 
-# 4. Diagnostic Submit
+# 3. Submit
 echo "-----------------------------------"
-echo "4. POST /api/diagnostic/submit"
+echo "3. POST /api/diagnostic/submit"
 ATTEMPT_ID=$(jq -r '.attemptId' "$OUT_DIR/remote_start.json")
-if [ "$ATTEMPT_ID" != "null" ]; then
-    # Create simple answer payload
-    # Needs valid Questions from Start response?
-    # For smoke, we just want to see if the endpoint accepts the request.
-    # We'll mock a simple answer.
+if [ "$ATTEMPT_ID" != "null" ] && [ "$ATTEMPT_ID" != "" ]; then
+    # Mock answers
     curl -s -X POST "$BASE_URL/api/diagnostic/submit" \
     -H "Authorization: Bearer $TOKEN" \
     -H "Content-Type: application/json" \
     -d "{\"attemptId\": \"$ATTEMPT_ID\", \"answers\": []}" > "$OUT_DIR/remote_submit.json"
 
-    # We expect success or "completed" or specific error, but 200 OK is good.
     if grep -q "score" "$OUT_DIR/remote_submit.json" || grep -q "placementLevel" "$OUT_DIR/remote_submit.json"; then
         echo "✅ Submit Success"
     else
-        echo "❌ Submit Failed (No score returned)"
+        echo "❌ Submit Failed"
         cat "$OUT_DIR/remote_submit.json"
     fi
 else
     echo "⚠️ Skipping Submit (No Attempt ID)"
 fi
 
-# 5. Plan Current
+# 4. Plan
 echo "-----------------------------------"
-echo "5. GET /api/plan/current"
+echo "4. GET /api/plan/current"
 curl -s -X GET "$BASE_URL/api/plan/current?courseId=$COURSE_ID" \
   -H "Authorization: Bearer $TOKEN" > "$OUT_DIR/remote_plan.json"
 
-# Check for items
 if grep -q "items" "$OUT_DIR/remote_plan.json"; then
     echo "✅ Plan Success"
+    # Basic check for title injection
+    if grep -q "title" "$OUT_DIR/remote_plan.json"; then
+         echo "   - Modules have titles (V2 Fix Success)"
+    else
+         echo "   ⚠️ Modules missing titles (V2 Fix Check)"
+    fi
 else
     echo "❌ Plan Failed"
     cat "$OUT_DIR/remote_plan.json"
 fi
 
-# 6. Progress
+# 5. Progress
 echo "-----------------------------------"
-echo "6. GET /api/progress"
+echo "5. GET /api/progress"
 curl -s -X GET "$BASE_URL/api/progress" \
   -H "Authorization: Bearer $TOKEN" > "$OUT_DIR/remote_progress.json"
 
@@ -96,5 +90,23 @@ else
     cat "$OUT_DIR/remote_progress.json"
 fi
 
+# 6. Attempt Persistence Check
 echo "-----------------------------------"
-echo "🎉 Smoke Test Complete. Check $OUT_DIR for details."
+echo "6. Checking Persistence (Via DB / Attempt API if available)"
+# We can't query DB directly easily in a bash script without psql or supabase-js cli properly configured.
+# We will check if we can fetch the results using the new /api/attempt endpoint if deployed.
+
+if [ "$ATTEMPT_ID" != "null" ] && [ "$ATTEMPT_ID" != "" ]; then
+    curl -s -X GET "$BASE_URL/api/attempt/$ATTEMPT_ID" \
+      -H "Authorization: Bearer $TOKEN" > "$OUT_DIR/remote_attempt.json"
+    
+    if grep -q "score" "$OUT_DIR/remote_attempt.json"; then
+        echo "✅ Persistence Verified (API returned score)"
+    else
+        echo "❌ Persistence Check Failed (API Error or Empty)"
+        cat "$OUT_DIR/remote_attempt.json"
+    fi
+fi
+
+echo "-----------------------------------"
+echo "🎉 Remote Smoke Test Complete."
