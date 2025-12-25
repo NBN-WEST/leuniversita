@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: Phase 6 Vercel Fixes
-**Status**: CLOSED (v0.14.2)
+**Task**: Phase 7
+**Status**: CLOSED (v0.15.0)
 **Date**: 2025-12-25
-**Comment**: Phase 6 Vercel Fixes Completed (v0.13.8 GREEN)
+**Comment**: Production Hardening: Supabase Singleton, Vercel Fixes & Path Hardening

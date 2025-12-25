@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.15.0] - 2025-12-25
+- Production Hardening: Supabase Singleton, Vercel Fixes & Path Hardening (Task: Phase 7)
+
+
 ## [v0.14.2] - 2025-12-25
 - Phase 6 Vercel Fixes Completed (v0.13.8 GREEN) (Task: Phase 6 Vercel Fixes)
 

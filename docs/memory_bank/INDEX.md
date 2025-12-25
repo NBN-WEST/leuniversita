@@ -49,7 +49,7 @@ graph TD
 | **CONTENT** | Fonti e materiali | [Content](./CONTENT/README.md) |
 
 ## Changelog Recente
-- **v0.14.2**: Ristrutturazione completa Memory Bank (Mermaid + Standard Template).
+- **v0.15.0**: Ristrutturazione completa Memory Bank (Mermaid + Standard Template).
 - **v0.1.3**: Consolidamento conoscenza iniziale.
 
 ## Ultima Revisione

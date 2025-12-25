@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v0.14.2
+**Version**: v0.15.0
 **Date**: 2025-12-25
 
 ### Summary
-Phase 6 Vercel Fixes Completed (v0.13.8 GREEN)
+Production Hardening: Supabase Singleton, Vercel Fixes & Path Hardening
