@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.14.2] - 2025-12-25
+- Phase 6 Vercel Fixes Completed (v0.13.8 GREEN) (Task: Phase 6 Vercel Fixes)
+
+
 ## [v0.14.1] - 2025-12-24
 - control smoke UI (Task: )
 
