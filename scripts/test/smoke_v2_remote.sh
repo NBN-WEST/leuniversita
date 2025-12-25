@@ -8,6 +8,18 @@ mkdir -p "$OUT_DIR"
 echo "🔥 Starting Remote Smoke Test - Vercel"
 echo "Target: $BASE_URL"
 
+# 0. Health Check (Vercel Connectivity)
+echo "-----------------------------------"
+echo "0. Checking /api/health..."
+curl -s -I "$BASE_URL/api/health" > "$OUT_DIR/health_head.txt"
+if grep -q "200 OK" "$OUT_DIR/health_head.txt"; then
+    echo "✅ Health Check Passed (API Reachable)"
+else
+    echo "❌ Health Check Failed (API Not Reachable/404)"
+    cat "$OUT_DIR/health_head.txt"
+    # Proceed anyway to see full failure
+fi
+
 # 1. Get Token
 echo "-----------------------------------"
 echo "1. Getting Auth Token..."
