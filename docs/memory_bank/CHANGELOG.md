@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.15.2] - 2025-12-25
+-  (Task: Smoke test)
+
+
 ## [v0.15.1] - 2025-12-25
 -  (Task: Supbase and Vercel)
 

@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: Supbase and Vercel
-**Status**: CLOSED (v0.15.1)
+**Task**: Smoke test
+**Status**: CLOSED (v0.15.2)
 **Date**: 2025-12-25
 **Comment**: 
