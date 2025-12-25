@@ -14,7 +14,7 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v0.16.0
+**Version**: v0.16.1
 **Date**: 2025-12-25
 
 ### Summary

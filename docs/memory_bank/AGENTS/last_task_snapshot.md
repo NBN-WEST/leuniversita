@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: Titles And Smoke
-**Status**: CLOSED (v0.16.0)
+**Task**: Production smoke test PASSED on 2025-12-25
+**Status**: CLOSED (v0.16.1)
 **Date**: 2025-12-25
 **Comment**: 
