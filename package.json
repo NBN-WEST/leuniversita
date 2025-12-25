@@ -7,7 +7,8 @@
   },
   "scripts": {
     "validate-memory-bank": "ts-node scripts/validate_memory_bank.ts",
-    "verify:v2": "bash scripts/verify_v2_artifacts.sh"
+    "verify:v2": "bash scripts/verify_v2_artifacts.sh",
+    "validate:env": "npx ts-node scripts/validate_env.ts"
   },
   "devDependencies": {
     "@dotenvx/dotenvx": "^1.51.2",

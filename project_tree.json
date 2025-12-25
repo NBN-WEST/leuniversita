@@ -1,0 +1,1908 @@
+{
+  "root": "/Users/pabloliuzzi/Documents/Documents - Pablo’s MacBook Pro/antigravity-project/leuniversita-mvp",
+  "timestamp": "2025-12-24T17:50:38.477Z",
+  "structure": [
+    {
+      "name": "agents",
+      "type": "directory",
+      "path": "agents",
+      "children": [
+        {
+          "name": "memory",
+          "type": "directory",
+          "path": "agents/memory",
+          "children": [
+            {
+              "name": "agents_context.md",
+              "type": "file",
+              "path": "agents/memory/agents_context.md"
+            },
+            {
+              "name": "known_issues.md",
+              "type": "file",
+              "path": "agents/memory/known_issues.md"
+            },
+            {
+              "name": "last_task_summary.md",
+              "type": "file",
+              "path": "agents/memory/last_task_summary.md"
+            },
+            {
+              "name": "README.md",
+              "type": "file",
+              "path": "agents/memory/README.md"
+            }
+          ]
+        },
+        {
+          "name": "BACKEND_SUPABASE_RAG.md",
+          "type": "file",
+          "path": "agents/BACKEND_SUPABASE_RAG.md"
+        },
+        {
+          "name": "CYBERSECURITY_EXPERT.md",
+          "type": "file",
+          "path": "agents/CYBERSECURITY_EXPERT.md"
+        },
+        {
+          "name": "FRONTEND_NEXTJS.md",
+          "type": "file",
+          "path": "agents/FRONTEND_NEXTJS.md"
+        },
+        {
+          "name": "FULLSTACK_ARCHITECT.md",
+          "type": "file",
+          "path": "agents/FULLSTACK_ARCHITECT.md"
+        },
+        {
+          "name": "MARKETING_GTM.md",
+          "type": "file",
+          "path": "agents/MARKETING_GTM.md"
+        },
+        {
+          "name": "ORCHESTRATOR_PM.md",
+          "type": "file",
+          "path": "agents/ORCHESTRATOR_PM.md"
+        },
+        {
+          "name": "TEST_AUTOMATION_QA.md",
+          "type": "file",
+          "path": "agents/TEST_AUTOMATION_QA.md"
+        },
+        {
+          "name": "UX_UI_EXPERT.md",
+          "type": "file",
+          "path": "agents/UX_UI_EXPERT.md"
+        }
+      ]
+    },
+    {
+      "name": "apps",
+      "type": "directory",
+      "path": "apps",
+      "children": [
+        {
+          "name": "pilot-web",
+          "type": "directory",
+          "path": "apps/pilot-web",
+          "children": [
+            {
+              "name": "@types",
+              "type": "directory",
+              "path": "apps/pilot-web/@types",
+              "children": []
+            },
+            {
+              "name": "app",
+              "type": "directory",
+              "path": "apps/pilot-web/app",
+              "children": [
+                {
+                  "name": "admin",
+                  "type": "directory",
+                  "path": "apps/pilot-web/app/admin",
+                  "children": [
+                    {
+                      "name": "page.tsx",
+                      "type": "file",
+                      "path": "apps/pilot-web/app/admin/page.tsx"
+                    }
+                  ]
+                },
+                {
+                  "name": "api",
+                  "type": "directory",
+                  "path": "apps/pilot-web/app/api",
+                  "children": [
+                    {
+                      "name": "attempt",
+                      "type": "directory",
+                      "path": "apps/pilot-web/app/api/attempt",
+                      "children": [
+                        {
+                          "name": "[attemptId]",
+                          "type": "directory",
+                          "path": "apps/pilot-web/app/api/attempt/[attemptId]",
+                          "children": [
+                            {
+                              "name": "route.ts",
+                              "type": "file",
+                              "path": "apps/pilot-web/app/api/attempt/[attemptId]/route.ts"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "diagnostic",
+                      "type": "directory",
+                      "path": "apps/pilot-web/app/api/diagnostic",
+                      "children": [
+                        {
+                          "name": "start",
+                          "type": "directory",
+                          "path": "apps/pilot-web/app/api/diagnostic/start",
+                          "children": [
+                            {
+                              "name": "route.ts",
+                              "type": "file",
+                              "path": "apps/pilot-web/app/api/diagnostic/start/route.ts"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "submit",
+                          "type": "directory",
+                          "path": "apps/pilot-web/app/api/diagnostic/submit",
+                          "children": [
+                            {
+                              "name": "route.ts",
+                              "type": "file",
+                              "path": "apps/pilot-web/app/api/diagnostic/submit/route.ts"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "plan",
+                      "type": "directory",
+                      "path": "apps/pilot-web/app/api/plan",
+                      "children": [
+                        {
+                          "name": "current",
+                          "type": "directory",
+                          "path": "apps/pilot-web/app/api/plan/current",
+                          "children": [
+                            {
+                              "name": "route.ts",
+                              "type": "file",
+                              "path": "apps/pilot-web/app/api/plan/current/route.ts"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "progress",
+                      "type": "directory",
+                      "path": "apps/pilot-web/app/api/progress",
+                      "children": [
+                        {
+                          "name": "route.ts",
+                          "type": "file",
+                          "path": "apps/pilot-web/app/api/progress/route.ts"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "cookie-policy",
+                  "type": "directory",
+                  "path": "apps/pilot-web/app/cookie-policy",
+                  "children": [
+                    {
+                      "name": "page.tsx",
+                      "type": "file",
+                      "path": "apps/pilot-web/app/cookie-policy/page.tsx"
+                    }
+                  ]
+                },
+                {
+                  "name": "diagnostic",
+                  "type": "directory",
+                  "path": "apps/pilot-web/app/diagnostic",
+                  "children": [
+                    {
+                      "name": "[examId]",
+                      "type": "directory",
+                      "path": "apps/pilot-web/app/diagnostic/[examId]",
+                      "children": [
+                        {
+                          "name": "page.tsx",
+                          "type": "file",
+                          "path": "apps/pilot-web/app/diagnostic/[examId]/page.tsx"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "login",
+                  "type": "directory",
+                  "path": "apps/pilot-web/app/login",
+                  "children": [
+                    {
+                      "name": "page.tsx",
+                      "type": "file",
+                      "path": "apps/pilot-web/app/login/page.tsx"
+                    }
+                  ]
+                },
+                {
+                  "name": "plan",
+                  "type": "directory",
+                  "path": "apps/pilot-web/app/plan",
+                  "children": [
+                    {
+                      "name": "[attemptId]",
+                      "type": "directory",
+                      "path": "apps/pilot-web/app/plan/[attemptId]",
+                      "children": [
+                        {
+                          "name": "page.tsx",
+                          "type": "file",
+                          "path": "apps/pilot-web/app/plan/[attemptId]/page.tsx"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "page.tsx",
+                      "type": "file",
+                      "path": "apps/pilot-web/app/plan/page.tsx"
+                    }
+                  ]
+                },
+                {
+                  "name": "privacy-policy",
+                  "type": "directory",
+                  "path": "apps/pilot-web/app/privacy-policy",
+                  "children": [
+                    {
+                      "name": "page.tsx",
+                      "type": "file",
+                      "path": "apps/pilot-web/app/privacy-policy/page.tsx"
+                    }
+                  ]
+                },
+                {
+                  "name": "progress",
+                  "type": "directory",
+                  "path": "apps/pilot-web/app/progress",
+                  "children": [
+                    {
+                      "name": "page.tsx",
+                      "type": "file",
+                      "path": "apps/pilot-web/app/progress/page.tsx"
+                    }
+                  ]
+                },
+                {
+                  "name": "results",
+                  "type": "directory",
+                  "path": "apps/pilot-web/app/results",
+                  "children": [
+                    {
+                      "name": "[attemptId]",
+                      "type": "directory",
+                      "path": "apps/pilot-web/app/results/[attemptId]",
+                      "children": [
+                        {
+                          "name": "page.tsx",
+                          "type": "file",
+                          "path": "apps/pilot-web/app/results/[attemptId]/page.tsx"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "favicon.ico",
+                  "type": "file",
+                  "path": "apps/pilot-web/app/favicon.ico"
+                },
+                {
+                  "name": "globals.css",
+                  "type": "file",
+                  "path": "apps/pilot-web/app/globals.css"
+                },
+                {
+                  "name": "layout.tsx",
+                  "type": "file",
+                  "path": "apps/pilot-web/app/layout.tsx"
+                },
+                {
+                  "name": "page.tsx",
+                  "type": "file",
+                  "path": "apps/pilot-web/app/page.tsx"
+                }
+              ]
+            },
+            {
+              "name": "components",
+              "type": "directory",
+              "path": "apps/pilot-web/components",
+              "children": [
+                {
+                  "name": "diagnostic",
+                  "type": "directory",
+                  "path": "apps/pilot-web/components/diagnostic",
+                  "children": [
+                    {
+                      "name": "ApiState.tsx",
+                      "type": "file",
+                      "path": "apps/pilot-web/components/diagnostic/ApiState.tsx"
+                    },
+                    {
+                      "name": "DiagnosticStepper.tsx",
+                      "type": "file",
+                      "path": "apps/pilot-web/components/diagnostic/DiagnosticStepper.tsx"
+                    },
+                    {
+                      "name": "QuestionCard.tsx",
+                      "type": "file",
+                      "path": "apps/pilot-web/components/diagnostic/QuestionCard.tsx"
+                    }
+                  ]
+                },
+                {
+                  "name": "privacy",
+                  "type": "directory",
+                  "path": "apps/pilot-web/components/privacy",
+                  "children": [
+                    {
+                      "name": "CookieBanner.tsx",
+                      "type": "file",
+                      "path": "apps/pilot-web/components/privacy/CookieBanner.tsx"
+                    },
+                    {
+                      "name": "CookieConsentParams.tsx",
+                      "type": "file",
+                      "path": "apps/pilot-web/components/privacy/CookieConsentParams.tsx"
+                    }
+                  ]
+                },
+                {
+                  "name": "ui",
+                  "type": "directory",
+                  "path": "apps/pilot-web/components/ui",
+                  "children": [
+                    {
+                      "name": "badge.tsx",
+                      "type": "file",
+                      "path": "apps/pilot-web/components/ui/badge.tsx"
+                    },
+                    {
+                      "name": "button.tsx",
+                      "type": "file",
+                      "path": "apps/pilot-web/components/ui/button.tsx"
+                    },
+                    {
+                      "name": "card.tsx",
+                      "type": "file",
+                      "path": "apps/pilot-web/components/ui/card.tsx"
+                    },
+                    {
+                      "name": "label.tsx",
+                      "type": "file",
+                      "path": "apps/pilot-web/components/ui/label.tsx"
+                    },
+                    {
+                      "name": "progress.tsx",
+                      "type": "file",
+                      "path": "apps/pilot-web/components/ui/progress.tsx"
+                    },
+                    {
+                      "name": "radio-group.tsx",
+                      "type": "file",
+                      "path": "apps/pilot-web/components/ui/radio-group.tsx"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "public",
+              "type": "directory",
+              "path": "apps/pilot-web/public",
+              "children": [
+                {
+                  "name": "file.svg",
+                  "type": "file",
+                  "path": "apps/pilot-web/public/file.svg"
+                },
+                {
+                  "name": "globe.svg",
+                  "type": "file",
+                  "path": "apps/pilot-web/public/globe.svg"
+                },
+                {
+                  "name": "next.svg",
+                  "type": "file",
+                  "path": "apps/pilot-web/public/next.svg"
+                },
+                {
+                  "name": "vercel.svg",
+                  "type": "file",
+                  "path": "apps/pilot-web/public/vercel.svg"
+                },
+                {
+                  "name": "window.svg",
+                  "type": "file",
+                  "path": "apps/pilot-web/public/window.svg"
+                }
+              ]
+            },
+            {
+              "name": "utils",
+              "type": "directory",
+              "path": "apps/pilot-web/utils",
+              "children": [
+                {
+                  "name": "supabase",
+                  "type": "directory",
+                  "path": "apps/pilot-web/utils/supabase",
+                  "children": [
+                    {
+                      "name": "client.ts",
+                      "type": "file",
+                      "path": "apps/pilot-web/utils/supabase/client.ts"
+                    }
+                  ]
+                },
+                {
+                  "name": "cn.ts",
+                  "type": "file",
+                  "path": "apps/pilot-web/utils/cn.ts"
+                },
+                {
+                  "name": "environment.ts",
+                  "type": "file",
+                  "path": "apps/pilot-web/utils/environment.ts"
+                }
+              ]
+            },
+            {
+              "name": ".env.example",
+              "type": "file",
+              "path": "apps/pilot-web/.env.example"
+            },
+            {
+              "name": ".env.local",
+              "type": "file",
+              "path": "apps/pilot-web/.env.local"
+            },
+            {
+              "name": ".gitignore",
+              "type": "file",
+              "path": "apps/pilot-web/.gitignore"
+            },
+            {
+              "name": "app.log",
+              "type": "file",
+              "path": "apps/pilot-web/app.log"
+            },
+            {
+              "name": "eslint.config.mjs",
+              "type": "file",
+              "path": "apps/pilot-web/eslint.config.mjs"
+            },
+            {
+              "name": "next-env.d.ts",
+              "type": "file",
+              "path": "apps/pilot-web/next-env.d.ts"
+            },
+            {
+              "name": "next.config.ts",
+              "type": "file",
+              "path": "apps/pilot-web/next.config.ts"
+            },
+            {
+              "name": "package-lock.json",
+              "type": "file",
+              "path": "apps/pilot-web/package-lock.json"
+            },
+            {
+              "name": "package.json",
+              "type": "file",
+              "path": "apps/pilot-web/package.json"
+            },
+            {
+              "name": "postcss.config.mjs",
+              "type": "file",
+              "path": "apps/pilot-web/postcss.config.mjs"
+            },
+            {
+              "name": "README.md",
+              "type": "file",
+              "path": "apps/pilot-web/README.md"
+            },
+            {
+              "name": "tsconfig.json",
+              "type": "file",
+              "path": "apps/pilot-web/tsconfig.json"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "docs",
+      "type": "directory",
+      "path": "docs",
+      "children": [
+        {
+          "name": "api",
+          "type": "directory",
+          "path": "docs/api",
+          "children": []
+        },
+        {
+          "name": "deploy",
+          "type": "directory",
+          "path": "docs/deploy",
+          "children": [
+            {
+              "name": "vercel_supabase_checklist.md",
+              "type": "file",
+              "path": "docs/deploy/vercel_supabase_checklist.md"
+            }
+          ]
+        },
+        {
+          "name": "memory_bank",
+          "type": "directory",
+          "path": "docs/memory_bank",
+          "children": [
+            {
+              "name": "_REPORTS",
+              "type": "directory",
+              "path": "docs/memory_bank/_REPORTS",
+              "children": [
+                {
+                  "name": "repo_memory_audit.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/_REPORTS/repo_memory_audit.md"
+                },
+                {
+                  "name": "v0.12.2_smoke_test_results.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/_REPORTS/v0.12.2_smoke_test_results.md"
+                },
+                {
+                  "name": "v0.12.2_smoke_test.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/_REPORTS/v0.12.2_smoke_test.md"
+                },
+                {
+                  "name": "v0.12.3_final_smoke_test.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/_REPORTS/v0.12.3_final_smoke_test.md"
+                },
+                {
+                  "name": "v0.12.4_phase_close_results.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/_REPORTS/v0.12.4_phase_close_results.md"
+                },
+                {
+                  "name": "v0.12.4_sync_report.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/_REPORTS/v0.12.4_sync_report.md"
+                },
+                {
+                  "name": "v0.13.0_ui_e2e_readiness.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/_REPORTS/v0.13.0_ui_e2e_readiness.md"
+                },
+                {
+                  "name": "v0.13.1_ui_qA_close.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/_REPORTS/v0.13.1_ui_qA_close.md"
+                },
+                {
+                  "name": "v0.13.2_release_hardening.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/_REPORTS/v0.13.2_release_hardening.md"
+                }
+              ]
+            },
+            {
+              "name": "_TEMPLATES",
+              "type": "directory",
+              "path": "docs/memory_bank/_TEMPLATES",
+              "children": [
+                {
+                  "name": "md_standard.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/_TEMPLATES/md_standard.md"
+                }
+              ]
+            },
+            {
+              "name": "AGENTS",
+              "type": "directory",
+              "path": "docs/memory_bank/AGENTS",
+              "children": [
+                {
+                  "name": "_runtime_memory.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/AGENTS/_runtime_memory.md"
+                },
+                {
+                  "name": "BACKEND_SUPABASE_RAG.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/AGENTS/BACKEND_SUPABASE_RAG.md"
+                },
+                {
+                  "name": "CYBERSECURITY_EXPERT.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/AGENTS/CYBERSECURITY_EXPERT.md"
+                },
+                {
+                  "name": "FRONTEND_NEXTJS.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/AGENTS/FRONTEND_NEXTJS.md"
+                },
+                {
+                  "name": "FULLSTACK_ARCHITECT.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/AGENTS/FULLSTACK_ARCHITECT.md"
+                },
+                {
+                  "name": "last_task_snapshot.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/AGENTS/last_task_snapshot.md"
+                },
+                {
+                  "name": "MARKETING_GTM.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/AGENTS/MARKETING_GTM.md"
+                },
+                {
+                  "name": "ORCHESTRATOR_PM.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/AGENTS/ORCHESTRATOR_PM.md"
+                },
+                {
+                  "name": "README.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/AGENTS/README.md"
+                },
+                {
+                  "name": "TEST_AUTOMATION_QA.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/AGENTS/TEST_AUTOMATION_QA.md"
+                },
+                {
+                  "name": "UX_UI_EXPERT.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/AGENTS/UX_UI_EXPERT.md"
+                }
+              ]
+            },
+            {
+              "name": "ARCHITECTURE",
+              "type": "directory",
+              "path": "docs/memory_bank/ARCHITECTURE",
+              "children": [
+                {
+                  "name": "diagrams",
+                  "type": "directory",
+                  "path": "docs/memory_bank/ARCHITECTURE/diagrams",
+                  "children": []
+                },
+                {
+                  "name": "api_contracts_v2.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/ARCHITECTURE/api_contracts_v2.md"
+                },
+                {
+                  "name": "current.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/ARCHITECTURE/current.md"
+                },
+                {
+                  "name": "data_schema_v2.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/ARCHITECTURE/data_schema_v2.md"
+                }
+              ]
+            },
+            {
+              "name": "CONTENT",
+              "type": "directory",
+              "path": "docs/memory_bank/CONTENT",
+              "children": [
+                {
+                  "name": "courses",
+                  "type": "directory",
+                  "path": "docs/memory_bank/CONTENT/courses",
+                  "children": [
+                    {
+                      "name": "diritto_privato",
+                      "type": "directory",
+                      "path": "docs/memory_bank/CONTENT/courses/diritto_privato",
+                      "children": [
+                        {
+                          "name": "modules",
+                          "type": "directory",
+                          "path": "docs/memory_bank/CONTENT/courses/diritto_privato/modules",
+                          "children": [
+                            {
+                              "name": "01_fonti_del_diritto.md",
+                              "type": "file",
+                              "path": "docs/memory_bank/CONTENT/courses/diritto_privato/modules/01_fonti_del_diritto.md"
+                            },
+                            {
+                              "name": "02_diritti_soggettivi.md",
+                              "type": "file",
+                              "path": "docs/memory_bank/CONTENT/courses/diritto_privato/modules/02_diritti_soggettivi.md"
+                            },
+                            {
+                              "name": "03_soggetti_di_diritto.md",
+                              "type": "file",
+                              "path": "docs/memory_bank/CONTENT/courses/diritto_privato/modules/03_soggetti_di_diritto.md"
+                            },
+                            {
+                              "name": "04_beni_e_proprieta.md",
+                              "type": "file",
+                              "path": "docs/memory_bank/CONTENT/courses/diritto_privato/modules/04_beni_e_proprieta.md"
+                            },
+                            {
+                              "name": "05_obbligazioni.md",
+                              "type": "file",
+                              "path": "docs/memory_bank/CONTENT/courses/diritto_privato/modules/05_obbligazioni.md"
+                            },
+                            {
+                              "name": "06_contratti.md",
+                              "type": "file",
+                              "path": "docs/memory_bank/CONTENT/courses/diritto_privato/modules/06_contratti.md"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "assessment_model.md",
+                          "type": "file",
+                          "path": "docs/memory_bank/CONTENT/courses/diritto_privato/assessment_model.md"
+                        },
+                        {
+                          "name": "course_map.md",
+                          "type": "file",
+                          "path": "docs/memory_bank/CONTENT/courses/diritto_privato/course_map.md"
+                        },
+                        {
+                          "name": "learning_objectives.md",
+                          "type": "file",
+                          "path": "docs/memory_bank/CONTENT/courses/diritto_privato/learning_objectives.md"
+                        },
+                        {
+                          "name": "README.md",
+                          "type": "file",
+                          "path": "docs/memory_bank/CONTENT/courses/diritto_privato/README.md"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "governance.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/CONTENT/governance.md"
+                },
+                {
+                  "name": "ingestion_process.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/CONTENT/ingestion_process.md"
+                },
+                {
+                  "name": "README.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/CONTENT/README.md"
+                },
+                {
+                  "name": "versioning.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/CONTENT/versioning.md"
+                }
+              ]
+            },
+            {
+              "name": "DECISIONS",
+              "type": "directory",
+              "path": "docs/memory_bank/DECISIONS",
+              "children": [
+                {
+                  "name": "ADR-000-memory-bank.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/DECISIONS/ADR-000-memory-bank.md"
+                },
+                {
+                  "name": "ADR-005-v2-parallel.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/DECISIONS/ADR-005-v2-parallel.md"
+                }
+              ]
+            },
+            {
+              "name": "LEARNING_ENGINE",
+              "type": "directory",
+              "path": "docs/memory_bank/LEARNING_ENGINE",
+              "children": [
+                {
+                  "name": "adaptive_rules.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/LEARNING_ENGINE/adaptive_rules.md"
+                },
+                {
+                  "name": "ai_role.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/LEARNING_ENGINE/ai_role.md"
+                },
+                {
+                  "name": "assessment_types.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/LEARNING_ENGINE/assessment_types.md"
+                },
+                {
+                  "name": "data_model.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/LEARNING_ENGINE/data_model.md"
+                },
+                {
+                  "name": "diagnostic_model.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/LEARNING_ENGINE/diagnostic_model.md"
+                },
+                {
+                  "name": "progression_logic.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/LEARNING_ENGINE/progression_logic.md"
+                },
+                {
+                  "name": "README.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/LEARNING_ENGINE/README.md"
+                }
+              ]
+            },
+            {
+              "name": "PROCESSES",
+              "type": "directory",
+              "path": "docs/memory_bank/PROCESSES",
+              "children": [
+                {
+                  "name": "ingestion.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/PROCESSES/ingestion.md"
+                },
+                {
+                  "name": "memory_review.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/PROCESSES/memory_review.md"
+                }
+              ]
+            },
+            {
+              "name": "PRODUCT",
+              "type": "directory",
+              "path": "docs/memory_bank/PRODUCT",
+              "children": [
+                {
+                  "name": "backlog.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/PRODUCT/backlog.md"
+                },
+                {
+                  "name": "kpi.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/PRODUCT/kpi.md"
+                },
+                {
+                  "name": "mvp_scope.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/PRODUCT/mvp_scope.md"
+                },
+                {
+                  "name": "phase_5_ui_e2e_prompt.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/PRODUCT/phase_5_ui_e2e_prompt.md"
+                },
+                {
+                  "name": "README.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/PRODUCT/README.md"
+                },
+                {
+                  "name": "roadmap.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/PRODUCT/roadmap.md"
+                },
+                {
+                  "name": "vision.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/PRODUCT/vision.md"
+                }
+              ]
+            },
+            {
+              "name": "active_context.md",
+              "type": "file",
+              "path": "docs/memory_bank/active_context.md"
+            },
+            {
+              "name": "CHANGELOG.md",
+              "type": "file",
+              "path": "docs/memory_bank/CHANGELOG.md"
+            },
+            {
+              "name": "DECISIONS.md",
+              "type": "file",
+              "path": "docs/memory_bank/DECISIONS.md"
+            },
+            {
+              "name": "GUIDELINES.md",
+              "type": "file",
+              "path": "docs/memory_bank/GUIDELINES.md"
+            },
+            {
+              "name": "INDEX.md",
+              "type": "file",
+              "path": "docs/memory_bank/INDEX.md"
+            },
+            {
+              "name": "RELEASE_NOTES.md",
+              "type": "file",
+              "path": "docs/memory_bank/RELEASE_NOTES.md"
+            },
+            {
+              "name": "RISKS.md",
+              "type": "file",
+              "path": "docs/memory_bank/RISKS.md"
+            },
+            {
+              "name": "RUNBOOKS.md",
+              "type": "file",
+              "path": "docs/memory_bank/RUNBOOKS.md"
+            },
+            {
+              "name": "TASK_LOG.md",
+              "type": "file",
+              "path": "docs/memory_bank/TASK_LOG.md"
+            }
+          ]
+        },
+        {
+          "name": "monetization",
+          "type": "directory",
+          "path": "docs/monetization",
+          "children": [
+            {
+              "name": "access_matrix.md",
+              "type": "file",
+              "path": "docs/monetization/access_matrix.md"
+            }
+          ]
+        },
+        {
+          "name": "pilot",
+          "type": "directory",
+          "path": "docs/pilot",
+          "children": [
+            {
+              "name": "demo_accounts.md",
+              "type": "file",
+              "path": "docs/pilot/demo_accounts.md"
+            },
+            {
+              "name": "demo_script_institutional.md",
+              "type": "file",
+              "path": "docs/pilot/demo_script_institutional.md"
+            },
+            {
+              "name": "demo_script.md",
+              "type": "file",
+              "path": "docs/pilot/demo_script.md"
+            },
+            {
+              "name": "go_live_checklist.md",
+              "type": "file",
+              "path": "docs/pilot/go_live_checklist.md"
+            },
+            {
+              "name": "kpi_dashboard_definition.md",
+              "type": "file",
+              "path": "docs/pilot/kpi_dashboard_definition.md"
+            },
+            {
+              "name": "kpi_model.md",
+              "type": "file",
+              "path": "docs/pilot/kpi_model.md"
+            },
+            {
+              "name": "pilot_agreement_outline.md",
+              "type": "file",
+              "path": "docs/pilot/pilot_agreement_outline.md"
+            },
+            {
+              "name": "pilot_overview.md",
+              "type": "file",
+              "path": "docs/pilot/pilot_overview.md"
+            },
+            {
+              "name": "value_for_professors.md",
+              "type": "file",
+              "path": "docs/pilot/value_for_professors.md"
+            },
+            {
+              "name": "value_for_students.md",
+              "type": "file",
+              "path": "docs/pilot/value_for_students.md"
+            },
+            {
+              "name": "value_for_university.md",
+              "type": "file",
+              "path": "docs/pilot/value_for_university.md"
+            }
+          ]
+        },
+        {
+          "name": "reports",
+          "type": "directory",
+          "path": "docs/reports",
+          "children": [
+            {
+              "name": "hotfix_language_policy.md",
+              "type": "file",
+              "path": "docs/reports/hotfix_language_policy.md"
+            },
+            {
+              "name": "ingestion_validation_diritto_privato_v1.md",
+              "type": "file",
+              "path": "docs/reports/ingestion_validation_diritto_privato_v1.md"
+            },
+            {
+              "name": "step2c_chat_validation.md",
+              "type": "file",
+              "path": "docs/reports/step2c_chat_validation.md"
+            },
+            {
+              "name": "step2d_validation.md",
+              "type": "file",
+              "path": "docs/reports/step2d_validation.md"
+            },
+            {
+              "name": "step3a_validation.md",
+              "type": "file",
+              "path": "docs/reports/step3a_validation.md"
+            },
+            {
+              "name": "step3b_validation.md",
+              "type": "file",
+              "path": "docs/reports/step3b_validation.md"
+            },
+            {
+              "name": "step4_validation.md",
+              "type": "file",
+              "path": "docs/reports/step4_validation.md"
+            },
+            {
+              "name": "step5_validation.md",
+              "type": "file",
+              "path": "docs/reports/step5_validation.md"
+            },
+            {
+              "name": "step7_1_app_preview.md",
+              "type": "file",
+              "path": "docs/reports/step7_1_app_preview.md"
+            },
+            {
+              "name": "step8_pilot_ready.md",
+              "type": "file",
+              "path": "docs/reports/step8_pilot_ready.md"
+            },
+            {
+              "name": "stepA_public_layer_boost.md",
+              "type": "file",
+              "path": "docs/reports/stepA_public_layer_boost.md"
+            }
+          ]
+        },
+        {
+          "name": "sources",
+          "type": "directory",
+          "path": "docs/sources",
+          "children": [
+            {
+              "name": "diritto-privato",
+              "type": "directory",
+              "path": "docs/sources/diritto-privato",
+              "children": [
+                {
+                  "name": "from_sources",
+                  "type": "directory",
+                  "path": "docs/sources/diritto-privato/from_sources",
+                  "children": [
+                    {
+                      "name": "alpa.md",
+                      "type": "file",
+                      "path": "docs/sources/diritto-privato/from_sources/alpa.md"
+                    },
+                    {
+                      "name": "Le_fonti_del_diritto_privato.md",
+                      "type": "file",
+                      "path": "docs/sources/diritto-privato/from_sources/Le_fonti_del_diritto_privato.md"
+                    },
+                    {
+                      "name": "MANUALE_DI_DIRITTO_PRIVATO.md",
+                      "type": "file",
+                      "path": "docs/sources/diritto-privato/from_sources/MANUALE_DI_DIRITTO_PRIVATO.md"
+                    }
+                  ]
+                },
+                {
+                  "name": "processed",
+                  "type": "directory",
+                  "path": "docs/sources/diritto-privato/processed",
+                  "children": []
+                },
+                {
+                  "name": "public",
+                  "type": "directory",
+                  "path": "docs/sources/diritto-privato/public",
+                  "children": [
+                    {
+                      "name": "dispensa_concetti_base_pubblica.md",
+                      "type": "file",
+                      "path": "docs/sources/diritto-privato/public/dispensa_concetti_base_pubblica.md"
+                    },
+                    {
+                      "name": "normattiva_capacita_agire.md",
+                      "type": "file",
+                      "path": "docs/sources/diritto-privato/public/normattiva_capacita_agire.md"
+                    },
+                    {
+                      "name": "treccani_concetti_base.md",
+                      "type": "file",
+                      "path": "docs/sources/diritto-privato/public/treccani_concetti_base.md"
+                    },
+                    {
+                      "name": "wikibooks_diritto_privato_base.md",
+                      "type": "file",
+                      "path": "docs/sources/diritto-privato/public/wikibooks_diritto_privato_base.md"
+                    }
+                  ]
+                },
+                {
+                  "name": "raw",
+                  "type": "directory",
+                  "path": "docs/sources/diritto-privato/raw",
+                  "children": [
+                    {
+                      "name": "private",
+                      "type": "directory",
+                      "path": "docs/sources/diritto-privato/raw/private",
+                      "children": [
+                        {
+                          "name": "alpa.md",
+                          "type": "file",
+                          "path": "docs/sources/diritto-privato/raw/private/alpa.md"
+                        },
+                        {
+                          "name": "Le_fonti_del_diritto_privato.md",
+                          "type": "file",
+                          "path": "docs/sources/diritto-privato/raw/private/Le_fonti_del_diritto_privato.md"
+                        },
+                        {
+                          "name": "MANUALE_DI_DIRITTO_PRIVATO.md",
+                          "type": "file",
+                          "path": "docs/sources/diritto-privato/raw/private/MANUALE_DI_DIRITTO_PRIVATO.md"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "README.md",
+                  "type": "file",
+                  "path": "docs/sources/diritto-privato/README.md"
+                },
+                {
+                  "name": "sources.json",
+                  "type": "file",
+                  "path": "docs/sources/diritto-privato/sources.json"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ux",
+          "type": "directory",
+          "path": "docs/ux",
+          "children": [
+            {
+              "name": "contracts",
+              "type": "directory",
+              "path": "docs/ux/contracts",
+              "children": [
+                {
+                  "name": "diagnostic_flow.json",
+                  "type": "file",
+                  "path": "docs/ux/contracts/diagnostic_flow.json"
+                },
+                {
+                  "name": "exam_selector.json",
+                  "type": "file",
+                  "path": "docs/ux/contracts/exam_selector.json"
+                },
+                {
+                  "name": "skill_map_view.json",
+                  "type": "file",
+                  "path": "docs/ux/contracts/skill_map_view.json"
+                },
+                {
+                  "name": "study_plan_timeline.json",
+                  "type": "file",
+                  "path": "docs/ux/contracts/study_plan_timeline.json"
+                },
+                {
+                  "name": "v2_api_payloads.json",
+                  "type": "file",
+                  "path": "docs/ux/contracts/v2_api_payloads.json"
+                }
+              ]
+            },
+            {
+              "name": "components.md",
+              "type": "file",
+              "path": "docs/ux/components.md"
+            },
+            {
+              "name": "design-tokens.md",
+              "type": "file",
+              "path": "docs/ux/design-tokens.md"
+            },
+            {
+              "name": "microcopy-it.md",
+              "type": "file",
+              "path": "docs/ux/microcopy-it.md"
+            },
+            {
+              "name": "screens.md",
+              "type": "file",
+              "path": "docs/ux/screens.md"
+            }
+          ]
+        },
+        {
+          "name": "runbook-ingestion.md",
+          "type": "file",
+          "path": "docs/runbook-ingestion.md"
+        }
+      ]
+    },
+    {
+      "name": "packages",
+      "type": "directory",
+      "path": "packages",
+      "children": [
+        {
+          "name": "ingestion",
+          "type": "directory",
+          "path": "packages/ingestion",
+          "children": [
+            {
+              "name": "src",
+              "type": "directory",
+              "path": "packages/ingestion/src",
+              "children": [
+                {
+                  "name": "chunker",
+                  "type": "directory",
+                  "path": "packages/ingestion/src/chunker",
+                  "children": []
+                },
+                {
+                  "name": "db",
+                  "type": "directory",
+                  "path": "packages/ingestion/src/db",
+                  "children": []
+                },
+                {
+                  "name": "embedder",
+                  "type": "directory",
+                  "path": "packages/ingestion/src/embedder",
+                  "children": []
+                },
+                {
+                  "name": "loaders",
+                  "type": "directory",
+                  "path": "packages/ingestion/src/loaders",
+                  "children": []
+                },
+                {
+                  "name": "cleanup.ts",
+                  "type": "file",
+                  "path": "packages/ingestion/src/cleanup.ts"
+                },
+                {
+                  "name": "config.ts",
+                  "type": "file",
+                  "path": "packages/ingestion/src/config.ts"
+                },
+                {
+                  "name": "convert_json_to_md.js",
+                  "type": "file",
+                  "path": "packages/ingestion/src/convert_json_to_md.js"
+                },
+                {
+                  "name": "convert_pdf.js",
+                  "type": "file",
+                  "path": "packages/ingestion/src/convert_pdf.js"
+                },
+                {
+                  "name": "run-env.ts",
+                  "type": "file",
+                  "path": "packages/ingestion/src/run-env.ts"
+                },
+                {
+                  "name": "run.ts",
+                  "type": "file",
+                  "path": "packages/ingestion/src/run.ts"
+                },
+                {
+                  "name": "validate-standalone.ts",
+                  "type": "file",
+                  "path": "packages/ingestion/src/validate-standalone.ts"
+                }
+              ]
+            },
+            {
+              "name": ".env",
+              "type": "file",
+              "path": "packages/ingestion/.env"
+            },
+            {
+              "name": ".env.example",
+              "type": "file",
+              "path": "packages/ingestion/.env.example"
+            },
+            {
+              "name": "package-lock.json",
+              "type": "file",
+              "path": "packages/ingestion/package-lock.json"
+            },
+            {
+              "name": "package.json",
+              "type": "file",
+              "path": "packages/ingestion/package.json"
+            },
+            {
+              "name": "supa-rpc.sql",
+              "type": "file",
+              "path": "packages/ingestion/supa-rpc.sql"
+            },
+            {
+              "name": "tsconfig.json",
+              "type": "file",
+              "path": "packages/ingestion/tsconfig.json"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "scripts",
+      "type": "directory",
+      "path": "scripts",
+      "children": [
+        {
+          "name": "seed",
+          "type": "directory",
+          "path": "scripts/seed",
+          "children": [
+            {
+              "name": "schema_v2_seed.sql",
+              "type": "file",
+              "path": "scripts/seed/schema_v2_seed.sql"
+            }
+          ]
+        },
+        {
+          "name": "test",
+          "type": "directory",
+          "path": "scripts/test",
+          "children": [
+            {
+              "name": "out",
+              "type": "directory",
+              "path": "scripts/test/out",
+              "children": [
+                {
+                  "name": ".gitignore",
+                  "type": "file",
+                  "path": "scripts/test/out/.gitignore"
+                },
+                {
+                  "name": "plan.json",
+                  "type": "file",
+                  "path": "scripts/test/out/plan.json"
+                },
+                {
+                  "name": "progress.json",
+                  "type": "file",
+                  "path": "scripts/test/out/progress.json"
+                },
+                {
+                  "name": "start.json",
+                  "type": "file",
+                  "path": "scripts/test/out/start.json"
+                },
+                {
+                  "name": "submit.json",
+                  "type": "file",
+                  "path": "scripts/test/out/submit.json"
+                }
+              ]
+            },
+            {
+              "name": "db_consistency_v2.sql",
+              "type": "file",
+              "path": "scripts/test/db_consistency_v2.sql"
+            },
+            {
+              "name": "get_token.ts",
+              "type": "file",
+              "path": "scripts/test/get_token.ts"
+            },
+            {
+              "name": "seed_v2.ts",
+              "type": "file",
+              "path": "scripts/test/seed_v2.ts"
+            },
+            {
+              "name": "smoke_v2.sh",
+              "type": "file",
+              "path": "scripts/test/smoke_v2.sh"
+            },
+            {
+              "name": "smoke_v2.ts",
+              "type": "file",
+              "path": "scripts/test/smoke_v2.ts"
+            },
+            {
+              "name": "ui_e2e_capture.md",
+              "type": "file",
+              "path": "scripts/test/ui_e2e_capture.md"
+            },
+            {
+              "name": "ui_e2e_v0_13_0_checklist.md",
+              "type": "file",
+              "path": "scripts/test/ui_e2e_v0_13_0_checklist.md"
+            }
+          ]
+        },
+        {
+          "name": "check_metadata.ts",
+          "type": "file",
+          "path": "scripts/check_metadata.ts"
+        },
+        {
+          "name": "check_public_count.ts",
+          "type": "file",
+          "path": "scripts/check_public_count.ts"
+        },
+        {
+          "name": "debug_join.ts",
+          "type": "file",
+          "path": "scripts/debug_join.ts"
+        },
+        {
+          "name": "deploy.sh",
+          "type": "file",
+          "path": "scripts/deploy.sh"
+        },
+        {
+          "name": "generate_project_tree.js",
+          "type": "file",
+          "path": "scripts/generate_project_tree.js"
+        },
+        {
+          "name": "generate_tree_json.ts",
+          "type": "file",
+          "path": "scripts/generate_tree_json.ts"
+        },
+        {
+          "name": "memory_bank.sh",
+          "type": "file",
+          "path": "scripts/memory_bank.sh"
+        },
+        {
+          "name": "memory_bank.ts",
+          "type": "file",
+          "path": "scripts/memory_bank.ts"
+        },
+        {
+          "name": "run_server.sh",
+          "type": "file",
+          "path": "scripts/run_server.sh"
+        },
+        {
+          "name": "seed_demo_preview.ts",
+          "type": "file",
+          "path": "scripts/seed_demo_preview.ts"
+        },
+        {
+          "name": "step2c_full_auto.sh",
+          "type": "file",
+          "path": "scripts/step2c_full_auto.sh"
+        },
+        {
+          "name": "step2d_full_auto.sh",
+          "type": "file",
+          "path": "scripts/step2d_full_auto.sh"
+        },
+        {
+          "name": "step3a_full_auto.sh",
+          "type": "file",
+          "path": "scripts/step3a_full_auto.sh"
+        },
+        {
+          "name": "step3b_full_auto.sh",
+          "type": "file",
+          "path": "scripts/step3b_full_auto.sh"
+        },
+        {
+          "name": "step4_full_auto.sh",
+          "type": "file",
+          "path": "scripts/step4_full_auto.sh"
+        },
+        {
+          "name": "step5_full_auto.sh",
+          "type": "file",
+          "path": "scripts/step5_full_auto.sh"
+        },
+        {
+          "name": "stepA_public_boost_full_auto.sh",
+          "type": "file",
+          "path": "scripts/stepA_public_boost_full_auto.sh"
+        },
+        {
+          "name": "test_chat_edge.ts",
+          "type": "file",
+          "path": "scripts/test_chat_edge.ts"
+        },
+        {
+          "name": "test_hotfix_language.ts",
+          "type": "file",
+          "path": "scripts/test_hotfix_language.ts"
+        },
+        {
+          "name": "test_step2d_edge.ts",
+          "type": "file",
+          "path": "scripts/test_step2d_edge.ts"
+        },
+        {
+          "name": "test_step3a_ux.ts",
+          "type": "file",
+          "path": "scripts/test_step3a_ux.ts"
+        },
+        {
+          "name": "test_step3b_adaptive.ts",
+          "type": "file",
+          "path": "scripts/test_step3b_adaptive.ts"
+        },
+        {
+          "name": "test_step4_multiexam.ts",
+          "type": "file",
+          "path": "scripts/test_step4_multiexam.ts"
+        },
+        {
+          "name": "test_step5_monetization.ts",
+          "type": "file",
+          "path": "scripts/test_step5_monetization.ts"
+        },
+        {
+          "name": "test_step7_smoke.md",
+          "type": "file",
+          "path": "scripts/test_step7_smoke.md"
+        },
+        {
+          "name": "validate_env.ts",
+          "type": "file",
+          "path": "scripts/validate_env.ts"
+        },
+        {
+          "name": "validate_memory_bank.ts",
+          "type": "file",
+          "path": "scripts/validate_memory_bank.ts"
+        },
+        {
+          "name": "verify_v2_artifacts.sh",
+          "type": "file",
+          "path": "scripts/verify_v2_artifacts.sh"
+        }
+      ]
+    },
+    {
+      "name": "supabase",
+      "type": "directory",
+      "path": "supabase",
+      "children": [
+        {
+          "name": ".temp",
+          "type": "directory",
+          "path": "supabase/.temp",
+          "children": [
+            {
+              "name": "cli-latest",
+              "type": "file",
+              "path": "supabase/.temp/cli-latest"
+            },
+            {
+              "name": "gotrue-version",
+              "type": "file",
+              "path": "supabase/.temp/gotrue-version"
+            },
+            {
+              "name": "pooler-url",
+              "type": "file",
+              "path": "supabase/.temp/pooler-url"
+            },
+            {
+              "name": "postgres-version",
+              "type": "file",
+              "path": "supabase/.temp/postgres-version"
+            },
+            {
+              "name": "project-ref",
+              "type": "file",
+              "path": "supabase/.temp/project-ref"
+            },
+            {
+              "name": "rest-version",
+              "type": "file",
+              "path": "supabase/.temp/rest-version"
+            },
+            {
+              "name": "storage-migration",
+              "type": "file",
+              "path": "supabase/.temp/storage-migration"
+            },
+            {
+              "name": "storage-version",
+              "type": "file",
+              "path": "supabase/.temp/storage-version"
+            }
+          ]
+        },
+        {
+          "name": "functions",
+          "type": "directory",
+          "path": "supabase/functions",
+          "children": [
+            {
+              "name": "_shared",
+              "type": "directory",
+              "path": "supabase/functions/_shared",
+              "children": [
+                {
+                  "name": "rateLimit.ts",
+                  "type": "file",
+                  "path": "supabase/functions/_shared/rateLimit.ts"
+                },
+                {
+                  "name": "responseUtils.ts",
+                  "type": "file",
+                  "path": "supabase/functions/_shared/responseUtils.ts"
+                }
+              ]
+            },
+            {
+              "name": "adaptive-regenerate-plan",
+              "type": "directory",
+              "path": "supabase/functions/adaptive-regenerate-plan",
+              "children": [
+                {
+                  "name": "index.ts",
+                  "type": "file",
+                  "path": "supabase/functions/adaptive-regenerate-plan/index.ts"
+                }
+              ]
+            },
+            {
+              "name": "adaptive-review",
+              "type": "directory",
+              "path": "supabase/functions/adaptive-review",
+              "children": [
+                {
+                  "name": "index.ts",
+                  "type": "file",
+                  "path": "supabase/functions/adaptive-review/index.ts"
+                }
+              ]
+            },
+            {
+              "name": "adaptive-update-skill-map",
+              "type": "directory",
+              "path": "supabase/functions/adaptive-update-skill-map",
+              "children": [
+                {
+                  "name": "index.ts",
+                  "type": "file",
+                  "path": "supabase/functions/adaptive-update-skill-map/index.ts"
+                }
+              ]
+            },
+            {
+              "name": "chat",
+              "type": "directory",
+              "path": "supabase/functions/chat",
+              "children": [
+                {
+                  "name": "index.ts",
+                  "type": "file",
+                  "path": "supabase/functions/chat/index.ts"
+                }
+              ]
+            },
+            {
+              "name": "diagnostic-start",
+              "type": "directory",
+              "path": "supabase/functions/diagnostic-start",
+              "children": [
+                {
+                  "name": "index.ts",
+                  "type": "file",
+                  "path": "supabase/functions/diagnostic-start/index.ts"
+                }
+              ]
+            },
+            {
+              "name": "diagnostic-submit",
+              "type": "directory",
+              "path": "supabase/functions/diagnostic-submit",
+              "children": [
+                {
+                  "name": "index.ts",
+                  "type": "file",
+                  "path": "supabase/functions/diagnostic-submit/index.ts"
+                }
+              ]
+            },
+            {
+              "name": "study-plan",
+              "type": "directory",
+              "path": "supabase/functions/study-plan",
+              "children": [
+                {
+                  "name": "index.ts",
+                  "type": "file",
+                  "path": "supabase/functions/study-plan/index.ts"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "migrations",
+          "type": "directory",
+          "path": "supabase/migrations",
+          "children": [
+            {
+              "name": "20251219183000_diagnostic_schema.sql",
+              "type": "file",
+              "path": "supabase/migrations/20251219183000_diagnostic_schema.sql"
+            },
+            {
+              "name": "20251219184000_analytics_schema.sql",
+              "type": "file",
+              "path": "supabase/migrations/20251219184000_analytics_schema.sql"
+            },
+            {
+              "name": "20251219185000_adaptive_schema.sql",
+              "type": "file",
+              "path": "supabase/migrations/20251219185000_adaptive_schema.sql"
+            },
+            {
+              "name": "20251219190000_exams_schema.sql",
+              "type": "file",
+              "path": "supabase/migrations/20251219190000_exams_schema.sql"
+            },
+            {
+              "name": "20251219191000_monetization_schema.sql",
+              "type": "file",
+              "path": "supabase/migrations/20251219191000_monetization_schema.sql"
+            },
+            {
+              "name": "20251221000000_schema_v2.sql",
+              "type": "file",
+              "path": "supabase/migrations/20251221000000_schema_v2.sql"
+            },
+            {
+              "name": "20251223223000_v2_isolation.sql",
+              "type": "file",
+              "path": "supabase/migrations/20251223223000_v2_isolation.sql"
+            },
+            {
+              "name": "20251223230000_v2_plans.sql",
+              "type": "file",
+              "path": "supabase/migrations/20251223230000_v2_plans.sql"
+            },
+            {
+              "name": "20251223232000_v2_fks_fix.sql",
+              "type": "file",
+              "path": "supabase/migrations/20251223232000_v2_fks_fix.sql"
+            },
+            {
+              "name": "20251223233000_v2_course_id_fix.sql",
+              "type": "file",
+              "path": "supabase/migrations/20251223233000_v2_course_id_fix.sql"
+            },
+            {
+              "name": "20251223234000_v2_plans_fix.sql",
+              "type": "file",
+              "path": "supabase/migrations/20251223234000_v2_plans_fix.sql"
+            },
+            {
+              "name": "20251224090000_v2_results_hardening.sql",
+              "type": "file",
+              "path": "supabase/migrations/20251224090000_v2_results_hardening.sql"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": ".gitignore",
+      "type": "file",
+      "path": ".gitignore"
+    },
+    {
+      "name": "package-lock.json",
+      "type": "file",
+      "path": "package-lock.json"
+    },
+    {
+      "name": "package.json",
+      "type": "file",
+      "path": "package.json"
+    },
+    {
+      "name": "project_structure.json",
+      "type": "file",
+      "path": "project_structure.json"
+    },
+    {
+      "name": "run_leuniversita",
+      "type": "file",
+      "path": "run_leuniversita"
+    },
+    {
+      "name": "server.log",
+      "type": "file",
+      "path": "server.log"
+    },
+    {
+      "name": "server.pid",
+      "type": "file",
+      "path": "server.pid"
+    },
+    {
+      "name": "smoke_debug.log",
+      "type": "file",
+      "path": "smoke_debug.log"
+    }
+  ]
+}

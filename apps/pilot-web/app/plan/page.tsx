@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { createClient } from '@supabase/supabase-js';
 import { ApiState } from "@/components/diagnostic/ApiState";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -15,6 +15,7 @@ interface PlanItem {
     module_id: string;
     status: 'todo' | 'done' | 'skipped' | 'locked';
     type: string;
+    modules?: { title: string };
 }
 
 interface PlanData {
@@ -24,18 +25,13 @@ interface PlanData {
 }
 
 export default function PlanPage() {
-    const [supabase] = useState(() => createClientComponentClient());
+    const [supabase] = useState(() => createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    ));
     const searchParams = useSearchParams();
-    // Default courseId if not provided (e.g. from nav) - ideally should be dynamic or context
-    // For MVP/Smoke, we often hardcode a known course or fetch active. 
-    // Let's assume a default 'diritto-privato' or from URL.
-    // Wait, the API needs courseId. 
-    // We'll try to guess or use a default.
-    // FIX: The user prompt implementation plan didn't specify how to carry courseId.
-    // I will assume Diritto Privato (UUID: d7515f48-0d00-4824-a745-f09d30058e5f) 
-    // OR the slug 'diritto-privato'. The API mostly takes the UUID after fixes.
-    // Let's rely on the API finding the plan by User + Active Status primarily, 
-    // but sending courseId is safer if user has multiple.
+
+    // Default courseId logic
     const courseId = 'd7515f48-0d00-4824-a745-f09d30058e5f';
 
     const [loading, setLoading] = useState(true);
@@ -116,14 +112,6 @@ export default function PlanPage() {
                                 {getStatusIcon(item.status)}
                             </div>
                             <div className="flex-grow">
-                                interface PlanItem {
-                                    id: string;
-                                module_id: string;
-                                status: 'todo' | 'done' | 'skipped' | 'locked';
-                                type: string;
-                                modules?: {title: string };
-}
-                                // ... (inside component)
                                 <h4 className="font-semibold text-base">
                                     {item.modules?.title || item.module_id}
                                 </h4>

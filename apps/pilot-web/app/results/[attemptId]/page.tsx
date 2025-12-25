@@ -1,16 +1,81 @@
 'use client';
 
-import React from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
+import { createClient } from '@supabase/supabase-js';
 import { Button } from "@/components/ui/button";
-import { CheckCircle, BarChart, BookOpen } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { CheckCircle, BarChart, BookOpen, Loader2, AlertCircle } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+interface ResultData {
+    score: number;
+    maxScore: number;
+    level: string;
+}
 
 export default function ResultsPage() {
-    const searchParams = useSearchParams();
-    const score = searchParams.get('score');
-    const level = searchParams.get('level');
+    const params = useParams();
+    const attemptId = params.attemptId as string;
+
+    // Fallback to standard client for robustness
+    const [supabase] = useState(() => createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    ));
+
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const [result, setResult] = useState<ResultData | null>(null);
+
+    useEffect(() => {
+        const fetchResults = async () => {
+            try {
+                const { data: { session } } = await supabase.auth.getSession();
+                if (!session) throw new Error("Sessione mancante.");
+
+                const res = await fetch(`/api/attempt/${attemptId}`, {
+                    headers: { 'Authorization': `Bearer ${session.access_token}` }
+                });
+
+                if (!res.ok) throw new Error("Errore recupero risultati.");
+
+                const data = await res.json();
+                if (data.status && data.status !== 'completed') {
+                    throw new Error("Test non ancora completato.");
+                }
+
+                setResult(data);
+            } catch (err: any) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        if (attemptId) fetchResults();
+    }, [attemptId, supabase]);
+
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center min-h-[50vh]">
+                <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            </div>
+        );
+    }
+
+    if (error || !result) {
+        return (
+            <div className="container max-w-md mx-auto py-16 text-center space-y-4">
+                <AlertCircle className="h-12 w-12 text-destructive mx-auto" />
+                <h2 className="text-xl font-bold">Impossibile caricare i risultati</h2>
+                <p className="text-muted-foreground">{error}</p>
+                <Button asChild variant="outline">
+                    <Link href="/dashboard">Torna alla Dashboard</Link>
+                </Button>
+            </div>
+        );
+    }
 
     return (
         <div className="container max-w-2xl mx-auto py-16 px-4 text-center space-y-8 animate-in fade-in duration-700">
@@ -37,18 +102,14 @@ export default function ResultsPage() {
                 </CardHeader>
                 <CardContent>
                     <div className="space-y-4">
-                        {score && (
-                            <div className="flex justify-between items-center border-b pb-2">
-                                <span className="text-muted-foreground">Punteggio ottenuto</span>
-                                <span className="font-bold text-lg">{Math.round(Number(score))}%</span>
-                            </div>
-                        )}
-                        {level && (
-                            <div className="flex justify-between items-center border-b pb-2">
-                                <span className="text-muted-foreground">Livello assegnato</span>
-                                <span className="font-bold text-lg capitalize">{level}</span>
-                            </div>
-                        )}
+                        <div className="flex justify-between items-center border-b pb-2">
+                            <span className="text-muted-foreground">Punteggio ottenuto</span>
+                            <span className="font-bold text-lg">{Math.round(result.score)}%</span>
+                        </div>
+                        <div className="flex justify-between items-center border-b pb-2">
+                            <span className="text-muted-foreground">Livello assegnato</span>
+                            <span className="font-bold text-lg capitalize">{result.level}</span>
+                        </div>
                         <p className="text-muted-foreground pt-2">
                             In base alle tue risposte, abbiamo adattato la difficoltà del corso.
                             Il piano è stato generato automaticamente per colmare le tue lacune.
@@ -64,7 +125,6 @@ export default function ResultsPage() {
                     </Link>
                 </Button>
             </div>
-
         </div>
     );
 }

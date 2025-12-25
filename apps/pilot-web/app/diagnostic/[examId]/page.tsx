@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'; // Only for Auth Session
+import { createClient } from '@supabase/supabase-js'; // Fallback to standard client
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowLeft, CheckCircle } from 'lucide-react';
 import { ApiState } from "@/components/diagnostic/ApiState";
@@ -20,7 +20,10 @@ export default function DiagnosticPage() {
     const params = useParams();
     const examId = params.examId as string;
 
-    const [supabase] = useState(() => createClientComponentClient());
+    const [supabase] = useState(() => createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    ));
 
     // State
     const [loading, setLoading] = useState(false); // Global loading (start/submit)

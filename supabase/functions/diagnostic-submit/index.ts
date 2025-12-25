@@ -66,6 +66,12 @@ Deno.serve(async (req) => {
 
         const score = (correctCount / answers.length) * 100;
 
+        // 4. Determine Level
+        let level = 'novice';
+        if (score > 40) level = 'beginner';
+        if (score > 65) level = 'intermediate';
+        if (score > 85) level = 'advanced';
+
         // 3. Save Answers & Update Attempt
         const { error: ansInsError } = await supabase.from('learning_answers_v2').insert(answersToInsert);
         if (ansInsError) console.error("Ans Insert Error", ansInsError);
@@ -73,14 +79,10 @@ Deno.serve(async (req) => {
         await supabase.from('learning_attempts_v2').update({
             status: 'completed',
             completed_at: new Date().toISOString(),
-            score
+            score,
+            max_score: 100, // Normalized
+            level // Persist Level
         }).eq('id', attemptId);
-
-        // 4. Determine Level
-        let level = 'novice';
-        if (score > 40) level = 'beginner';
-        if (score > 65) level = 'intermediate';
-        if (score > 85) level = 'advanced';
 
         // 5. Create Plan
         const courseId = attempt.assessments_v2.course_id;
