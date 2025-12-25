@@ -10,21 +10,11 @@ import { Button } from "@/components/ui/button";
 import { Calendar, CheckCircle2, Circle, Lock, ArrowRight } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 
-interface PlanItem {
-    id: string;
-    module_id: string;
-    status: 'todo' | 'done' | 'skipped' | 'locked';
-    type: string;
-    modules?: { title: string };
-}
+import { PlanData } from '@/types/plan';
 
-interface PlanData {
-    planId: string;
-    level: string;
-    items: PlanItem[];
-}
+import { Suspense } from 'react';
 
-export default function PlanPage() {
+function PlanContent() {
     const [supabase] = useState(() => createClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -127,5 +117,13 @@ export default function PlanPage() {
                 ))}
             </div>
         </div>
+    );
+}
+
+export default function PlanPage() {
+    return (
+        <Suspense fallback={<ApiState loading={true} error={null} loadingMessage="Caricamento..." />}>
+            <PlanContent />
+        </Suspense>
     );
 }

@@ -1,7 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextResponse } from 'next/server';
 
-export async function GET(request: Request, { params }: { params: { attemptId: string } }) {
+export async function GET(request: Request, props: { params: Promise<{ attemptId: string }> }) {
+    const params = await props.params;
     const attemptId = params.attemptId;
     const authHeader = request.headers.get('Authorization');
 
