@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.16.0] - 2025-12-25
+-  (Task: Titles And Smoke)
+
+
 ## [v0.15.2] - 2025-12-25
 -  (Task: Smoke test)
 
