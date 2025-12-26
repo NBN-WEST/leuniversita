@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: Minor Release per completamento Fase 11
-**Status**: CLOSED (v1.2.0)
+**Task**: 
+**Status**: CLOSED (v1.2.1)
 **Date**: 2025-12-26
-**Comment**: Minor Release per completamento Fase 11
+**Comment**: Vercel variables test

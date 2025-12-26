@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v1.2.1] - 2025-12-26
+- Vercel variables test (Task: )
+
+
 ## [v1.2.0] - 2025-12-26
 - Minor Release per completamento Fase 11 (Task: Minor Release per completamento Fase 11)
 

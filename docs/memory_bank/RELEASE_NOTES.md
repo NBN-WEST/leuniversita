@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v1.2.0
+**Version**: v1.2.1
 **Date**: 2025-12-26
 
 ### Summary
-Minor Release per completamento Fase 11
+Vercel variables test
