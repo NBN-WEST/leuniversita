@@ -26,11 +26,14 @@ This roadmap defines the path from "Technical MVP" to "Go-To-Market Ready Platfo
     - Build & Smoke tests pass (Local & Remote).
     - End-to-end user flow verified (Login -> Diagnostic -> Plan -> Results).
 
-### **Phase 11: Content Pipeline Hardening**
-**Goal**: Ensure ingestion is repeatable, safe, and scalable.
-- [ ] Idempotent ingestion pipeline verification.
-- [ ] Content QA (Metadata validation, reference checks).
-- [ ] One-command ingestion scripts.
+### Phase 11: Content Pipeline Hardening (Completed)
+- **Goal**: Make content ingestion robust, idempotent, and enterprise-grade.
+- **Status**: ✅ Completed
+- **Key Deliverables**:
+    - [x] Hash-based Idempotency (prevent duplicates).
+    - [x] Smart Recursive Chunking (better retrieval quality).
+    - [x] Validated Metadata for Public/Private sources.
+    - [x] One-Command Ingestion Script (`ingest_automator.ts`).s.
 - **Acceptance**:
     - "Diritto Privato" fully consistent.
     - Full content provenance tracking.

@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v1.0.4
+**Version**: v1.1.0
 **Date**: 2025-12-26
 
 ### Summary
-Walkthrough of UX Polish (Italian Microcopy & Error Pages
+Phase 11: Content Pipeline Hardening Complete. Implemented Idempotency, Smart Chunking, and One-Command Ingestion.

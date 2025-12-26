@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v1.1.0] - 2025-12-26
+- Phase 11: Content Pipeline Hardening Complete. Implemented Idempotency, Smart Chunking, and One-Command Ingestion. (Task: Phase 11: Content Pipeline Hardening)
+
+
 ## [v1.0.4] - 2025-12-26
 - Walkthrough of UX Polish (Italian Microcopy & Error Pages (Task: Walkthrough of UX Polish (Italian Microcopy & Error Pages)
 

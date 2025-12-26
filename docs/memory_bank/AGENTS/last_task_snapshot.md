@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: Walkthrough of UX Polish (Italian Microcopy & Error Pages
-**Status**: CLOSED (v1.0.4)
+**Task**: Phase 11: Content Pipeline Hardening
+**Status**: CLOSED (v1.1.0)
 **Date**: 2025-12-26
-**Comment**: Walkthrough of UX Polish (Italian Microcopy & Error Pages
+**Comment**: Phase 11: Content Pipeline Hardening Complete. Implemented Idempotency, Smart Chunking, and One-Command Ingestion.
