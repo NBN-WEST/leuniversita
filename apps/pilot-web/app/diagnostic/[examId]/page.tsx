@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
-import { getSupabaseBrowserClient } from '@/lib/supabase/client';
+import { getSupabaseBrowserClient } from '@/lib/supabase/browser';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowLeft, CheckCircle } from 'lucide-react';
 import { ApiState } from "@/components/diagnostic/ApiState";
@@ -181,6 +181,7 @@ export default function DiagnosticPage() {
 
             <div className="flex-grow flex items-center">
                 <QuestionCard
+                    key={currentQ.id}
                     question={currentQ}
                     selectedOptionId={answers[currentQ.id]}
                     onSelectOption={handleSelectOption}

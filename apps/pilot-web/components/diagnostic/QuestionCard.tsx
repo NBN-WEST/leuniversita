@@ -30,7 +30,7 @@ export function QuestionCard({ question, selectedOptionId, onSelectOption }: Que
             </CardHeader>
             <CardContent>
                 <RadioGroup
-                    value={selectedOptionId}
+                    value={selectedOptionId || ""}
                     onValueChange={onSelectOption}
                     className="space-y-4"
                 >

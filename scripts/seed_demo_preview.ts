@@ -42,7 +42,10 @@ async function ensureUser(email: string, role: string) {
         user = data.user;
     } else {
         console.log(`User ${email} exists.`);
-        await supabase.auth.admin.updateUserById(user.id, { password: 'password123' });
+        await supabase.auth.admin.updateUserById(user.id, {
+            password: 'password123',
+            user_metadata: { role }
+        });
     }
 
     // 2. Ensure Profile exists

@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { getSupabaseBrowserClient } from '@/lib/supabase/client';
+import { useRouter } from 'next/navigation';
+
+import { getSupabaseBrowserClient } from '@/lib/supabase/browser';
 import { ApiState } from "@/components/diagnostic/ApiState";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -14,6 +16,7 @@ interface ProgressModule {
 
 export default function ProgressPage() {
     const supabase = getSupabaseBrowserClient();
+    const router = useRouter();
     const courseId = 'd7515f48-0d00-4824-a745-f09d30058e5f'; // default for MVP
 
     const [loading, setLoading] = useState(true);
@@ -25,13 +28,25 @@ export default function ProgressPage() {
         setError(null);
         try {
             const { data: { session } } = await supabase.auth.getSession();
-            if (!session) throw new Error("Non autorizzato.");
+            if (!session) {
+                router.push('/login');
+                throw new Error("Non autorizzato.");
+            }
 
             const res = await fetch(`/api/progress?courseId=${courseId}`, {
                 headers: { 'Authorization': `Bearer ${session.access_token}` }
             });
 
-            if (!res.ok) throw new Error("Errore recupero progressi.");
+            if (res.status === 401) {
+                await supabase.auth.signOut();
+                router.push('/login');
+                throw new Error("Sessione scaduta.");
+            }
+
+            if (!res.ok) {
+                const errorData = await res.json().catch(() => ({}));
+                throw new Error(errorData.error || "Errore recupero progressi.");
+            }
 
             const data = await res.json();
             setModules(data.modules || []);

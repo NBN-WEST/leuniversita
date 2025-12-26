@@ -12,7 +12,7 @@ echo "Target: $BASE_URL"
 echo "-----------------------------------"
 echo "0. Checking /api/health..."
 curl -s -I "$BASE_URL/api/health" > "$OUT_DIR/health_head.txt"
-if grep -q "200 OK" "$OUT_DIR/health_head.txt"; then
+if grep -q "200" "$OUT_DIR/health_head.txt"; then
     echo "✅ Health Check Passed (API Reachable)"
 else
     echo "❌ Health Check Failed (API Not Reachable/404)"
@@ -78,12 +78,19 @@ curl -s -X GET "$BASE_URL/api/plan/current?courseId=$COURSE_ID" \
 
 if grep -q "items" "$OUT_DIR/remote_plan.json"; then
     echo "✅ Plan Success"
-    # Basic check for title injection
-    if grep -q "title" "$OUT_DIR/remote_plan.json"; then
-         echo "   - Modules have titles (V2 Fix Success)"
-    else
-         echo "   ⚠️ Modules missing titles (V2 Fix Check)"
-    fi
+    
+    # Advanced Node check for titles presence
+    node -e '
+        const fs = require("fs");
+        const data = JSON.parse(fs.readFileSync("'$OUT_DIR'/remote_plan.json", "utf8"));
+        const missingTitles = (data.items || []).filter(i => !i.modules || !i.modules.title || i.modules.title.trim() === "");
+        if (missingTitles.length > 0) {
+            console.log("   ⚠️  WARNING: " + missingTitles.length + " modules missing titles!");
+            console.log("   First missing ID: " + missingTitles[0].module_id);
+        } else {
+            console.log("   - All modules have valid titles (V2 Fix Verified)");
+        }
+    '
 else
     echo "❌ Plan Failed"
     cat "$OUT_DIR/remote_plan.json"
@@ -95,7 +102,7 @@ echo "5. GET /api/progress"
 curl -s -X GET "$BASE_URL/api/progress" \
   -H "Authorization: Bearer $TOKEN" > "$OUT_DIR/remote_progress.json"
 
-if grep -q "stats" "$OUT_DIR/remote_progress.json"; then
+if grep -q "modules" "$OUT_DIR/remote_progress.json"; then
     echo "✅ Progress Success"
 else
     echo "❌ Progress Failed"

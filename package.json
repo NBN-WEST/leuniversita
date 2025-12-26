@@ -1,6 +1,7 @@
 {
   "name": "leuniversita-mvp",
   "version": "0.1.0",
+  "type": "module",
   "bin": {
     "memory_bank": "./scripts/memory_bank.sh",
     "run_server": "./scripts/run_server.sh"

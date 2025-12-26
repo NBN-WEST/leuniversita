@@ -1,22 +1,26 @@
-import { createClient } from '@supabase/supabase-js';
+import { createSupabaseServerClient } from '@/lib/supabase/server';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request, props: { params: Promise<{ attemptId: string }> }) {
     const params = await props.params;
     const attemptId = params.attemptId;
-    const authHeader = request.headers.get('Authorization');
 
-    if (!authHeader) {
-        return NextResponse.json({ error: 'Missing Authorization header' }, { status: 401 });
+    const supabase = await createSupabaseServerClient();
+
+    let { data: { user }, error: authError } = await supabase.auth.getUser();
+
+    if (authError || !user) {
+        const authHeader = request.headers.get('Authorization');
+        if (authHeader) {
+            const token = authHeader.replace('Bearer ', '');
+            const { data: { user: userFromToken }, error: tokenError } = await supabase.auth.getUser(token);
+            if (userFromToken && !tokenError) {
+                user = userFromToken;
+                authError = null;
+            }
+        }
     }
 
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-    const supabase = createClient(supabaseUrl, supabaseKey, {
-        global: { headers: { Authorization: authHeader } }
-    });
-
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
     if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     // Fetch Attempt

@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { getSupabaseBrowserClient } from '@/lib/supabase/client';
+import { getSupabaseBrowserClient } from '@/lib/supabase/browser';
 import { ApiState } from "@/components/diagnostic/ApiState";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, CheckCircle2, Circle, Lock, ArrowRight } from 'lucide-react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 
 import { PlanData } from '@/types/plan';
 
@@ -16,6 +16,7 @@ import { Suspense } from 'react';
 
 function PlanContent() {
     const supabase = getSupabaseBrowserClient();
+    const router = useRouter();
     const searchParams = useSearchParams();
 
     // Default courseId logic
@@ -30,13 +31,25 @@ function PlanContent() {
         setError(null);
         try {
             const { data: { session } } = await supabase.auth.getSession();
-            if (!session) throw new Error("Accedi per vedere il tuo piano.");
+            if (!session) {
+                router.push('/login');
+                throw new Error("Accedi per vedere il tuo piano.");
+            }
 
             const res = await fetch(`/api/plan/current?courseId=${courseId}`, {
                 headers: { 'Authorization': `Bearer ${session.access_token}` }
             });
 
-            if (!res.ok) throw new Error("Impossibile caricare il piano.");
+            if (res.status === 401) {
+                await supabase.auth.signOut();
+                router.push('/login');
+                throw new Error("Sessione scaduta. Riaccedi.");
+            }
+
+            if (!res.ok) {
+                const errorData = await res.json().catch(() => ({}));
+                throw new Error(errorData.error || `Errore ${res.status}: Impossibile caricare il piano.`);
+            }
 
             const data = await res.json();
             setPlan(data);
@@ -70,7 +83,7 @@ function PlanContent() {
                 <h2 className="text-2xl font-bold mb-4">Nessun piano attivo</h2>
                 <p className="text-muted-foreground mb-8">Non hai ancora un piano di studio. Fai il test diagnostico.</p>
                 <Button asChild>
-                    <Link href="/diagnostic/diritto-privato">Inizia Test Diagnostico</Link>
+                    <Link href={`/diagnostic/${courseId}`}>Inizia Test Diagnostico</Link>
                 </Button>
             </div>
         );
@@ -100,7 +113,7 @@ function PlanContent() {
                             </div>
                             <div className="flex-grow">
                                 <h4 className="font-semibold text-base">
-                                    {item.modules?.title || item.module_id}
+                                    {item.modules?.title || `Modulo ${index + 1}`}
                                 </h4>
                                 <p className="text-xs text-muted-foreground capitalize">Stato: {item.status}</p>
                             </div>

@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="it">
-      <body className="bg-slate-50 text-slate-900 antialiased font-sans">
+      <body className="bg-slate-50 text-slate-900 antialiased font-sans" suppressHydrationWarning>
         {children}
         <CookieConsentParams />
       </body>

@@ -72,7 +72,14 @@ export default function LoginPage() {
                         disabled={loading}
                         className="w-full py-2.5 bg-blue-700 text-white font-medium rounded-lg hover:bg-blue-800 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center transition-colors"
                     >
-                        {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Accedi'}
+                        {loading ? (
+                            <div className="flex items-center gap-2">
+                                <Loader2 className="w-5 h-5 animate-spin" />
+                                <span>Accesso in corso...</span>
+                            </div>
+                        ) : (
+                            'Accedi'
+                        )}
                     </button>
                 </form>
             </div>

@@ -1,6 +1,7 @@
 {
   "root": "/Users/pabloliuzzi/Documents/Documents - Pablo’s MacBook Pro/antigravity-project/leuniversita-mvp",
-  "timestamp": "2025-12-24T17:50:38.477Z",
+  "timestamp": "2025-12-25T22:23:53.756Z",
+  "version": "v0.16.1",
   "structure": [
     {
       "name": "agents",
@@ -161,6 +162,18 @@
                               "path": "apps/pilot-web/app/api/diagnostic/submit/route.ts"
                             }
                           ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "health",
+                      "type": "directory",
+                      "path": "apps/pilot-web/app/api/health",
+                      "children": [
+                        {
+                          "name": "route.ts",
+                          "type": "file",
+                          "path": "apps/pilot-web/app/api/health/route.ts"
                         }
                       ]
                     },
@@ -413,6 +426,30 @@
               ]
             },
             {
+              "name": "lib",
+              "type": "directory",
+              "path": "apps/pilot-web/lib",
+              "children": [
+                {
+                  "name": "supabase",
+                  "type": "directory",
+                  "path": "apps/pilot-web/lib/supabase",
+                  "children": [
+                    {
+                      "name": "browser.ts",
+                      "type": "file",
+                      "path": "apps/pilot-web/lib/supabase/browser.ts"
+                    },
+                    {
+                      "name": "server.ts",
+                      "type": "file",
+                      "path": "apps/pilot-web/lib/supabase/server.ts"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "name": "public",
               "type": "directory",
               "path": "apps/pilot-web/public",
@@ -441,6 +478,23 @@
                   "name": "window.svg",
                   "type": "file",
                   "path": "apps/pilot-web/public/window.svg"
+                }
+              ]
+            },
+            {
+              "name": "types",
+              "type": "directory",
+              "path": "apps/pilot-web/types",
+              "children": [
+                {
+                  "name": "plan.ts",
+                  "type": "file",
+                  "path": "apps/pilot-web/types/plan.ts"
+                },
+                {
+                  "name": "results.ts",
+                  "type": "file",
+                  "path": "apps/pilot-web/types/results.ts"
                 }
               ]
             },
@@ -497,6 +551,11 @@
               "name": "eslint.config.mjs",
               "type": "file",
               "path": "apps/pilot-web/eslint.config.mjs"
+            },
+            {
+              "name": "middleware.ts",
+              "type": "file",
+              "path": "apps/pilot-web/middleware.ts"
             },
             {
               "name": "next-env.d.ts",
@@ -614,6 +673,56 @@
                   "name": "v0.13.2_release_hardening.md",
                   "type": "file",
                   "path": "docs/memory_bank/_REPORTS/v0.13.2_release_hardening.md"
+                },
+                {
+                  "name": "v0.13.3_env_preflight.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/_REPORTS/v0.13.3_env_preflight.md"
+                },
+                {
+                  "name": "v0.13.3_phase6_close.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/_REPORTS/v0.13.3_phase6_close.md"
+                },
+                {
+                  "name": "v0.13.3_phase6_sync_check.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/_REPORTS/v0.13.3_phase6_sync_check.md"
+                },
+                {
+                  "name": "v0.13.3_remote_smoke_results.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/_REPORTS/v0.13.3_remote_smoke_results.md"
+                },
+                {
+                  "name": "v0.13.3_supabase_deploy.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/_REPORTS/v0.13.3_supabase_deploy.md"
+                },
+                {
+                  "name": "v0.13.4_vercel_api_404_fix.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/_REPORTS/v0.13.4_vercel_api_404_fix.md"
+                },
+                {
+                  "name": "v0.13.5_vercel_build_fix.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/_REPORTS/v0.13.5_vercel_build_fix.md"
+                },
+                {
+                  "name": "v0.13.6_vercel_clean_recreate.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/_REPORTS/v0.13.6_vercel_clean_recreate.md"
+                },
+                {
+                  "name": "v0.13.7_vercel_build_and_routing_fix.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/_REPORTS/v0.13.7_vercel_build_and_routing_fix.md"
+                },
+                {
+                  "name": "v0.13.8_vercel_rigorous_fix.md",
+                  "type": "file",
+                  "path": "docs/memory_bank/_REPORTS/v0.13.8_vercel_rigorous_fix.md"
                 }
               ]
             },
@@ -1115,6 +1224,11 @@
               "name": "stepA_public_layer_boost.md",
               "type": "file",
               "path": "docs/reports/stepA_public_layer_boost.md"
+            },
+            {
+              "name": "v0.14.x_vercel_supabase_and_path_fix.md",
+              "type": "file",
+              "path": "docs/reports/v0.14.x_vercel_supabase_and_path_fix.md"
             }
           ]
         },
@@ -1435,6 +1549,11 @@
                   "path": "scripts/test/out/.gitignore"
                 },
                 {
+                  "name": "health_head.txt",
+                  "type": "file",
+                  "path": "scripts/test/out/health_head.txt"
+                },
+                {
                   "name": "plan.json",
                   "type": "file",
                   "path": "scripts/test/out/plan.json"
@@ -1443,6 +1562,31 @@
                   "name": "progress.json",
                   "type": "file",
                   "path": "scripts/test/out/progress.json"
+                },
+                {
+                  "name": "remote_attempt.json",
+                  "type": "file",
+                  "path": "scripts/test/out/remote_attempt.json"
+                },
+                {
+                  "name": "remote_plan.json",
+                  "type": "file",
+                  "path": "scripts/test/out/remote_plan.json"
+                },
+                {
+                  "name": "remote_progress.json",
+                  "type": "file",
+                  "path": "scripts/test/out/remote_progress.json"
+                },
+                {
+                  "name": "remote_start.json",
+                  "type": "file",
+                  "path": "scripts/test/out/remote_start.json"
+                },
+                {
+                  "name": "remote_submit.json",
+                  "type": "file",
+                  "path": "scripts/test/out/remote_submit.json"
                 },
                 {
                   "name": "start.json",
@@ -1470,6 +1614,11 @@
               "name": "seed_v2.ts",
               "type": "file",
               "path": "scripts/test/seed_v2.ts"
+            },
+            {
+              "name": "smoke_v2_remote.sh",
+              "type": "file",
+              "path": "scripts/test/smoke_v2_remote.sh"
             },
             {
               "name": "smoke_v2.sh",
@@ -1522,6 +1671,11 @@
           "name": "generate_tree_json.ts",
           "type": "file",
           "path": "scripts/generate_tree_json.ts"
+        },
+        {
+          "name": "get_project_ref.ts",
+          "type": "file",
+          "path": "scripts/get_project_ref.ts"
         },
         {
           "name": "memory_bank.sh",
@@ -1883,6 +2037,11 @@
       "name": "project_structure.json",
       "type": "file",
       "path": "project_structure.json"
+    },
+    {
+      "name": "project_tree.json",
+      "type": "file",
+      "path": "project_tree.json"
     },
     {
       "name": "run_leuniversita",

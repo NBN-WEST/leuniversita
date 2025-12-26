@@ -1,25 +1,27 @@
-import { createClient } from '@supabase/supabase-js';
+import { createSupabaseServerClient } from '@/lib/supabase/server';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const courseId = searchParams.get('courseId');
-    const authHeader = request.headers.get('Authorization');
 
-    if (!authHeader) {
-        return NextResponse.json({ error: 'Missing Authorization header' }, { status: 401 });
+    const supabase = await createSupabaseServerClient();
+
+    // Verify token (Cookie first, then Header)
+    let { data: { user }, error: authError } = await supabase.auth.getUser();
+
+    if (authError || !user) {
+        const authHeader = request.headers.get('Authorization');
+        if (authHeader) {
+            const token = authHeader.replace('Bearer ', '');
+            const { data: { user: userFromToken }, error: tokenError } = await supabase.auth.getUser(token);
+            if (userFromToken && !tokenError) {
+                user = userFromToken;
+                authError = null;
+            }
+        }
     }
 
-    // Create client with user token
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-    const supabase = createClient(supabaseUrl, supabaseKey, {
-        global: { headers: { Authorization: authHeader } }
-    });
-
-    // Verify token (optional, RLS handles it but good for debug)
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
     if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     // Fetch active plan V2
@@ -49,10 +51,22 @@ export async function GET(request: Request) {
         `)
         .eq('plan_id', plan.id);
 
+    const processedItems = (items || []).map((item: any, index: number) => {
+        const raw = item.modules || {};
+        const title = (raw.title || raw.name || raw.label || `Modulo ${index + 1}`).trim();
+        return {
+            ...item,
+            modules: {
+                ...raw,
+                title
+            }
+        };
+    });
+
     return NextResponse.json({
         planId: plan.id,
         status: plan.status,
         level: plan.level,
-        items: items || []
+        items: processedItems
     });
 }

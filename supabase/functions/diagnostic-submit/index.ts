@@ -10,7 +10,8 @@ Deno.serve(async (req) => {
         // answers: { questionId, selectedOptionId }[]
 
         const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-        const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+        // Try standard var first, then custom override
+        const supabaseKey = Deno.env.get('SERVICE_ROLE') ?? Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
         const supabase = createClient(supabaseUrl, supabaseKey);
 
         const authHeader = req.headers.get('Authorization');
@@ -76,13 +77,18 @@ Deno.serve(async (req) => {
         const { error: ansInsError } = await supabase.from('learning_answers_v2').insert(answersToInsert);
         if (ansInsError) console.error("Ans Insert Error", ansInsError);
 
-        await supabase.from('learning_attempts_v2').update({
+        const { error: updateError } = await supabase.from('learning_attempts_v2').update({
             status: 'completed',
             completed_at: new Date().toISOString(),
             score,
             max_score: 100, // Normalized
             level // Persist Level
         }).eq('id', attemptId);
+
+        if (updateError) {
+            console.error("Attempt Update Error", updateError);
+            return errorResponse({ error_code: 'DB_ERROR', message: 'Failed to update attempt status', details: updateError }, 500);
+        }
 
         // 5. Create Plan
         const courseId = attempt.assessments_v2.course_id;
