@@ -23,11 +23,28 @@ Deno.serve(async (req) => {
         }
         const userId = user.id;
 
+        // 0. Resolve Slug to UUID (if needed)
+        let resolvedCourseId = courseId;
+        const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+        if (!uuidRegex.test(courseId)) {
+            const { data: course, error: cError } = await supabase
+                .from('courses')
+                .select('id')
+                .eq('slug', courseId)
+                .single();
+
+            if (cError || !course) {
+                return errorResponse({ error_code: 'COURSE_NOT_FOUND', message: `Course not found: ${courseId}` }, 404);
+            }
+            resolvedCourseId = course.id;
+        }
+
         // 1. Fetch Diagnostic Assessment
         const { data: assessment, error: assError } = await supabase
             .from('assessments_v2')
             .select('id, settings')
-            .eq('course_id', courseId)
+            .eq('course_id', resolvedCourseId)
             .eq('type', 'diagnostic')
             .single();
 

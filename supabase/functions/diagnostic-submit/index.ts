@@ -90,16 +90,17 @@ Deno.serve(async (req) => {
             return errorResponse({ error_code: 'DB_ERROR', message: 'Failed to update attempt status', details: updateError }, 500);
         }
 
-        // 5. Create Plan
+        // 5. Create or Update Plan
         const courseId = attempt.assessments_v2.course_id;
         const { data: plan, error: planError } = await supabase
             .from('learning_plans_v2')
-            .insert({
+            .upsert({
                 user_id: userId,
                 course_id: courseId,
                 level: level,
-                status: 'active'
-            })
+                status: 'active',
+                updated_at: new Date().toISOString()
+            }, { onConflict: 'user_id, course_id' })
             .select('id')
             .single();
 
