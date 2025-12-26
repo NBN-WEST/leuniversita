@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: 
-**Status**: CLOSED (v1.0.1)
+**Task**: Task Completato: Back Office Course Management
+**Status**: CLOSED (v1.0.2)
 **Date**: 2025-12-26
-**Comment**: Test utente ed admin
+**Comment**: Task Completato: Back Office Course Management

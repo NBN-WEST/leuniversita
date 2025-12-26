@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v1.0.1
+**Version**: v1.0.2
 **Date**: 2025-12-26
 
 ### Summary
-Test utente ed admin
+Task Completato: Back Office Course Management

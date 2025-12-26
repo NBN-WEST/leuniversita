@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v1.0.2] - 2025-12-26
+- Task Completato: Back Office Course Management (Task: Task Completato: Back Office Course Management)
+
+
 ## [v1.0.1] - 2025-12-26
 - Test utente ed admin (Task: )
 
