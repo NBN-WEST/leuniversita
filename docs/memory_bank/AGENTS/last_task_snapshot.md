@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: UX Polish & Italian Microcopy
-**Status**: CLOSED (v1.0.3)
+**Task**: Walkthrough of UX Polish (Italian Microcopy & Error Pages
+**Status**: CLOSED (v1.0.4)
 **Date**: 2025-12-26
-**Comment**: Phase 10 Stabilization: UX Localization (IT), Global Error Pages (404/500), and Course Update Bugfix.
+**Comment**: Walkthrough of UX Polish (Italian Microcopy & Error Pages

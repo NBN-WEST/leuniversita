@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v1.0.3
+**Version**: v1.0.4
 **Date**: 2025-12-26
 
 ### Summary
-Phase 10 Stabilization: UX Localization (IT), Global Error Pages (404/500), and Course Update Bugfix.
+Walkthrough of UX Polish (Italian Microcopy & Error Pages
