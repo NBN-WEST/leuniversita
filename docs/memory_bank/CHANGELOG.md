@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v1.0.0] - 2025-12-26
+- Final Verification of Session and RBAC (Task: Final Verification of Session and RBAC)
+
+
 ## [v0.17.0] - 2025-12-26
 - Passaggio di consegne da GPT ed integrazione memoria di progetto (Task: Passaggio di consegne da GPT)
 

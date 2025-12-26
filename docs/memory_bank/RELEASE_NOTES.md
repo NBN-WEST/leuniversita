@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v0.17.0
+**Version**: v1.0.0
 **Date**: 2025-12-26
 
 ### Summary
-Passaggio di consegne da GPT ed integrazione memoria di progetto
+Final Verification of Session and RBAC

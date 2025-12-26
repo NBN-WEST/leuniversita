@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: Passaggio di consegne da GPT
-**Status**: CLOSED (v0.17.0)
+**Task**: Final Verification of Session and RBAC
+**Status**: CLOSED (v1.0.0)
 **Date**: 2025-12-26
-**Comment**: Passaggio di consegne da GPT ed integrazione memoria di progetto
+**Comment**: Final Verification of Session and RBAC

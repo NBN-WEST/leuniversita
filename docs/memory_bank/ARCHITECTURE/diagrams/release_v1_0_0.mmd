@@ -1,0 +1,10 @@
+graph TD
+    User -->|Chat| EdgeFunctions
+    EdgeFunctions -->|Query| VectorDB
+    VectorDB -->|Context| OpenAI
+    OpenAI -->|Response| User
+    subgraph Ingestion
+        PDF -->|Parse| Chunks
+        Chunks -->|Embed| VectorDB
+    end
+    %% Generated for v1.0.0

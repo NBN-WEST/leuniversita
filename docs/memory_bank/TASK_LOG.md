@@ -46,4 +46,8 @@
 | 2025-12-25T22:11:11.071Z | Titles And Smoke |  | Auto-detected | PASS | Check Next |
 | 2025-12-25T22:21:47.915Z | Production smoke test PASSED on 2025-12-25 |  | Auto-detected | PASS | Check Next |- **2025-12-26**: Phase 10 Kickoff complete. Roadmap reset. Back Office Skeleton v1 implemented with RBAC.
 
-| 2025-12-26T17:35:35.753Z | Passaggio di consegne da GPT | Passaggio di consegne da GPT ed integrazione memoria di progetto | Auto-detected | PASS | Check Next |
+| 2025-12-26T17:35:35.753Z | Passaggio di consegne da GPT | Passaggio di consegne da GPT ed integrazione memoria di progetto | Auto-detected | PASS | Check Next |- **2025-12-26**: Implemented Back Office Courses CRUD (GET/POST). Added DB Types and Service Role Client.
+- **2025-12-26**: Standardized Supabase Client/Server/Middleware to use default cookies (removed custom storageKey 'leuniversita-auth-token' and migrated Client to @supabase/ssr).
+- **2025-12-26**: Fixed Session Persistence bug by consolidating Client/Server auth to use Cookies (removed duplicate client in lib/supabase).
+
+| 2025-12-26T20:35:29.557Z | Final Verification of Session and RBAC | Final Verification of Session and RBAC | Auto-detected | PASS | Check Next |

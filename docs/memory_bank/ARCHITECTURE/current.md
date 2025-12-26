@@ -65,3 +65,6 @@ graph TD
 
 ## Component Diagram
 Refer to `diagrams/release_vX.Y.Z.mmd` for the latest view.
+
+
+Last Release Diagram: [v1.0.0](./diagrams/release_v1_0_0.mmd)
