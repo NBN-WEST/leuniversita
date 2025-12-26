@@ -51,3 +51,4 @@
 - **2025-12-26**: Fixed Session Persistence bug by consolidating Client/Server auth to use Cookies (removed duplicate client in lib/supabase).
 
 | 2025-12-26T20:35:29.557Z | Final Verification of Session and RBAC | Final Verification of Session and RBAC | Auto-detected | PASS | Check Next |
+| 2025-12-26T20:51:25.257Z |  | Test utente ed admin | Auto-detected | PASS | Check Next |

@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: Final Verification of Session and RBAC
-**Status**: CLOSED (v1.0.0)
+**Task**: 
+**Status**: CLOSED (v1.0.1)
 **Date**: 2025-12-26
-**Comment**: Final Verification of Session and RBAC
+**Comment**: Test utente ed admin

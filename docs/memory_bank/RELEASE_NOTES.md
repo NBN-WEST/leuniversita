@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v1.0.0
+**Version**: v1.0.1
 **Date**: 2025-12-26
 
 ### Summary
-Final Verification of Session and RBAC
+Test utente ed admin

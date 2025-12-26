@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v1.0.1] - 2025-12-26
+- Test utente ed admin (Task: )
+
+
 ## [v1.0.0] - 2025-12-26
 - Final Verification of Session and RBAC (Task: Final Verification of Session and RBAC)
 
