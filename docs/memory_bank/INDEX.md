@@ -27,6 +27,7 @@ graph TD
     ROOT --> PRO[PROCESSES]
     ROOT --> DEC[DECISIONS]
     ROOT --> CNT[CONTENT]
+    ROOT --> GPT[GPT HANDOVER]
     
     PRO --> P1(Ingestion)
     PRO --> P2(Review)
@@ -47,9 +48,10 @@ graph TD
 | **DECISIONS** | Registro decisioni (ADR) | [Decisions](./DECISIONS/ADR-000-memory-bank.md) |
 | **PRODUCT** | Vision e requisiti | [Product](./PRODUCT/README.md) |
 | **CONTENT** | Fonti e materiali | [Content](./CONTENT/README.md) |
+| **HANDOVER** | Contesto e Passaggio GPT | [GPT Handover](./PASSAGGIO_GPT/passaggio_consegne_da_gpt_261225A.md) |
 
 ## Changelog Recente
-- **v0.16.1**: Ristrutturazione completa Memory Bank (Mermaid + Standard Template).
+- **v0.17.0**: Ristrutturazione completa Memory Bank (Mermaid + Standard Template).
 - **v0.1.3**: Consolidamento conoscenza iniziale.
 
 ## Ultima Revisione

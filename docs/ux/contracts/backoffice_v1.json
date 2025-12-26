@@ -1,0 +1,70 @@
+{
+    "id": "UX-CONTRACT-002",
+    "name": "Back Office v1",
+    "version": "1.0.0",
+    "status": "draft",
+    "permissions": {
+        "admin": [
+            "read:admin",
+            "write:courses",
+            "write:exams",
+            "ingest:sources",
+            "publish:content"
+        ],
+        "teacher": [
+            "read:admin",
+            "read:analytics",
+            "write:feedback"
+        ],
+        "student": []
+    },
+    "routes": [
+        {
+            "path": "/admin",
+            "component": "Dashboard",
+            "access": "admin",
+            "description": "Overview of system status and key metrics"
+        },
+        {
+            "path": "/admin/courses",
+            "component": "CourseList",
+            "access": "admin",
+            "description": "List all courses with status (draft/published)"
+        },
+        {
+            "path": "/admin/courses/new",
+            "component": "CourseEditor",
+            "access": "admin",
+            "description": "Create a new course skeleton"
+        },
+        {
+            "path": "/admin/ingestion",
+            "component": "IngestionManager",
+            "access": "admin",
+            "description": "Upload sources and trigger ingestion jobs"
+        }
+    ],
+    "screens": {
+        "Dashboard": {
+            "elements": [
+                "StatsCards (Active Users, Content Coverage)",
+                "RecentActivityFeed",
+                "QuickActions (New Course, Upload Source)"
+            ]
+        },
+        "CourseList": {
+            "elements": [
+                "CourseTable (Title, ID, Status, Actions)",
+                "SearchFilter",
+                "CreateButton"
+            ]
+        },
+        "IngestionManager": {
+            "elements": [
+                "DropZone (PDF Upload)",
+                "JobStatusList (Progress bars)",
+                "LogViewer (Validation errors)"
+            ]
+        }
+    }
+}

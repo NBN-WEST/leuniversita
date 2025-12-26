@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v0.17.0] - 2025-12-26
+- Passaggio di consegne da GPT ed integrazione memoria di progetto (Task: Passaggio di consegne da GPT)
+
+
 ## [v0.16.1] - 2025-12-25
 -  (Task: Production smoke test PASSED on 2025-12-25)
 
@@ -184,3 +188,4 @@ All notable changes to this project will be documented in this file.
 ## [v0.1.0] - 2025-12-18
 - Initial Memory Bank Setup (Task: SETUP)
 
+- **v0.17.0** (Phase 10): Back Office Skeleton, RBAC, Updated Roadmap.
