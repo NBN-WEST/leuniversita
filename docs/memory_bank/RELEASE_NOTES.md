@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v1.1.0
+**Version**: v1.2.0
 **Date**: 2025-12-26
 
 ### Summary
-Phase 11: Content Pipeline Hardening Complete. Implemented Idempotency, Smart Chunking, and One-Command Ingestion.
+Minor Release per completamento Fase 11

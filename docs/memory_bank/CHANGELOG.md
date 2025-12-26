@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v1.2.0] - 2025-12-26
+- Minor Release per completamento Fase 11 (Task: Minor Release per completamento Fase 11)
+
+
 ## [v1.1.0] - 2025-12-26
 - Phase 11: Content Pipeline Hardening Complete. Implemented Idempotency, Smart Chunking, and One-Command Ingestion. (Task: Phase 11: Content Pipeline Hardening)
 
