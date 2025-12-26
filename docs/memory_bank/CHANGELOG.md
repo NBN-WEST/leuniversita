@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v1.0.3] - 2025-12-26
+- Phase 10 Stabilization: UX Localization (IT), Global Error Pages (404/500), and Course Update Bugfix. (Task: UX Polish & Italian Microcopy)
+
+
 ## [v1.0.2] - 2025-12-26
 - Task Completato: Back Office Course Management (Task: Task Completato: Back Office Course Management)
 

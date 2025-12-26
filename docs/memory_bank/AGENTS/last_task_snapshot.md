@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: Task Completato: Back Office Course Management
-**Status**: CLOSED (v1.0.2)
+**Task**: UX Polish & Italian Microcopy
+**Status**: CLOSED (v1.0.3)
 **Date**: 2025-12-26
-**Comment**: Task Completato: Back Office Course Management
+**Comment**: Phase 10 Stabilization: UX Localization (IT), Global Error Pages (404/500), and Course Update Bugfix.
