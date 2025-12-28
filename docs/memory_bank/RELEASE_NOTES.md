@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v1.2.2
+**Version**: v1.3.0
 **Date**: 2025-12-28
 
 ### Summary
-Fix Admin Course CRUD: Schema & Next.js 15 Params
+Course CRUD fix and schema alignment

@@ -51,7 +51,7 @@ graph TD
 | **HANDOVER** | Contesto e Passaggio GPT | [GPT Handover](./PASSAGGIO_GPT/passaggio_consegne_da_gpt_261225A.md) |
 
 ## Changelog Recente
-- **v1.2.2**: Ristrutturazione completa Memory Bank (Mermaid + Standard Template).
+- **v1.3.0**: Ristrutturazione completa Memory Bank (Mermaid + Standard Template).
 - **v0.1.3**: Consolidamento conoscenza iniziale.
 
 ## Ultima Revisione

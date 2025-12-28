@@ -59,3 +59,4 @@
 | 2025-12-26T22:55:29.401Z | Minor Release per completamento Fase 11 | Minor Release per completamento Fase 11 | Auto-detected | PASS | Check Next |
 | 2025-12-26T23:07:06.654Z |  | Vercel variables test | Auto-detected | PASS | Check Next |
 | 2025-12-28T19:10:54.557Z | Admin Course Fix | Fix Admin Course CRUD: Schema & Next.js 15 Params | Auto-detected | PASS | Check Next |
+| 2025-12-28T19:11:59.841Z | Course CRUD fix and schema alignment. | Course CRUD fix and schema alignment | Auto-detected | PASS | Check Next |
