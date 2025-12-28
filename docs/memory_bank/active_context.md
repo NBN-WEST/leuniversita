@@ -13,28 +13,26 @@ mermaid: not_applicable
 # Active Context
 
 ## Current Focus
-**Phase 5 Hardening & QA (v0.13.2)**
-- **Goal**: Ensure UI robustness (Diagnostic/Results) and readiness for Vercel deployment.
-- **Status**: **CODE COMPLETE** (Pending Remote Deployment).
-- **Phase 11: Content Pipeline Hardening (COMPLETED)**
-  - Implemented `IngestionManager` with SHA256 Idempotency.
-  - Implemented `SmartChunker` (recursive splitting).
-  - Created `pdf-parse` based `PDFProcessor`.
-  - Created `ingest_automator.ts` for One-Command Ingestion.
-  - Validated and Cleaned "Diritto Privato" dataset.
+**Phase 12: Back Office & Admin Stub (v1.3.5)**
+- **Goal**: Enable full Course Management (CRUD) for Administrators.
+- **Status**: **STABLE** (Course Creation and Editing Verified).
+- **Recent Accomplishments**: 
+  - Fixed `null value in column "id"` by implementing client-side UUID generation.
+  - Aligned UI/API with Database Schema (Removed `university`, Mapped `is_active` -> `status`).
+  - Resolved generic 404 on Edit Page by fixing Next.js 15 `params` await requirement.
 
 ## Active Documents
-- `packages/ingestion/src/lib/IngestionManager.ts` (Core Logic)
-- `packages/ingestion/src/ingest_automator.ts` (Orchestrator)
-- `packages/ingestion/src/chunker/SmartChunker.ts` (Text Splitting)
+- `apps/pilot-web/app/api/admin/courses/[id]/route.ts` (Dynamic API Handler)
+- `apps/pilot-web/app/api/admin/courses/route.ts` (List/Create API)
+- `apps/pilot-web/components/admin/CourseForm.tsx` (Course UI)
 
 ## Recent Changes
-- **Refactor**: Split `run.ts` into modular classes.
-- **Feat**: Added `content_hash` to DB for idempotency.
-- **Fix**: Removed stale public duplicates of private manuals.
+- **Fix**: Updated dynamic route handlers to `await props.params`.
+- **Refactor**: Unified `Course` schema types across API and UI.
+- **Feat**: Added debug logging to Admin API (temporarily for investigation).
 
 ## Next Steps
-1. Deploy Edge Functions (`supabase functions deploy diagnostic-submit`).
-2. Deploy Frontend to Vercel (using `docs/deploy/vercel_supabase_checklist.md`).
-3. Verify production URL.
+1. Deploy to Vercel and verify in production environment.
+2. Implement Soft Delete logic in UI (API is ready).
+3. Begin "Learning Path" content association features.
 ```

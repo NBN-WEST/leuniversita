@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v1.2.2] - 2025-12-28
+- Fix Admin Course CRUD: Schema & Next.js 15 Params (Task: Admin Course Fix)
+
+
 ## [v1.2.1] - 2025-12-26
 - Vercel variables test (Task: )
 
