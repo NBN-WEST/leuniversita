@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v1.4.0] - 2025-12-28
+- change commit and github branch creation (Task: new branch)
+
+
 ## [v1.3.0] - 2025-12-28
 - Course CRUD fix and schema alignment (Task: Course CRUD fix and schema alignment.)
 

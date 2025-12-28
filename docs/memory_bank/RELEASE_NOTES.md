@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v1.3.0
+**Version**: v1.4.0
 **Date**: 2025-12-28
 
 ### Summary
-Course CRUD fix and schema alignment
+change commit and github branch creation

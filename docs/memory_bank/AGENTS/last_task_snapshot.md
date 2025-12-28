@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: Course CRUD fix and schema alignment.
-**Status**: CLOSED (v1.3.0)
+**Task**: new branch
+**Status**: CLOSED (v1.4.0)
 **Date**: 2025-12-28
-**Comment**: Course CRUD fix and schema alignment
+**Comment**: change commit and github branch creation
