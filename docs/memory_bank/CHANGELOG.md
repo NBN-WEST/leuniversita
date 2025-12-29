@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v1.4.2] - 2025-12-29
+- Refining Login Copy (Task: Refining Login Copy)
+
+
 ## [v1.4.1] - 2025-12-29
 - SOFT PREMIUM INVITE (NEW VERB DISCOVERED) (Task: )
 

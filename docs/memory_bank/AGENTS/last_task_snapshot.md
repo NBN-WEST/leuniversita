@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: 
-**Status**: CLOSED (v1.4.1)
+**Task**: Refining Login Copy
+**Status**: CLOSED (v1.4.2)
 **Date**: 2025-12-29
-**Comment**: SOFT PREMIUM INVITE (NEW VERB DISCOVERED)
+**Comment**: Refining Login Copy

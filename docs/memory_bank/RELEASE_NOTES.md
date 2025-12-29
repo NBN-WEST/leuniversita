@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v1.4.1
+**Version**: v1.4.2
 **Date**: 2025-12-29
 
 ### Summary
-SOFT PREMIUM INVITE (NEW VERB DISCOVERED)
+Refining Login Copy
