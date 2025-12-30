@@ -15,11 +15,12 @@ mermaid: not_applicable
 ## Current Focus
 **Phase 12: Back Office & Admin Stub (v1.3.5)**
 - **Goal**: Enable full Course Management (CRUD) for Administrators.
-- **Status**: **STABLE** (Course Creation and Editing Verified).
+- **Status**: **STABLE** (Course Creation, Editing, and Soft Delete Verified).
 - **Recent Accomplishments**: 
   - Fixed `null value in column "id"` by implementing client-side UUID generation.
   - Aligned UI/API with Database Schema (Removed `university`, Mapped `is_active` -> `status`).
   - Resolved generic 404 on Edit Page by fixing Next.js 15 `params` await requirement.
+  - Implemented **Soft Delete** logic (Status: `archived`) to preserve course data.
 
 ## Active Documents
 - `apps/pilot-web/app/api/admin/courses/[id]/route.ts` (Dynamic API Handler)
@@ -29,10 +30,9 @@ mermaid: not_applicable
 ## Recent Changes
 - **Fix**: Updated dynamic route handlers to `await props.params`.
 - **Refactor**: Unified `Course` schema types across API and UI.
-- **Feat**: Added debug logging to Admin API (temporarily for investigation).
+- **Feat**: Implemented `handleArchive` in Edit Page with Confirmation Dialog.
 
 ## Next Steps
 1. Deploy to Vercel and verify in production environment.
-2. Implement Soft Delete logic in UI (API is ready).
-3. Begin "Learning Path" content association features.
+2. Begin "Learning Path" content association features.
 ```

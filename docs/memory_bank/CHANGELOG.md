@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v1.4.3] - 2025-12-30
+- Finalize Admin CRUD: Implemented Soft Delete (Archiving) (Task: Admin Soft Delete)
+
+
 ## [v1.4.2] - 2025-12-29
 - Refining Login Copy (Task: Refining Login Copy)
 
