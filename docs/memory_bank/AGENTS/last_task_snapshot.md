@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: Deployment
-**Status**: CLOSED (v1.5.0)
+**Task**: QA Verification
+**Status**: CLOSED (v1.5.1)
 **Date**: 2025-12-30
-**Comment**: Deploy v1.5.0: Verified Admin CRUD & Diagnostic Fixes
+**Comment**: Verified Student Diagnostic Flow & Test User Script

@@ -23,6 +23,7 @@ mermaid: not_applicable
   - Implemented **Soft Delete** logic (Status: `archived`) to preserve course data.
   - Resolved `invalid input syntax for integer` in Diagnostic Score calculation.
   - Fixed missing `user_id` constraint violation in Diagnostic Submission.
+  - Verified complete "Student Flow" (Login -> Diagnostic -> Results) with test user.
 
 ## Active Documents
 - `apps/pilot-web/app/api/admin/courses/[id]/route.ts` (Dynamic API Handler)

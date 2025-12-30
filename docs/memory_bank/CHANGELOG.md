@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v1.5.1] - 2025-12-30
+- Verified Student Diagnostic Flow & Test User Script (Task: QA Verification)
+
+
 ## [v1.5.0] - 2025-12-30
 - Deploy v1.5.0: Verified Admin CRUD & Diagnostic Fixes (Task: Deployment)
 

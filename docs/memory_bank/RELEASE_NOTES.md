@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v1.5.0
+**Version**: v1.5.1
 **Date**: 2025-12-30
 
 ### Summary
-Deploy v1.5.0: Verified Admin CRUD & Diagnostic Fixes
+Verified Student Diagnostic Flow & Test User Script
