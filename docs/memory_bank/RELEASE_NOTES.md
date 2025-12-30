@@ -14,8 +14,8 @@ mermaid: not_applicable
 # Release Notes
 
 ## Latest Release
-**Version**: v1.4.3
+**Version**: v1.5.0
 **Date**: 2025-12-30
 
 ### Summary
-Finalize Admin CRUD: Implemented Soft Delete (Archiving)
+Deploy v1.5.0: Verified Admin CRUD & Diagnostic Fixes

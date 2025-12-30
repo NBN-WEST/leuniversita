@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v1.5.0] - 2025-12-30
+- Deploy v1.5.0: Verified Admin CRUD & Diagnostic Fixes (Task: Deployment)
+
+
 ## [v1.4.3] - 2025-12-30
 - Finalize Admin CRUD: Implemented Soft Delete (Archiving) (Task: Admin Soft Delete)
 

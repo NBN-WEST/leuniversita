@@ -21,6 +21,8 @@ mermaid: not_applicable
   - Aligned UI/API with Database Schema (Removed `university`, Mapped `is_active` -> `status`).
   - Resolved generic 404 on Edit Page by fixing Next.js 15 `params` await requirement.
   - Implemented **Soft Delete** logic (Status: `archived`) to preserve course data.
+  - Resolved `invalid input syntax for integer` in Diagnostic Score calculation.
+  - Fixed missing `user_id` constraint violation in Diagnostic Submission.
 
 ## Active Documents
 - `apps/pilot-web/app/api/admin/courses/[id]/route.ts` (Dynamic API Handler)

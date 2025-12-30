@@ -13,7 +13,7 @@ mermaid: not_applicable
 
 # Last Task Snapshot
 
-**Task**: Admin Soft Delete
-**Status**: CLOSED (v1.4.3)
+**Task**: Deployment
+**Status**: CLOSED (v1.5.0)
 **Date**: 2025-12-30
-**Comment**: Finalize Admin CRUD: Implemented Soft Delete (Archiving)
+**Comment**: Deploy v1.5.0: Verified Admin CRUD & Diagnostic Fixes
