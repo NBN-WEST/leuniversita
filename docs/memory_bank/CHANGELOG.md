@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v1.5.2] - 2026-01-08
+-  (Task: error 500)
+
+
 ## [v1.5.1] - 2025-12-30
 - Verified Student Diagnostic Flow & Test User Script (Task: QA Verification)
 
