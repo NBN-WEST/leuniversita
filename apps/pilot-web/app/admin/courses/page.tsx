@@ -125,7 +125,6 @@ export default function CoursesPage() {
                                         </div>
                                     </td>
                                 </tr>
-                                </tr>
                                 );
                             })
                         )}
