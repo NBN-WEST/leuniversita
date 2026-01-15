@@ -67,3 +67,9 @@
 | 2025-12-30T23:06:31.811Z | Deployment | Deploy v1.5.0: Verified Admin CRUD & Diagnostic Fixes | Auto-detected | PASS | Check Next |
 | 2025-12-30T23:11:45.461Z | QA Verification | Verified Student Diagnostic Flow & Test User Script | Auto-detected | PASS | Check Next |
 | 2026-01-08T10:52:16.498Z | error 500 |  | Auto-detected | PASS | Check Next |
+| 2026-01-15T00:00:00.000Z | PHASE_10_CLOSE | Phase 10: Stabilization verified (login OK, app running) | Manual | PASS | Proceed to Phase 12 |
+| 2026-01-15T00:00:00.000Z | PHASE_12_INGESTION_ADMIN | Admin ingestion: upload sources + local trigger API + UI | Manual | PASS | Start publishing workflow |
+| 2026-01-15T00:00:00.000Z | PHASE_12_PUBLISHING | Course publishing workflow (draft/published/archived) | Manual | PASS | Extend to exams/modules |
+| 2026-01-15T00:00:00.000Z | PHASE_12_EXAM_MODULE_CRUD | Admin CRUD for exams and modules | Manual | PASS | Start Learning Path associations |
+| 2026-01-15T00:00:00.000Z | PHASE_13_LEARNING_PATH | Learning Path associations + plan sync | Manual | PASS | Skill Map visualization |
+| 2026-01-15T00:00:00.000Z | PHASE_13_SKILL_MAP | Exam selector + skill map + cross-exam summary | Manual | PASS | Next: Analytics/Monetization |

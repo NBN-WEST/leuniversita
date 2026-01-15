@@ -54,7 +54,7 @@ export async function PUT(request: NextRequest) {
 
     // 2. Parse Body
     const body = await request.json();
-    const { id, title, slug, description } = body;
+    const { id, title, slug, description, status } = body;
 
     if (!id || !title || !slug) {
         return NextResponse.json({ error: 'ID, Title and Slug are required' }, { status: 400 });
@@ -62,12 +62,14 @@ export async function PUT(request: NextRequest) {
 
     // 3. Update Data (Requires Admin Client)
     const adminSupabase = createAdminClient();
+    const safeStatus = ['draft', 'published', 'archived'].includes(status) ? status : undefined;
     const { data, error: updateError } = await adminSupabase
         .from('courses')
         .update({
             title,
             slug,
             description,
+            ...(safeStatus ? { status: safeStatus } : {}),
             updated_at: new Date().toISOString()
         })
         .eq('id', id)
@@ -92,7 +94,7 @@ export async function POST(request: NextRequest) {
 
     // 2. Parse Body
     const body = await request.json();
-    const { title, slug, description } = body;
+    const { title, slug, description, status } = body;
 
     if (!title || !slug) {
         return NextResponse.json({ error: 'Title and Slug are required' }, { status: 400 });
@@ -100,12 +102,14 @@ export async function POST(request: NextRequest) {
 
     // 3. Insert Data (Requires Admin Client to bypass RLS if no policy exists for insert)
     const adminSupabase = createAdminClient();
+    const safeStatus = ['draft', 'published', 'archived'].includes(status) ? status : 'draft';
     const { data, error: insertError } = await adminSupabase
         .from('courses')
         .insert([{
             title,
             slug,
             description,
+            status: safeStatus,
             created_at: new Date().toISOString()
         }])
         .select()

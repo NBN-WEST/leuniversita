@@ -81,7 +81,9 @@ export default function CoursesPage() {
                                 </td>
                             </tr>
                         ) : (
-                            courses.map((course) => (
+                            courses.map((course) => {
+                                const status = course.status || 'draft';
+                                return (
                                 <tr key={course.id} className="hover:bg-slate-50 transition-colors">
                                     <td className="px-6 py-4">
                                         <div className="flex items-center gap-3">
@@ -96,8 +98,20 @@ export default function CoursesPage() {
                                     </td>
                                     <td className="px-6 py-4 text-sm text-slate-500 font-mono">{course.slug}</td>
                                     <td className="px-6 py-4">
-                                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
-                                            Pubblicato
+                                        <span
+                                            className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                                                status === 'published'
+                                                    ? 'bg-emerald-100 text-emerald-800'
+                                                    : status === 'archived'
+                                                        ? 'bg-slate-200 text-slate-600'
+                                                        : 'bg-amber-100 text-amber-800'
+                                            }`}
+                                        >
+                                            {status === 'published'
+                                                ? 'Pubblicato'
+                                                : status === 'archived'
+                                                    ? 'Archiviato'
+                                                    : 'Bozza'}
                                         </span>
                                     </td>
                                     <td className="px-6 py-4 text-right">
@@ -111,7 +125,9 @@ export default function CoursesPage() {
                                         </div>
                                     </td>
                                 </tr>
-                            ))
+                                </tr>
+                                );
+                            })
                         )}
                     </tbody>
                 </table>

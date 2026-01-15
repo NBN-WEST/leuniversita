@@ -17,6 +17,24 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v1.5.3] - 2026-01-15
+- Phase 10 closed: app running and login verified (Task: PHASE_10_CLOSE)
+
+## [v1.6.0] - 2026-01-15
+- Admin ingestion: upload sources + local trigger API + UI (Task: PHASE_12_INGESTION_ADMIN)
+
+## [v1.6.1] - 2026-01-15
+- Course publishing workflow (draft/published/archived) (Task: PHASE_12_PUBLISHING)
+
+## [v1.6.2] - 2026-01-15
+- Admin CRUD for exams and modules (Task: PHASE_12_EXAM_MODULE_CRUD)
+
+## [v1.7.0] - 2026-01-15
+- Learning Path associations + plan sync (Task: PHASE_13_LEARNING_PATH)
+
+## [v1.7.1] - 2026-01-15
+- Exam selector + skill map + cross-exam summary (Task: PHASE_13_SKILL_MAP)
+
 ## [v1.5.2] - 2026-01-08
 -  (Task: error 500)
 

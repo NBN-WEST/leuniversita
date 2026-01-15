@@ -98,9 +98,14 @@ function PlanContent() {
                     <p className="text-muted-foreground">Livello: <Badge variant="outline" className="ml-2 capitalize">{plan.level}</Badge></p>
                 </div>
                 <Button variant="outline" asChild>
-                    <Link href="/progress">
-                        Vedi Statistiche <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
+                    <div className="flex flex-wrap gap-3">
+                        <Link href="/progress">
+                            Progressi Moduli <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                        <Link href="/skill-map">
+                            Skill Map <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                    </div>
                 </Button>
             </div>
 

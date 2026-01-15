@@ -12,18 +12,36 @@ interface ProgressModule {
     module_id: string;
     status: string;
     last_score: number | null;
+    module?: {
+        title?: string;
+        slug?: string;
+    };
 }
 
 export default function ProgressPage() {
     const supabase = getSupabaseBrowserClient();
     const router = useRouter();
-    const courseId = 'd7515f48-0d00-4824-a745-f09d30058e5f'; // default for MVP
+
+    const [courseId, setCourseId] = useState<string>('');
+    const [courses, setCourses] = useState<{ id: string; title: string }[]>([]);
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [modules, setModules] = useState<ProgressModule[]>([]);
 
-    const fetchProgress = async () => {
+    const fetchCourses = async (token: string) => {
+        const res = await fetch('/api/courses', {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (!res.ok) return;
+        const data = await res.json();
+        setCourses(data.data || []);
+        if (!courseId && data.data?.[0]?.id) {
+            setCourseId(data.data[0].id);
+        }
+    };
+
+    const fetchProgress = async (activeCourseId?: string) => {
         setLoading(true);
         setError(null);
         try {
@@ -33,7 +51,9 @@ export default function ProgressPage() {
                 throw new Error("Non autorizzato.");
             }
 
-            const res = await fetch(`/api/progress?courseId=${courseId}`, {
+            await fetchCourses(session.access_token);
+
+            const res = await fetch(`/api/progress?courseId=${activeCourseId || courseId}`, {
                 headers: { 'Authorization': `Bearer ${session.access_token}` }
             });
 
@@ -61,12 +81,43 @@ export default function ProgressPage() {
         fetchProgress();
     }, []);
 
+    useEffect(() => {
+        if (courseId) {
+            fetchProgress(courseId);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [courseId]);
+
     if (loading) return <ApiState loading={true} error={null} loadingMessage="Analisi progressi..." />;
     if (error) return <ApiState loading={false} error={error} onRetry={fetchProgress} errorMessage="Impossibile caricare i dati" />;
 
     return (
         <div className="container max-w-4xl mx-auto py-8 px-4 space-y-8">
-            <h1 className="text-3xl font-bold">I tuoi Progressi</h1>
+            <div className="flex items-center justify-between flex-wrap gap-4">
+                <div>
+                    <h1 className="text-3xl font-bold">Progressi Moduli</h1>
+                    <p className="text-sm text-muted-foreground">Stato avanzamento per corso.</p>
+                </div>
+                <div className="min-w-[220px]">
+                    <select
+                        value={courseId}
+                        onChange={(e) => setCourseId(e.target.value)}
+                        className="w-full px-4 py-2 rounded-lg border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                        {courses.map((course) => (
+                            <option key={course.id} value={course.id}>
+                                {course.title}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            </div>
+
+            <div className="flex gap-3">
+                <a href="/skill-map" className="text-sm text-blue-600 hover:text-blue-700">
+                    Vai alla Skill Map
+                </a>
+            </div>
 
             {modules.length === 0 ? (
                 <div className="text-center py-12 text-muted-foreground">
@@ -77,9 +128,12 @@ export default function ProgressPage() {
                     {modules.map((mod, i) => (
                         <Card key={i}>
                             <CardHeader className="pb-2">
-                                <CardTitle className="text-lg font-medium truncate" title={mod.module_id}>
-                                    {mod.module_id}
+                                <CardTitle className="text-lg font-medium truncate" title={mod.module?.title || mod.module_id}>
+                                    {mod.module?.title || mod.module_id}
                                 </CardTitle>
+                                {mod.module?.slug && (
+                                    <span className="text-xs text-muted-foreground">{mod.module.slug}</span>
+                                )}
                             </CardHeader>
                             <CardContent>
                                 <div className="flex justify-between items-center">

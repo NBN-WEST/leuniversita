@@ -28,11 +28,12 @@ stateDiagram-v2
 ```
 
 ## Current Context
-- **Active Task**: Memory Bank Optimization
-- **Phase**: Structure & Canonization
-- **Last Action**: Created canonical Agent specs.
+- **Active Task**: Phase 13 - Skill Map & Exam Selector
+- **Phase**: Multi-Exam & Personalization
+- **Last Action**: Added Skill Map page with exam selector and cross-exam summary.
 
 ## Task History (Last 5)
+- **v0.16.2**: (HANDOVER) Transitioned project operations to Cursor.
 - **v0.10.2**: (DEV_TOOLS) Added run_server global command.
 - **v0.10.1**: (DEV_SNAPSHOT) Update pilot-web and add validation script.
 - **v0.10.0**: (MB_V2_UPGRADE) Upgrade to Memory Bank v2.

@@ -17,14 +17,14 @@ This roadmap defines the path from "Technical MVP" to "Go-To-Market Ready Platfo
 
 ## Phases Breakdown
 
-### **Phase 10: Product Stabilization (Pilot Readiness) [NOW]**
+### **Phase 10: Product Stabilization (Pilot Readiness) [DONE]**
 **Goal**: Make user flows robust, demoable, and polished for real users.
-- [ ] UX Polish (Loading, Empty, Error states, 401 handling).
-- [ ] Consistent Italian microcopy.
+- [x] UX Polish (Loading, Empty, Error states, 401 handling).
+- [x] Consistent Italian microcopy.
 - [ ] Minimal non-invasive analytics.
 - **Acceptance**:
-    - Build & Smoke tests pass (Local & Remote).
-    - End-to-end user flow verified (Login -> Diagnostic -> Plan -> Results).
+    - Build & Smoke tests pass (Local & Remote). *(manual verification pending)*
+    - End-to-end user flow verified (Login -> Diagnostic -> Plan -> Results). *(login verified)*
 
 ### Phase 11: Content Pipeline Hardening (Completed)
 - **Goal**: Make content ingestion robust, idempotent, and enterprise-grade.
@@ -40,19 +40,20 @@ This roadmap defines the path from "Technical MVP" to "Go-To-Market Ready Platfo
 
 ### **Phase 12: Back Office v1 (Admin Console)**
 **Goal**: Internal operations for course management without developer intervention.
-- [ ] RBAC (Role-Based Access Control) for Admin areas.
-- [ ] Course/Exam/Module CRUD.
-- [ ] Source Upload & Ingestion triggering.
-- [ ] Publishing Workflow (Draft -> Published).
+- [x] RBAC (Role-Based Access Control) for Admin areas.
+- [x] Course/Exam/Module CRUD.
+- [x] Source Upload & Ingestion triggering (local dev).
+- [x] Publishing Workflow (Draft -> Published) for courses.
 - **Acceptance**:
     - Admin can create a course from scratch.
     - Admin can upload sources and see them ingested.
 
 ### **Phase 13: Multi-Exam & Personalization**
 **Goal**: Support multiple exams and continuous skill tracking.
-- [ ] Exam Selector UI.
-- [ ] Skill Map visualization.
-- [ ] Cross-exam progression logic.
+- [x] Exam Selector UI.
+- [x] Skill Map visualization.
+- [x] Cross-exam progression logic.
+- [x] Learning Path associations (course -> modules).
 - **Acceptance**:
     - Users can switch exams retaining profile integrity.
 

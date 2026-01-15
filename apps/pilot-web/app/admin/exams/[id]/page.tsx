@@ -5,34 +5,36 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, Save, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 
-export default function EditCoursePage({ params }: { params: Promise<{ id: string }> }) {
+export default function EditExamPage({ params }: { params: Promise<{ id: string }> }) {
     const router = useRouter();
     const resolvedParams = use(params);
-    const courseId = resolvedParams.id;
+    const examId = resolvedParams.id;
 
     const [isLoading, setIsLoading] = useState(true);
     const [isSaving, setIsSaving] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
     const [form, setForm] = useState({
+        id: '',
         title: '',
-        slug: '',
         description: '',
-        status: 'draft'
+        icon_name: '',
+        is_active: true
     });
 
     useEffect(() => {
-        const fetchCourse = async () => {
+        const fetchExam = async () => {
             try {
-                const res = await fetch(`/api/admin/courses?id=${courseId}`);
-                if (!res.ok) throw new Error("Errore durante il recupero del corso");
+                const res = await fetch(`/api/admin/exams?id=${examId}`);
+                if (!res.ok) throw new Error('Errore durante il recupero dell\'esame');
                 const json = await res.json();
                 if (json.data) {
                     setForm({
+                        id: json.data.id,
                         title: json.data.title,
-                        slug: json.data.slug,
                         description: json.data.description || '',
-                        status: json.data.status || 'draft'
+                        icon_name: json.data.icon_name || '',
+                        is_active: json.data.is_active ?? true
                     });
                 }
             } catch (err: any) {
@@ -41,8 +43,8 @@ export default function EditCoursePage({ params }: { params: Promise<{ id: strin
                 setIsLoading(false);
             }
         };
-        fetchCourse();
-    }, [courseId]);
+        fetchExam();
+    }, [examId]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -50,19 +52,18 @@ export default function EditCoursePage({ params }: { params: Promise<{ id: strin
         setError(null);
 
         try {
-            const res = await fetch('/api/admin/courses', {
+            const res = await fetch('/api/admin/exams', {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ...form, id: courseId })
+                body: JSON.stringify(form)
             });
 
             if (!res.ok) {
                 const json = await res.json();
-                throw new Error(json.error || 'Errore durante l\'aggiornamento del corso');
+                throw new Error(json.error || 'Errore durante l\'aggiornamento dell\'esame');
             }
 
-            // Success
-            router.push('/admin/courses');
+            router.push('/admin/exams');
             router.refresh();
         } catch (err: any) {
             setError(err.message);
@@ -82,12 +83,12 @@ export default function EditCoursePage({ params }: { params: Promise<{ id: strin
     return (
         <div className="max-w-3xl mx-auto p-8">
             <div className="mb-8">
-                <Link href="/admin/courses" className="flex items-center gap-2 text-slate-500 hover:text-slate-900 mb-4 transition-colors">
+                <Link href="/admin/exams" className="flex items-center gap-2 text-slate-500 hover:text-slate-900 mb-4 transition-colors">
                     <ArrowLeft className="w-4 h-4" />
                     Torna alla lista
                 </Link>
-                <h1 className="text-2xl font-bold text-slate-900">Modifica Corso</h1>
-                <p className="text-slate-500">Aggiorna le informazioni del corso.</p>
+                <h1 className="text-2xl font-bold text-slate-900">Modifica Esame</h1>
+                <p className="text-slate-500">Aggiorna i dettagli dell'esame.</p>
             </div>
 
             <form onSubmit={handleSubmit} className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 space-y-6">
@@ -99,7 +100,19 @@ export default function EditCoursePage({ params }: { params: Promise<{ id: strin
 
                 <div>
                     <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Titolo Corso <span className="text-red-500">*</span>
+                        ID (immutabile)
+                    </label>
+                    <input
+                        type="text"
+                        value={form.id}
+                        readOnly
+                        className="w-full px-4 py-2 rounded-lg border border-slate-200 bg-slate-50 font-mono text-sm"
+                    />
+                </div>
+
+                <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                        Titolo <span className="text-red-500">*</span>
                     </label>
                     <input
                         type="text"
@@ -107,19 +120,6 @@ export default function EditCoursePage({ params }: { params: Promise<{ id: strin
                         value={form.title}
                         onChange={(e) => setForm({ ...form, title: e.target.value })}
                         className="w-full px-4 py-2 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                </div>
-
-                <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Slug (ID univoco) <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                        type="text"
-                        required
-                        value={form.slug}
-                        onChange={(e) => setForm({ ...form, slug: e.target.value })}
-                        className="w-full px-4 py-2 rounded-lg border border-slate-200 bg-slate-50 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
 
@@ -137,17 +137,27 @@ export default function EditCoursePage({ params }: { params: Promise<{ id: strin
 
                 <div>
                     <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Stato pubblicazione
+                        Icona (lucide name)
                     </label>
-                    <select
-                        value={form.status}
-                        onChange={(e) => setForm({ ...form, status: e.target.value })}
-                        className="w-full max-w-xs px-4 py-2 rounded-lg border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                        <option value="draft">Bozza</option>
-                        <option value="published">Pubblicato</option>
-                        <option value="archived">Archiviato</option>
-                    </select>
+                    <input
+                        type="text"
+                        value={form.icon_name}
+                        onChange={(e) => setForm({ ...form, icon_name: e.target.value })}
+                        className="w-full px-4 py-2 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                </div>
+
+                <div className="flex items-center gap-3">
+                    <input
+                        id="is_active"
+                        type="checkbox"
+                        checked={form.is_active}
+                        onChange={(e) => setForm({ ...form, is_active: e.target.checked })}
+                        className="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                    />
+                    <label htmlFor="is_active" className="text-sm text-slate-700">
+                        Esame attivo
+                    </label>
                 </div>
 
                 <div className="pt-4 flex justify-end">

@@ -23,19 +23,36 @@ export async function GET(request: Request) {
 
     if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
+    let resolvedCourseId = courseId;
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+    if (resolvedCourseId && !uuidRegex.test(resolvedCourseId)) {
+        const { data: course, error: courseError } = await supabase
+            .from('courses')
+            .select('id')
+            .eq('slug', resolvedCourseId)
+            .single();
+
+        if (courseError || !course) {
+            return NextResponse.json({ error: 'Course not found' }, { status: 404 });
+        }
+        resolvedCourseId = course.id;
+    }
+
     const { data: progress, error: progError } = await supabase
         .from('learning_progress_v2')
-        .select('module_id, state, last_score')
+        .select('module_id, status, last_score, modules (title, slug)')
         .eq('user_id', user.id)
-        .eq('course_id', courseId);
+        .eq('course_id', resolvedCourseId);
 
     if (progError) console.error("Progress Error", progError);
 
-    // Map 'state' to 'status' for frontend compatibility
+    // Normalize payload for frontend
     const modules = (progress || []).map((p: any) => ({
         module_id: p.module_id,
-        status: p.state,
-        last_score: p.last_score
+        status: p.status,
+        last_score: p.last_score,
+        module: p.modules
     }));
 
     return NextResponse.json({

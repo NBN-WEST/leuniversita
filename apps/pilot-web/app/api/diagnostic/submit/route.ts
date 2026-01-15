@@ -139,6 +139,45 @@ export async function POST(request: Request) {
 
         console.log('Success. Plan ID:', plan?.id);
 
+        // 7. Sync Learning Path Items -> Plan Items
+        if (plan?.id) {
+            const { data: pathItems, error: pathError } = await supabase
+                .from('learning_path_items')
+                .select('module_id, type, order_index, status')
+                .eq('course_id', courseId)
+                .eq('status', 'active')
+                .order('order_index', { ascending: true });
+
+            if (pathError) {
+                console.error('Learning Path Fetch Error:', pathError);
+            } else if (pathItems && pathItems.length > 0) {
+                const { data: existingItems } = await supabase
+                    .from('plan_items_v2')
+                    .select('module_id')
+                    .eq('plan_id', plan.id);
+
+                const existingModuleIds = new Set((existingItems || []).map((item) => item.module_id));
+                const toInsert = pathItems
+                    .filter((item) => !existingModuleIds.has(item.module_id))
+                    .map((item) => ({
+                        plan_id: plan.id,
+                        module_id: item.module_id,
+                        type: item.type || 'core',
+                        status: 'todo'
+                    }));
+
+                if (toInsert.length > 0) {
+                    const { error: insertItemsError } = await supabase
+                        .from('plan_items_v2')
+                        .insert(toInsert);
+
+                    if (insertItemsError) {
+                        console.error('Plan Items Insert Error:', insertItemsError);
+                    }
+                }
+            }
+        }
+
         return NextResponse.json({
             placementLevel: level,
             score,

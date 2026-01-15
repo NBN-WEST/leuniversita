@@ -34,8 +34,13 @@ mermaid: not_applicable
 - **Fix**: Updated dynamic route handlers to `await props.params`.
 - **Refactor**: Unified `Course` schema types across API and UI.
 - **Feat**: Implemented `handleArchive` in Edit Page with Confirmation Dialog.
+- **Feat**: Added Admin Ingestion page with PDF upload and local ingestion trigger.
+- **Feat**: Added course publishing status (draft/published/archived) with admin UI.
+- **Feat**: Added Admin CRUD for Exams and Modules.
+- **Feat**: Added Learning Path associations and plan item sync on diagnostic submit.
+- **Feat**: Added Skill Map page with exam selector and cross-exam summary.
 
 ## Next Steps
-1. Deploy to Vercel and verify in production environment.
-2. Begin "Learning Path" content association features.
+1. Complete Back Office v1: source upload + ingestion trigger + publishing workflow.
+2. Start "Learning Path" content association features.
 ```
